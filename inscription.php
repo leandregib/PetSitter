@@ -7,11 +7,11 @@
     $intCp		    = $_POST['cp']??'';
 
     // Liste des villes
-	require("city_entity.php"); 
-    require("city_manager.php"); 
+	require("entities/city_entity.php"); 
+    require("models/city_manager.php"); 
    $objCityManager  = new CityManager(); 
    $arrCity 	    = $objCityManager->findCity(); 
-   
+
 ?>
 
 <!-- Formulaire Deviens PetSitter -->
@@ -57,7 +57,7 @@
 						<select id="city" name="city">
 							<option <?php if ($intCity == ''){ echo "selected"; } ?> value=''>--</option>
 						<?php
-							foreach($arrCities as $arrDetCity){
+							foreach($arrCity as $arrDetCity){
 								$objCity = new City;
 								$objCity->hydrate($arrDetCity);
 								$strSelected = ($intCity == $objCity->getId())?"selected":"";
@@ -71,7 +71,7 @@
                         <select id="cp" name="cp">
 							<option <?php if ($intCp == ''){ echo "selected"; } ?> value=''>--</option>
 						<?php
-							foreach($arrCities as $arrDetCp){
+							foreach($arrCp as $arrDetCp){
 								$objCp = new Cp;
 								$objCp->hydrate($arrDetCp);
 								$strSelected = ($intCp == $objCp->getId())?"selected":"";
