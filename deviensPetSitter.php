@@ -1,6 +1,6 @@
 <?php
 	$strTitle 	= "PetSitter - Devenir PetSitter";
-	include("header.php");
+	include("views/header.php");
     ?>
 
 
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row my-4">
                 <div class=" offset-md-2 col-md-4 text-center py-5">
                     <p>Le meilleur ami des animaux c'est toi, alors nous te faisons confiance pour
                         prendre soin d'eux et rester bienveillant avec tout le monde
@@ -51,9 +51,16 @@
         <div class="container">
             <!-- <hr> -->
         </div>
+        <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-12 my-4">
+                            <p>Pour faire parti de nos PetSitter, <a href="resteDuFormulaire.php">Clique ici</a> </p>
+                        </div>
+                    </div>
+                </div>
         
     </main>
 
     <?php
-	include("footer.php");
+	include("views/footer.php");
     ?>

@@ -1,6 +1,6 @@
 <?php
 	$strTitle 	= "PetSitter";
-	include("header.php");
+	include("views/header.php");
     ?>
     
     <main>
@@ -12,7 +12,7 @@
                         <p class="text-center my-3">Soucieux de laisser ton compagon lors de tes absences <br>
                             Ne culpabilise plus ..</p>
                         <p>Clique m'en cinq !</p>
-                        <a href="faisGarderTonAnimal.html"><img src="assets/img/pateChien.png" alt=""></a>
+                        <a href="faisGarderTonAnimal.php"><img src="assets/img/pateChien.png" alt=""></a>
                     </div>
                 </div>
                 <div class="container-img col-md-6 mt-2">
@@ -21,7 +21,7 @@
                         <p class="text-center my-3">Amoureux des animaux, <br> Passe un peu plus de
                             temps avec eux en t'en occupant</p>
                         <p>Clique m'en cinq !</p>
-                        <a href="deviensPetSitter.html"><img src="assets/img/pateChat.png" alt=""></a>
+                        <a href="deviensPetSitter.php"><img src="assets/img/pateChat.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -47,5 +47,5 @@
     </main>
 
     <?php
-	include("footer.php");
+	include("views/footer.php");
     ?>

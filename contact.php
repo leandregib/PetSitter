@@ -1,6 +1,6 @@
 <?php
 	$strTitle 	= "PetSitter - Contact";
-	include("header.php");
+	include("views/header.php");
     ?>
 
     <main>
@@ -54,5 +54,5 @@
     </main>
 
     <?php
-	include("footer.php");
+	include("views/footer.php");
     ?>

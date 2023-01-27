@@ -1,7 +1,18 @@
 <?php
 	$strTitle 	= "PetSitter - Inscription";
-	include("header.php");
-    ?>
+	include("views/header.php");
+
+    // Pour récupérer les informations dans le formulaire
+	$intCity		= $_POST['city']??'';
+    $intCp		    = $_POST['cp']??'';
+
+    // Liste des villes
+	require("city_entity.php"); 
+    require("city_manager.php"); 
+   $objCityManager  = new CityManager(); 
+   $arrCity 	    = $objCityManager->findCity(); 
+   
+?>
 
 <!-- Formulaire Deviens PetSitter -->
 <div>
@@ -18,6 +29,22 @@
                         <input type="text" class="form-control mx-auto" placeholder="Beans">
                     </div>
                     <div>
+                        <label for="mail" class="form-label">Email</label>
+                        <input type="email" class="form-control mx-auto" placeholder="vsCodeWinner@gmail.fr">
+                    </div>
+                    <div>
+                        <label for="mail" class="form-label">Saisir un mot de passe</label>
+                        <input type="text" class="form-control mx-auto" placeholder="********">
+                    </div>
+                    <div>
+                        <label for="mail" class="form-label">Confirmer le mot de passe</label>
+                        <input type="text" class="form-control mx-auto" placeholder="********">
+                    </div>
+                    <div>
+                        <label for="phone" class="form-label">Télephone</label>
+                        <input type="tel" class="form-control mx-auto" placeholder="0367300236">
+                    </div>
+                    <div>
                         <label for="date" class="form-label">Date de naissance</label>
                         <input type="date" class="form-control mx-auto">
                     </div>
@@ -26,99 +53,35 @@
                         <input type="text" class="form-control mx-auto" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
-                        <label for="codePostal" class="form-label">Code postal</label>
-                        <input type="text" class="form-control mx-auto" placeholder="67400">
+                        <label for="city" class="form-label">Ville</label>
+						<select id="city" name="city">
+							<option <?php if ($intCity == ''){ echo "selected"; } ?> value=''>--</option>
+						<?php
+							foreach($arrCities as $arrDetCity){
+								$objCity = new City;
+								$objCity->hydrate($arrDetCity);
+								$strSelected = ($intCity == $objCity->getId())?"selected":"";
+								echo "<option ".$strSelected." value='".$objCity->getId()."'>".$objCity->getName()."</option>";
+							}
+						?>
+						</select>
                     </div>
                     <div>
-                        <label for="phone" class="form-label">Télephone</label>
-                        <input type="tel" class="form-control mx-auto" placeholder="0367300236">
+                        <label for="cp" class="form-label">Code postal</label>
+                        <select id="cp" name="cp">
+							<option <?php if ($intCp == ''){ echo "selected"; } ?> value=''>--</option>
+						<?php
+							foreach($arrCities as $arrDetCp){
+								$objCp = new Cp;
+								$objCp->hydrate($arrDetCp);
+								$strSelected = ($intCp == $objCp->getId())?"selected":"";
+								echo "<option ".$strSelected." value='".$objCp->getId()."'>".$objCp->getCp()."</option>";
+							}
+						?>
+						</select>
                     </div>
+                    
                     <div>
-                        <label for="mail" class="form-label">Email</label>
-                        <input type="email" class="form-control mx-auto" placeholder="vsCodeWinner@gmail.fr">
-                    </div>
-                    <div class="mt-3">
-                        <span>Animaux: </span>
-                        <div id="formDPS">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Chien</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Chat</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Cage</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <span>Garde: </span>
-                        <div id="formDPS">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">A domicile</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">En pension</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Promenade</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <span>Logement actuel: </span>
-                        <div id="formDPS">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                    id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Maison</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                    id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Appartement</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <p>- Nous te proposons de déposer une lettre de motivation pour en savoir plus
-                            sur toi:
-                        <ul class="text-left">
-                            <li>Votre diplôme actuel ou métier</li>
-                            <li>Vos passions</li>
-                            <li>Si vous avez des animaux</li>
-                            <li>Ceux que vous avez déjà gardé</li>
-                        </ul>
-                        </p>
-                        <div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label"></label>
-                                <input class="form-control" type="file" id="formFile">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="mt-5">
-                            <p>- Ici tu vas devoir télécharger une photo de toi et te décrire.
-                                Permettant aux utilisateurs de mieux choisir leur PetSitter
-                            </p>
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label"></label>
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label">Description: </label>
                             <textarea class="form-control" rows="6"></textarea>
@@ -126,7 +89,7 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                 value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">J’autorise ce site à conserver
+                            <label class="form-check-label" for="inlineCheckbox1">J' autorise ce site à conserver
                                 mes données transmises via ce formulaire</label>
                         </div>
                     </div>
@@ -140,5 +103,5 @@
 </div>
 
 <?php
-	include("footer.php");
+	include("views/footer.php");
     ?>
