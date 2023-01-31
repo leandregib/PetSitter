@@ -79,6 +79,15 @@
 		}
 
 		/**
+		* Page Pet Type Form
+		*/
+		public function petTypeForm (){
+			$this->_arrData['strTitle']	= "#";
+			$this->_arrData['strPage']	= "petTypeForm";
+			$this->display("petTypeForm");
+		}
+
+		/**
 		* Page Plan du site
 		*/
 		public function planDuSite(){
