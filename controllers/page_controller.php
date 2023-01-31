@@ -60,12 +60,12 @@
 		}
 
 		/**
-		* Page Galerie
+		* Page Inscription
 		*/
-		public function galerie(){
-			$this->_arrData['strTitle']	= "PetSitter - Galerie photo";
-			$this->_arrData['strPage']	= "galerie";
-			$this->display("galerie");
+		public function inscription(){
+			$this->_arrData['strTitle']	= "PetSitter - Inscription";
+			$this->_arrData['strPage']	= "inscription";
+			$this->display("inscription");
 		}
 		
 		
@@ -76,5 +76,23 @@
 			$this->_arrData['strTitle']	= "Mentions légales";
 			$this->_arrData['strPage']	= "mentions";
 			$this->display("mentions");
+		}
+
+		/**
+		* Page Plan du site
+		*/
+		public function planDuSite(){
+			$this->_arrData['strTitle']	= "PetSitter - Plan de site";
+			$this->_arrData['strPage']	= "planDuSite";
+			$this->display("planDuSite");
+		}
+
+		/**
+		* Page Reste Du Formulaire
+		*/
+		public function resteDuFormulaire(){
+			$this->_arrData['strTitle']	= "#";
+			$this->_arrData['strPage']	= "resteDuFormulaire";
+			$this->display("resteDuFormulaire");
 		}
 	}
