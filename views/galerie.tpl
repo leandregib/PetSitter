@@ -1,7 +1,4 @@
-<?php
-	$strTitle 	= "PetSitter - Galerie photo";
-	include("views/header.php");
-    ?>
+
 
     <main>
         <div class="gallery-container">
@@ -26,6 +23,4 @@
         </div>
     </main>
         
-        <?php
-	include("views/footer.php");
-    ?>
+   

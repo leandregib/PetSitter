@@ -1,7 +1,4 @@
-<?php
-	$strTitle 	= "PetSitter";
-	include("views/header.php");
-    ?>
+
     
     <main>
         <div class="container">
@@ -45,7 +42,3 @@
             </div>
         </div>
     </main>
-
-    <?php
-	include("views/footer.php");
-    ?>

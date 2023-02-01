@@ -1,7 +1,4 @@
-<?php
-$strTitle     = "#";
-include("views/header.php");
-?>
+
 
 <main>
     <div>
@@ -103,6 +100,3 @@ include("views/header.php");
     </div>
 </main>
 
-<?php
-include("views/footer.php");
-?>
