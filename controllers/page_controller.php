@@ -42,15 +42,6 @@
 		}
 
 		/**
-		* Page Fais Garder Ton Animal
-		*/
-		public function faisGarderTonAnimal(){
-			$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
-			$this->_arrData['strPage']	= "faisGarderTonAnimal";
-			$this->display("faisGarderTonAnimal");
-		}
-
-		/**
 		* Page Galerie
 		*/
 		public function galerie(){
