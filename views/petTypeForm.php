@@ -8,18 +8,18 @@ include("views/header.php");
         <div class="container">
             <div class="row">
                 <div class="offset-md-4 col-md-4">
-                    <form action="" method="post">
+                    <form name="formPet" action="" method="post">
                         <div>
-                            <label for="firstNam" class="form-label">Nom</label>
-                            <input type="text" class="form-control mx-auto" placeholder="Net">
+                            <label for="petName" class="form-label">Nom</label>
+                            <input type="text" class="form-control mx-auto" placeholder="Net" name="petName">
                         </div>
                         <div class="my-2">
-                            <label for="date" class="form-label">Date de naissance</label>
-                            <input type="date" class="form-control mx-auto">
+                            <label for="petBirth" class="form-label">Date de naissance</label>
+                            <input name="petBirth" type="date" class="form-control mx-auto">
                         </div>
                         <div>
-                            <label for="type">Choisissez un type de garde</label>
-                            <select class="form-select my-2" aria-label="Default select example">
+                            <label for="sitterType">Choisissez un type de garde</label>
+                            <select name="sitterType" class="form-select my-2" aria-label="Default select example">
                                 <option selected>Type de garde</option>
                                 <option value="1">A domicile</option>
                                 <option value="2">En pension</option>
@@ -28,8 +28,8 @@ include("views/header.php");
                         </div>
 
                         <div>
-                            <label for="sexe">Sélectionné le sexe de l'animal</label>
-                            <select class="form-select my-2" aria-label="Default select example">
+                            <label for="petSex">Sélectionné le sexe de l'animal</label>
+                            <select name="petSex" class="form-select my-2" aria-label="Default select example">
                                 <option selected>Sexe</option>
                                 <option value="1">Femelle</option>
                                 <option value="2">Mâle</option>
