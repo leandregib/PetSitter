@@ -1,7 +1,4 @@
-<?php
-	$strTitle 	= "PetSitter - Choisis ton PetSitter";
-	include("views/header.php");
-    ?>
+
 
     <main>
         <div id="infoPS">
@@ -201,6 +198,4 @@
         </div>
     </main>
 
-    <?php
-	include("views/footer.php");
-    ?>
+    

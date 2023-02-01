@@ -24,16 +24,16 @@
                     <div class="collapse navbar-collapse" id="mynavbar">
                         <ul class="navbar-nav me-auto mx-5">
                             <li class="nav-item mx-5 text-center py-4">
-                                <a class="nav-link" href="faisGarderTonAnimal.php">Fais garder ton animal</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=faisGarderTonAnimal">Fais garder ton animal</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
-                                <a class="nav-link" href="deviensPetSitter.php">Deviens PetSitter</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=deviensPetSitter">Deviens PetSitter</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
-                                <a class="nav-link" href="galerie.php">Galerie</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=galerie">Galerie</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
-                                <a class="nav-link" href="contact.php">Contact</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=contact">Contact</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4 my-1">
                                 <button data-bs-toggle="modal" data-bs-target="#conlog" id="logbtn">Connexion</button>

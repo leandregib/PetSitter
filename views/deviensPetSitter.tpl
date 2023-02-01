@@ -1,7 +1,4 @@
-<?php
-	$strTitle 	= "PetSitter - Devenir PetSitter";
-	include("views/header.php");
-    ?>
+
 
 
     <main>
@@ -61,6 +58,4 @@
         
     </main>
 
-    <?php
-	include("views/footer.php");
-    ?>
+  
