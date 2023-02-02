@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-02 14:55:36
+/* Smarty version 4.2.1, created on 2023-02-02 15:18:12
   from 'C:\wamp64\www\PetSitter\views\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63dbcee872f828_72380242',
+  'unifunc' => 'content_63dbd43449a5f4_41487928',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '081e423a420820a003f7c520f2668e4a091dacef' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\header.tpl',
-      1 => 1675349689,
+      1 => 1675351085,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63dbcee872f828_72380242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63dbd43449a5f4_41487928 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -114,7 +114,7 @@ function content_63dbcee872f828_72380242 (Smarty_Internal_Template $_smarty_tpl)
 
                                         <!-- Register buttons -->
                                         <div class="text-center">
-                                            <p>Pas encore membre ? <a href="inscription.php">S'inscrire</a></p>
+                                            <p>Pas encore membre ? <a href="index.php?ctrl=user&action=inscription">S'inscrire</a></p>
                                         </div>
                                     </form>
                                 </div>
