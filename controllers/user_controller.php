@@ -19,16 +19,46 @@
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");
 		}
+
+		/**
+		* Page Inscription
+		*/
+		public function inscription(){
+
+		    // Pour récupérer les informations dans le formulaire
+			$intCity		= $_POST['city']??'';
+    		$intCp		    = $_POST['cp']??'';
+
+    		// Liste des villes
+			require("entities/city_entity.php"); 
+   	 		require("models/city_manager.php"); 
+   			$objCityManager  = new CityManager(); 
+   			$arrCity 	    = $objCityManager->findCity(); 
+			$arrCityToDisplay = array();
+			foreach($arrCity as $arrDetCity){
+				$objCity = new City;
+				$objCity->hydrate($arrDetCity);
+				$objCity->selected = ($intCity == $objCity->getId())?"selected":"";
+				$arrCityToDisplay[] = $objCity;
+			}
+			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
+			$this->_arrData['intCity']	= $intCity;
+
+			$this->_arrData['strTitle']	= "PetSitter - Inscription";
+			$this->_arrData['strPage']	= "inscription";
+			$this->display("inscription");
+		}
+		
 		/**
 		* Page Créer un compte
 		*/
-		public function create_account(){
+		/*public function create_account(){
 
 			//Affichage
 			$this->_arrData['strTitle']	= "Créer un compte";
 			$this->_arrData['strPage']	= "create_account";
 			$this->display("create_account");
-		}
+		}*/
 		/**
 		* Page Se déconnecter
 		*/

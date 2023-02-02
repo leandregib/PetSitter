@@ -50,14 +50,6 @@
 			$this->display("galerie");
 		}
 
-		/**
-		* Page Inscription
-		*/
-		public function inscription(){
-			$this->_arrData['strTitle']	= "PetSitter - Inscription";
-			$this->_arrData['strPage']	= "inscription";
-			$this->display("inscription");
-		}
 		
 		
 		/**

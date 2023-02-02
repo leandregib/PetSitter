@@ -1,17 +1,26 @@
 <?php
-	$strTitle 	= "PetSitter - Inscription";
-	include("views/header.php");
+/* Smarty version 4.2.1, created on 2023-02-02 15:10:33
+  from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
-    // Pour récupérer les informations dans le formulaire
-	$intCity		= $_POST['city']??'';
-    $intCp		    = $_POST['cp']??'';
-
-    // Liste des villes
-	require("entities/city_entity.php"); 
-    require("models/city_manager.php"); 
-   $objCityManager  = new CityManager(); 
-   $arrCity 	    = $objCityManager->findCity(); 
-
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63dbd269650d90_07398238',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
+    array (
+      0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
+      1 => 1675350629,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63dbd269650d90_07398238 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!-- Formulaire Deviens PetSitter -->
@@ -55,31 +64,24 @@
                     <div>
                         <label for="city" class="form-label">Ville</label>
 						<select id="city" name="city">
-							<option <?php if ($intCity == ''){ echo "selected"; } ?> value=''>--</option>
-						<?php
-							foreach($arrCity as $arrDetCity){
-								$objCity = new City;
-								$objCity->hydrate($arrDetCity);
-								$strSelected = ($intCity == $objCity->getId())?"selected":"";
-								echo "<option ".$strSelected." value='".$objCity->getId()."'>".$objCity->getName()."</option>";
-							}
-						?>
+                            <option <?php if (($_smarty_tpl->tpl_vars['intCity']->value == '')) {?> selected <?php }?> value=''>--</option>
+							<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrCityToDisplay']->value, 'objCity');
+$_smarty_tpl->tpl_vars['objCity']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objCity']->value) {
+$_smarty_tpl->tpl_vars['objCity']->do_else = false;
+?>
+								<option <?php echo $_smarty_tpl->tpl_vars['objCity']->value->selected;?>
+ value='<?php echo $_smarty_tpl->tpl_vars['objCity']->value->getId();?>
+'><?php echo $_smarty_tpl->tpl_vars['objCity']->value->getCp();?>
+ <?php echo $_smarty_tpl->tpl_vars['objCity']->value->getName();?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						</select>
                     </div>
-                    <div>
-                        <label for="cp" class="form-label">Code postal</label>
-                        <select id="cp" name="cp">
-							<option <?php if ($intCp == ''){ echo "selected"; } ?> value=''>--</option>
-						<?php
-							foreach($arrCp as $arrDetCp){
-								$objCp = new Cp;
-								$objCp->hydrate($arrDetCp);
-								$strSelected = ($intCp == $objCp->getId())?"selected":"";
-								echo "<option ".$strSelected." value='".$objCp->getId()."'>".$objCp->getCp()."</option>";
-							}
-						?>
-						</select>
-                    </div>
+                    
                     
                     <div>
                         <div class="mt-3">
@@ -100,8 +102,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<?php
-	include("views/footer.php");
-    ?>
+</div><?php }
+}

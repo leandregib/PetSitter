@@ -18,12 +18,12 @@
 			$strPage 	= $this->_arrData['strPage'];
 			*/
 			$objSmarty	= new Smarty;
-			include("views/header.tpl");
 			foreach($this->_arrData as $key=>$value){
 				$objSmarty->assign($key, $value);
 			}
+			$objSmarty->display("views/header.tpl");
 			$objSmarty->display("views/".$strView.".tpl");
-			include("views/footer.tpl");
+			$objSmarty->display("views/footer.tpl");
 			
 			/*foreach($this->_arrData as $key=>$value){
 				$$key 	= $value; // $$ construction de variable dynamique

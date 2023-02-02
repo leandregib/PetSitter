@@ -3,7 +3,7 @@
 	* Class d'une entité city
 	* @creator Jérémy Gallippi
 	*/
-	class Role {
+	class City {
 		/* Attributs */
 		private $_id;
         private $_name;
