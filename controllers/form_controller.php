@@ -41,7 +41,11 @@
 					}
 					echo "</div>";
 				}else{	
-						// Insertion en BDD, si pas d'erreurs
+					// Créer un objet vide avec l'entité
+					// Hydrater l'objet avec le $_POST
+					// Appeler le user_manager et ajouter la méthode d'ajout en passant l'objet en paramètre
+						
+					// Insertion en BDD, si pas d'erreurs => dans la méthode du user_manager
 						$strRqAdd 	= "	INSERT INTO articles 
 											(article_title, article_img, article_content, article_createdate, article_creator)
 										VALUES 
