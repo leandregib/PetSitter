@@ -42,7 +42,7 @@
 		 $intSitter		    = $_POST['garde']??'';
 		 var_dump($_POST);
 
-		 // Liste des types
+		 // Liste des types d'animaux
 		require("entities/pet_type_entity.php"); 
 		require("models/pet_type_manager.php"); 
 			$objPetTypeManager  = new PetTypeManager(); 
@@ -57,7 +57,7 @@
 		 $this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
 		 $this->_arrData['intPetType']	= $intPetType;
 
-		 // Liste des types
+		 // Liste des types de garde
 		require("entities/sitter_entity.php"); 
 		require("models/sitter_manager.php"); 
 			$objSitterManager  	= new SitterManager(); 
@@ -76,6 +76,9 @@
 		 require("models/search_manager.php");
 		 $objSearchManager = new SearchManager();
 		 $objSearchManager->findPetSitter();
+
+		 //Résultats de recherche
+		 $arrResultsToDisplay = array();
 
 		 //Affichage
 		$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
