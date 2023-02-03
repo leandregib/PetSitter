@@ -17,42 +17,43 @@
 		* @param int $intLimit Nombre limite de résultats
 		* @return array Liste des résultats
 		*/
-		public function findArticles(int $intLimit = 0){
+		public function findPetSitter(int $intLimit = 0){
 			// Début de la requête
-			$strRq 		= "	SELECT prop_id, sitter_id, pet_type_id, city_cp
+			$strRq 		= "	SELECT DISTINCT city_name, user_name, user_birthday, home_type
 							FROM users
 								INNER JOIN propose ON prop_userid = user_id
 								INNER JOIN pet_type ON prop_pet_typeid = pet_type_id
+								INNER JOIN sitter ON prop_sitterid = sitter_id
 								INNER JOIN home ON user_homeid = home_id
 								INNER JOIN city ON user_cityid = city_id ";
 			$strWhere	= " WHERE ";
 			
 			
 			// Traitement du type d'animal
-			$intAnimal	= $_POST['XXX']??'';
+			$intAnimal	= implode(",", $_POST['animal'])??'';
 			if ($intAnimal != ''){
-				$strRq 		.= $strWhere." pet_type_id = ".$intAnimal;
+				$strRq 		.= $strWhere." pet_type_id IN ( ".$intAnimal.")";
 				$strWhere	= " AND ";
 			}
 
 			// Traitement du type de garde
-			$intSitter	= $_POST['XXX']??'';
+			$intSitter	= implode(",", $_POST['garde'])??'';
 			if ($intSitter != ''){
-				$strRq 		.= $strWhere." sitter_id = ".$intSitter;
+				$strRq 		.= $strWhere." sitter_id IN ( ".$intSitter.")";
 				$strWhere	= " AND ";
 			}
 
 			// Traitement du code postal
-			$intCP 	= $_POST['XXXX']??'';
+			$intCP 	= $_POST['cp']??'';
 			if ($intCP != ''){
 				$strRq 		.= $strWhere." city_cp = ".$intCP;
 			}
 
 			// Classement des résultats
-			$strRq 		.= " ORDER BY article_createdate DESC ";
+			//$strRq 		.= " ORDER BY city_cp DESC ";
 		
-							
-			return $this->_db->query($strRq)->fetchAll();
+				var_dump($strRq);
+			//return $this->_db->query($strRq)->fetchAll();
 		}
 		
 	}
