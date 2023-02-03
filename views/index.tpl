@@ -1,5 +1,6 @@
-
+{extends file="views/structure.tpl"}
     
+{block name="content"}
     <main>
         <div class="container">
             <div class="row">
@@ -42,3 +43,4 @@
             </div>
         </div>
     </main>
+{/block}

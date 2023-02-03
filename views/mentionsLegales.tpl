@@ -1,4 +1,6 @@
+{extends file="views/structure.tpl"}
 
+{block name="content"}
     <main>
         <div class="container">
             <h2>Informations légales</h2>
@@ -129,5 +131,4 @@
                 (bases de données).</p>
         </div>
     </main>
-
- 
+{/block}

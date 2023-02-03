@@ -1,5 +1,6 @@
+{extends file="views/structure.tpl"}
 
-
+{block name="content"}
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
@@ -69,3 +70,4 @@
         </div>
     </div>
 </div>
+{/block}
