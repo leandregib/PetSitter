@@ -9,19 +9,16 @@
                 &#xA9; Léandre - 2022
             </div>
             <div class="col-md-4">
-                <a href="index.php?ctrl=page&action=mentions">Mentions légales</a>
+                <a href="index.php?ctrl=page&action=mentionsLegales">Mentions légales</a>
             </div>
         </div>
     </div>
 </footer>
 
-<script src="assets/scripts/bootstrap.bundle.min.js"></script>
+{block name="JS"}
+    <script src="assets/scripts/bootstrap.bundle.min.js"></script>
+{/block}
 
-{if ($strTitle == "PetSitter - Galerie photo")}  
-
-    <script src="assets/scripts/script.js"></script>
-
-{/if}
 </body>
 
 </html>

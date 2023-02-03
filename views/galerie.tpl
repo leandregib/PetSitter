@@ -24,3 +24,7 @@
         </div>
     </main>
 {/block}
+
+{block name="JS" append}
+    <script src="assets/scripts/script.js"></script>
+{/block}

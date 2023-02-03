@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{$strTitle}</title>
     <meta name="description" content="Un acceuil pour vous permettre la garde de vos animaux plus facilement">
-    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/styles/style.css">
+
+    {block name="CSS"}
+        <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/styles/style.css">/>
+    {/block}
+
 </head>
 
 <body>
@@ -24,10 +28,12 @@
                     <div class="collapse navbar-collapse" id="mynavbar">
                         <ul class="navbar-nav me-auto mx-5">
                             <li class="nav-item mx-5 text-center py-4">
-                                <a class="nav-link" href="index.php?ctrl=page&action=faisGarderTonAnimal">Fais garder ton animal</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=faisGarderTonAnimal">Fais garder
+                                    ton animal</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
-                                <a class="nav-link" href="index.php?ctrl=page&action=deviensPetSitter">Deviens PetSitter</a>
+                                <a class="nav-link" href="index.php?ctrl=page&action=deviensPetSitter">Deviens
+                                    PetSitter</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
                                 <a class="nav-link" href="index.php?ctrl=page&action=galerie">Galerie</a>
@@ -47,7 +53,8 @@
                 <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#conlog"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                data-bs-target="#conlog"></button>
                         </div>
                         <div class="modal-body">
                             <div class="tab-content">
@@ -72,7 +79,8 @@
                                             <div class="col-md-6 d-flex justify-content-center">
                                                 <!-- Checkbox -->
                                                 <div class="form-check mb-3 mb-md-0 ">
-                                                    <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="loginCheck" checked />
                                                     <label class="form-check-label" for="loginCheck"> Restez connecté
                                                     </label>
                                                 </div>
@@ -85,12 +93,14 @@
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-danger  btn-block mb-3">Connexion</button>
+                                            <button type="submit"
+                                                class="btn btn-danger  btn-block mb-3">Connexion</button>
                                         </div>
 
                                         <!-- Register buttons -->
                                         <div class="text-center">
-                                            <p>Pas encore membre ? <a href="index.php?ctrl=user&action=inscription">S'inscrire</a></p>
+                                            <p>Pas encore membre ? <a
+                                                    href="index.php?ctrl=user&action=inscription">S'inscrire</a></p>
                                         </div>
                                     </form>
                                 </div>
@@ -100,4 +110,4 @@
                 </div>
             </div>
         </div>
-    </header>
+</header>
