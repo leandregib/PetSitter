@@ -72,9 +72,11 @@
 		 $this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
 		 $this->_arrData['intSitter']	= $intSitter;
 
+		 //Pour la recherche 
 		 require("models/search_manager.php");
 		 $objSearchManager = new SearchManager();
 		 $objSearchManager->findPetSitter();
+
 		 //Affichage
 		$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
 		$this->_arrData['strPage']	= "faisGarderTonAnimal";
