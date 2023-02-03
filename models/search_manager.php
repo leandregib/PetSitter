@@ -18,7 +18,8 @@
 		* @return array Liste des résultats
 		*/
 		public function findPetSitter(int $intLimit = 0){
-			// Début de la requête
+			if(count($_POST) >0){
+				// Début de la requête
 			$strRq 		= "	SELECT DISTINCT city_name, user_name, user_birthday, home_type
 							FROM users
 								INNER JOIN propose ON prop_userid = user_id
@@ -54,6 +55,8 @@
 		
 				var_dump($strRq);
 			//return $this->_db->query($strRq)->fetchAll();
+			}
+			
 		}
 		
 	}

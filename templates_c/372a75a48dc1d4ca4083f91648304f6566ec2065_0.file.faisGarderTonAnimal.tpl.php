@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-03 09:51:19
+/* Smarty version 4.2.1, created on 2023-02-03 13:55:25
   from 'C:\wamp64\www\PetSitter\views\faisGarderTonAnimal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63dcd9179a3fc0_22369013',
+  'unifunc' => 'content_63dd124d316e64_89519811',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '372a75a48dc1d4ca4083f91648304f6566ec2065' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\faisGarderTonAnimal.tpl',
-      1 => 1675417878,
+      1 => 1675431732,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63dcd9179a3fc0_22369013 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63dd124d316e64_89519811 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_63532861763dd124d301396_52419218', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
+}
+/* {block "content"} */
+class Block_63532861763dd124d301396_52419218 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_63532861763dd124d301396_52419218',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
     <main>
@@ -237,6 +256,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </div>
         </div>
     </main>
-
-    <?php }
+<?php
+}
+}
+/* {/block "content"} */
 }
