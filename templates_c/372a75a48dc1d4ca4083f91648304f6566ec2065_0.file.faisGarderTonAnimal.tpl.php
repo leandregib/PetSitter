@@ -1,6 +1,28 @@
-{extends file="views/structure.tpl"}
+<?php
+/* Smarty version 4.2.1, created on 2023-02-03 09:51:19
+  from 'C:\wamp64\www\PetSitter\views\faisGarderTonAnimal.tpl' */
 
-{block name="content"}
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63dcd9179a3fc0_22369013',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '372a75a48dc1d4ca4083f91648304f6566ec2065' => 
+    array (
+      0 => 'C:\\wamp64\\www\\PetSitter\\views\\faisGarderTonAnimal.tpl',
+      1 => 1675417878,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63dcd9179a3fc0_22369013 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+
     <main>
         <div id="infoPS">
             <div class="container">
@@ -22,24 +44,48 @@
                         <div class="col-md-2">
                             <p>Animaux:</p>
                         </div>
-                        {foreach from=$arrPetTypeToDisplay item=objPetType}
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrPetTypeToDisplay']->value, 'objPetType');
+$_smarty_tpl->tpl_vars['objPetType']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objPetType']->value) {
+$_smarty_tpl->tpl_vars['objPetType']->do_else = false;
+?>
                         <div class="form-check form-check-inline col-md-2">
-                            <input class="form-check-input" type="checkbox" {$objPetType->checked} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
-                            <label class="form-check-label" for="{$objPetType->getId()}">{$objPetType->getKind()}</label>
+                            <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objPetType']->value->checked;?>
+ value='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+' id='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+' name ="animal[]">
+                            <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getKind();?>
+</label>
                         </div>
-                        {/foreach}
+                        <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-2">
                             <p>Type de garde:</p>
                         </div>
-                        {foreach from=$arrSitterToDisplay item=objSitter}
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrSitterToDisplay']->value, 'objSitter');
+$_smarty_tpl->tpl_vars['objSitter']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objSitter']->value) {
+$_smarty_tpl->tpl_vars['objSitter']->do_else = false;
+?>
                         <div class="form-check form-check-inline col-md-2">
-                        <input class="form-check-input" type="checkbox" {$objSitter->checked} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
-                        <label class="form-check-label" for="{$objSitter->getId()}">{$objSitter->getType()}</label>
+                        <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objSitter']->value->checked;?>
+ value='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+' id='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+' name ="garde[]">
+                        <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getType();?>
+</label>
                         </div>
-                        {/foreach}
+                        <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -191,4 +237,6 @@
             </div>
         </div>
     </main>
-{/block}
+
+    <?php }
+}

@@ -9,7 +9,7 @@
                 &#xA9; Léandre - 2022
             </div>
             <div class="col-md-4">
-                <a href="index.php?ctrl=page&action=mentionsLegales">Mentions légales</a>
+                <a href="index.php?ctrl=page&action=mentions">Mentions légales</a>
             </div>
         </div>
     </div>
