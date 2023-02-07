@@ -1,42 +1,43 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-03 13:55:25
+/* Smarty version 4.2.1, created on 2023-02-07 14:11:04
   from 'C:\wamp64\www\PetSitter\views\faisGarderTonAnimal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63dd124d316e64_89519811',
+  'unifunc' => 'content_63e25bf86c6f60_33914394',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '372a75a48dc1d4ca4083f91648304f6566ec2065' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\faisGarderTonAnimal.tpl',
-      1 => 1675431732,
+      1 => 1675779061,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:views/resultPetsitter.tpl' => 1,
   ),
 ),false)) {
-function content_63dd124d316e64_89519811 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e25bf86c6f60_33914394 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_63532861763dd124d301396_52419218', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_163392526263e25bf86ad528_18618958', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_63532861763dd124d301396_52419218 extends Smarty_Internal_Block
+class Block_163392526263e25bf86ad528_18618958 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_63532861763dd124d301396_52419218',
+    0 => 'Block_163392526263e25bf86ad528_18618958',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -121,7 +122,22 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
             </form>
             <!-- Profil des PetSitter -->
-            <div id="blocIcon" class="container mt-4">
+            
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrResultPetsitter']->value, 'arrDetResultPetsitter');
+$_smarty_tpl->tpl_vars['arrDetResultPetsitter']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['arrDetResultPetsitter']->value) {
+$_smarty_tpl->tpl_vars['arrDetResultPetsitter']->do_else = false;
+?>
+                <?php $_smarty_tpl->_subTemplateRender("file:views/resultPetsitter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
+            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+
+
+
+            <!--div id="blocIcon" class="container mt-4">
                 <div class="row">
                     <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
                         <div class="text-center">
@@ -254,7 +270,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <a class="mb-5" href="#">&#x2011; 2 &#x2011;</a>
                 </div>
             </div>
-        </div>
+        </div-->
     </main>
 <?php
 }

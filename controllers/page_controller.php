@@ -36,54 +36,59 @@
 		* Page Fais Garder Ton Animal
 		*/
 		public function faisGarderTonAnimal(){	
+		
+			// Pour récupérer les informations dans le formulaire
+		 	$intPetType	    = $_POST['animal']??'';
+		 	$intSitter		    = $_POST['garde']??'';
+		 	var_dump($_POST);
 
-		 // Pour récupérer les informations dans le formulaire
-		 $intPetType	    = $_POST['animal']??'';
-		 $intSitter		    = $_POST['garde']??'';
-		 var_dump($_POST);
-
-		 // Liste des types d'animaux
-		require("entities/pet_type_entity.php"); 
-		require("models/pet_type_manager.php"); 
+	 		// Liste des types d'animaux
+			require("entities/pet_type_entity.php"); 
+			require("models/pet_type_manager.php"); 
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
-		 $arrPetTypeToDisplay = array();
-		 foreach($arrPetType as $arrDetPetType){
-			 $objPetType = new Pet_type;
-			 $objPetType->hydrate($arrDetPetType);
-			 $objPetType->checked = ($intPetType == $objPetType->getId())?"checked":"";
-			 $arrPetTypeToDisplay[] = $objPetType;
-		 }
-		 $this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
-		 $this->_arrData['intPetType']	= $intPetType;
+	 		$arrPetTypeToDisplay = array();
+	 		foreach($arrPetType as $arrDetPetType){
+		 		$objPetType = new Pet_type;
+		 		$objPetType->hydrate($arrDetPetType);
+		 		$objPetType->checked = ($intPetType == $objPetType->getId())?"checked":"";
+		 		$arrPetTypeToDisplay[] = $objPetType;
+	 		}
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+		 	$this->_arrData['intPetType']	= $intPetType;
 
-		 // Liste des types de garde
-		require("entities/sitter_entity.php"); 
-		require("models/sitter_manager.php"); 
+		 	// Liste des types de garde
+			require("entities/sitter_entity.php"); 
+			require("models/sitter_manager.php"); 
+		
 			$objSitterManager  	= new SitterManager(); 
-			$arrSitter	    	= $objSitterManager->findSitter(); 
-		 $arrSitterToDisplay = array();
-		 foreach($arrSitter as $arrDetSitter){
-			 $objSitter = new Sitter;
-			 $objSitter->hydrate($arrDetSitter);
-			 $objSitter->checked = ($intSitter == $objSitter->getId())?"checked":"";
-			 $arrSitterToDisplay[] = $objSitter;
-		 }
-		 $this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
-		 $this->_arrData['intSitter']	= $intSitter;
+			$arrSitter	    	= $objSitterManager->findSitter();
+			
+			$arrSitterToDisplay = array();
+			foreach($arrSitter as $arrDetSitter){
+				$objSitter = new Sitter;
+				$objSitter->hydrate($arrDetSitter);
+				$objSitter->checked = ($intSitter == $objSitter->getId())?"checked":"";
+				$arrSitterToDisplay[] = $objSitter;
+			}
+			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
+			$this->_arrData['intSitter']	= $intSitter;
+		
+			$arrResultPetsitter = array();
+			if(count($_POST) >0){
+				//Pour la recherche 
+		 		require("models/search_manager.php");
+		 		$objSearchManager = new SearchManager();
+		 		$arrResultPetsitter = $objSearchManager->findPetSitter();
+				var_dump($arrResultPetsitter);
+			}
+			$this->_arrData['arrResultPetsitter']	= $arrResultPetsitter;
 
-		 //Pour la recherche 
-		 require("models/search_manager.php");
-		 $objSearchManager = new SearchManager();
-		 $objSearchManager->findPetSitter();
-
-		 //Résultats de recherche
-		 $arrResultsToDisplay = array();
-
-		 //Affichage
-		$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
-		$this->_arrData['strPage']	= "faisGarderTonAnimal";
-		$this->display("faisGarderTonAnimal");
+			
+		 	//Affichage
+			$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
+			$this->_arrData['strPage']	= "faisGarderTonAnimal";
+			$this->display("faisGarderTonAnimal");
 		}
 	
 

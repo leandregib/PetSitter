@@ -57,14 +57,14 @@
             </form>
             <!-- Profil des PetSitter -->
             
-            {*Affichage de la liste des livres*}
+            {*Affichage de la liste des petsitter*}
             {foreach from=$arrResultPetsitter item=$arrDetResultPetsitter}
-                {include("faisGarderTonAnimal.tpl")}
+                {include file="views/resultPetsitter.tpl"}
             {/foreach}
 
 
 
-            <div id="blocIcon" class="container mt-4">
+            <!--div id="blocIcon" class="container mt-4">
                 <div class="row">
                     <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
                         <div class="text-center">
@@ -197,6 +197,6 @@
                     <a class="mb-5" href="#">&#x2011; 2 &#x2011;</a>
                 </div>
             </div>
-        </div>
+        </div-->
     </main>
 {/block}
