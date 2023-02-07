@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-02 15:28:13
+/* Smarty version 4.2.1, created on 2023-02-07 10:30:38
   from 'C:\wamp64\www\PetSitter\views\deviensPetSitter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63dbd68d5db133_03442441',
+  'unifunc' => 'content_63e2284ebe5700_06371835',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ed84a6ddf4ecaff885d5a68da1b325981783abf4' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\deviensPetSitter.tpl',
-      1 => 1675256589,
+      1 => 1675765838,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63dbd68d5db133_03442441 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e2284ebe5700_06371835 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_120967275163e2284ebe47a3_56486916', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
+}
+/* {block "content"} */
+class Block_120967275163e2284ebe47a3_56486916 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_120967275163e2284ebe47a3_56486916',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
 
     <main>
         <div class="container">
@@ -74,12 +92,14 @@ function content_63dbd68d5db133_03442441 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
                     <div class="row text-center">
                         <div class="col-md-12 my-4">
-                            <p>Pour faire parti de nos PetSitter, <a href="resteDuFormulaire.php">Clique ici</a> </p>
+                            <p>Pour faire parti de nos PetSitter, <a href="index.php?ctrl=page&action=resteDuFormulaire">Clique ici</a> </p>
                         </div>
                     </div>
                 </div>
         
     </main>
-
-  <?php }
+<?php
+}
+}
+/* {/block "content"} */
 }

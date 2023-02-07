@@ -56,6 +56,9 @@
 				var_dump($strRq);
 			//return $this->_db->query($strRq)->fetchAll();
 			}
+
+			//Variable Selection de la table dans la base de données 
+			$arrResultPetsitter	= $db->query($strRq)->fetchAll();
 			
 		}
 		

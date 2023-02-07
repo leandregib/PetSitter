@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-02 15:10:33
+/* Smarty version 4.2.1, created on 2023-02-07 10:00:25
   from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63dbd269650d90_07398238',
+  'unifunc' => 'content_63e22139c65d87_60016232',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675350629,
+      1 => 1675764023,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63dbd269650d90_07398238 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e22139c65d87_60016232 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89954376763e22139c5b6b3_10379975', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
+}
+/* {block "content"} */
+class Block_89954376763e22139c5b6b3_10379975 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_89954376763e22139c5b6b3_10379975',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row">
+        <div class="row my-5 py-5">
             <div class="offset-md-4 col-md-4">
                 <form action="" method="post">
-                    <div>
+                    <div class="my-4">
                         <label for="firstNam" class="form-label">Nom</label>
                         <input type="text" class="form-control mx-auto" placeholder="Net">
                     </div>
@@ -62,7 +81,7 @@ function content_63dbd269650d90_07398238 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="text" class="form-control mx-auto" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
-                        <label for="city" class="form-label">Ville</label>
+                        <label for="city" class="form-label my-3">Ville</label>
 						<select id="city" name="city">
                             <option <?php if (($_smarty_tpl->tpl_vars['intCity']->value == '')) {?> selected <?php }?> value=''>--</option>
 							<?php
@@ -102,5 +121,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </div>
         </div>
     </div>
-</div><?php }
+</div>
+<?php
+}
+}
+/* {/block "content"} */
 }

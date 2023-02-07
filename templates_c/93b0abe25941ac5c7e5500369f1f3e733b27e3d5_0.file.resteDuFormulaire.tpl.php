@@ -1,6 +1,47 @@
-{extends file="views/structure.tpl"}
+<?php
+/* Smarty version 4.2.1, created on 2023-02-07 10:49:05
+  from 'C:\wamp64\www\PetSitter\views\resteDuFormulaire.tpl' */
 
-{block name="content"}
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63e22ca116f885_83419766',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '93b0abe25941ac5c7e5500369f1f3e733b27e3d5' => 
+    array (
+      0 => 'C:\\wamp64\\www\\PetSitter\\views\\resteDuFormulaire.tpl',
+      1 => 1675766943,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63e22ca116f885_83419766 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_192243576563e22ca116dd56_69834287', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
+}
+/* {block "content"} */
+class Block_192243576563e22ca116dd56_69834287 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_192243576563e22ca116dd56_69834287',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
 <main>
     <div>
         <div class="container">
@@ -54,24 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        {* <div class="mt-5">
-                            <p>- Nous te proposons de déposer une lettre de motivation pour en savoir plus
-                                sur toi:
-                            <ul class="text-left">
-                                <li>Votre diplôme actuel ou métier</li>
-                                <li>Vos passions</li>
-                                <li>Si vous avez des animaux</li>
-                                <li>Ceux que vous avez déjà gardé</li>
-                            </ul>
-                            </p>
-                            <div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label"></label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                            </div>
-                        </div> *}
-                        <div>
+                                                <div>
                             <div class="mt-5">
                                 <p>- Ici tu vas devoir télécharger une photo de toi et te décrire.
                                     Permettant aux utilisateurs de mieux choisir leur PetSitter
@@ -101,4 +125,8 @@
     </div>
 </main>
 
-{/block}
+<?php
+}
+}
+/* {/block "content"} */
+}

@@ -4,10 +4,10 @@
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row">
+        <div class="row my-5 py-5">
             <div class="offset-md-4 col-md-4">
                 <form action="" method="post">
-                    <div>
+                    <div class="my-4">
                         <label for="firstNam" class="form-label">Nom</label>
                         <input type="text" class="form-control mx-auto" placeholder="Net">
                     </div>
@@ -40,7 +40,7 @@
                         <input type="text" class="form-control mx-auto" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
-                        <label for="city" class="form-label">Ville</label>
+                        <label for="city" class="form-label my-3">Ville</label>
 						<select id="city" name="city">
                             <option {if ($intCity == '')} selected {/if} value=''>--</option>
 							{foreach from=$arrCityToDisplay item=objCity}
