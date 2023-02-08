@@ -38,8 +38,8 @@
 		public function faisGarderTonAnimal(){	
 		
 			// Pour récupérer les informations dans le formulaire
-		 	$intPetType	    	= $_POST['animal']??'';
-		 	$intSitter		    = $_POST['garde']??'';
+		 	$intPetType	    	= $_POST['animal']??array();
+		 	$intSitter		    = $_POST['garde']??array();
 			$intCP 				= $_POST['cp']??'';
 
 	 		// Liste des types d'animaux
@@ -51,7 +51,7 @@
 	 		foreach($arrPetType as $arrDetPetType){
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
-		 		$objPetType->checked = ($intPetType == $objPetType->getId())?"checked":"";
+		 		$objPetType->checked = (in_array($objPetType->getId(),$intPetType))?"checked":"";
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
 		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
@@ -68,7 +68,7 @@
 			foreach($arrSitter as $arrDetSitter){
 				$objSitter = new Sitter;
 				$objSitter->hydrate($arrDetSitter);
-				$objSitter->checked = ($intSitter == $objSitter->getId())?"checked":"";
+				$objSitter->checked = (in_array($objSitter->getId(),$intSitter))?"checked":"";
 				$arrSitterToDisplay[] = $objSitter;
 			}
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
