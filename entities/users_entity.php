@@ -7,7 +7,7 @@
 		/* Attributs */
 		private $_id;
 		private $_name;
-		private $_lastname;
+		private $_firstname;
 		private $_birthday;
 		private $_mail;
 		private $_password;
@@ -15,9 +15,9 @@
         private $_phone;
         private $_description;
         private $_iban;
-        private $_homeid
-        private $_cityid
-        private $_roleid
+        private $_homeid;
+        private $_cityid;
+        private $_roleid;
 		
 		/**
 		* Constructeur de la classe
@@ -74,15 +74,15 @@
 		* Getter du nom de famille
 		* @return string Nom de famille
 		*/
-		public function getLastName():string{
-			return $this->_lastname;
+		public function getFirstName():string{
+			return $this->_firstname;
 		}
 		/**
 		* Setter du nom de famille
 		* @param $strLastName Nom de l'image
 		*/
-		public function setLastName(string $strLastName){
-			$this->_lastname = $strLastName;
+		public function setFirstName(string $strFirstName){
+			$this->_firstname = $strFirstName;
 		}
 		
 		/**

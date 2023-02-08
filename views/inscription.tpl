@@ -1,49 +1,50 @@
 {extends file="views/structure.tpl"}
 
 {block name="content"}
+
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row my-5 py-5">
+        <div class="row">
             <div class="offset-md-4 col-md-4">
                 <form action="" method="post">
-                    <div class="my-4">
-                        <label for="firstNam" class="form-label">Nom</label>
-                        <input type="text" class="form-control mx-auto" placeholder="Net">
+                    <div>
+                        <label for="name" class="form-label" >Nom</label>
+                        <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net">
                     </div>
                     <div>
-                        <label for="name" class="form-label">Prénom</label>
-                        <input type="text" class="form-control mx-auto" placeholder="Beans">
+                        <label for="firstname" class="form-label" >Prénom</label>
+                        <input type="text" class="form-control mx-auto" name="firstname" id="firstname" placeholder="Beans">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Email</label>
-                        <input type="email" class="form-control mx-auto" placeholder="vsCodeWinner@gmail.fr">
+                        <label for="mail" class="form-label" >Email</label>
+                        <input type="email" class="form-control mx-auto" name="mail" id="mail" placeholder="vsCodeWinner@gmail.fr">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Saisir un mot de passe</label>
-                        <input type="text" class="form-control mx-auto" placeholder="********">
+                        <label for="password" class="form-label" >Saisir un mot de passe</label>
+                        <input type="text" class="form-control mx-auto" name="password" id ="password" placeholder="********">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Confirmer le mot de passe</label>
-                        <input type="text" class="form-control mx-auto" placeholder="********">
+                        <label for="confirmpassword" class="form-label" >Confirmer le mot de passe</label>
+                        <input type="text" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
                     </div>
                     <div>
-                        <label for="phone" class="form-label">Télephone</label>
-                        <input type="tel" class="form-control mx-auto" placeholder="0367300236">
+                        <label for="phone" class="form-label" >Télephone</label>
+                        <input type="tel" class="form-control mx-auto" name="phone" id="phone" placeholder="0367300236">
                     </div>
                     <div>
-                        <label for="date" class="form-label">Date de naissance</label>
-                        <input type="date" class="form-control mx-auto">
+                        <label for="date" class="form-label" >Date de naissance</label>
+                        <input type="date" class="form-control mx-auto" name="birthday" id="birthday">
                     </div>
                     <div>
-                        <label for="adress" class="form-label">Adresse</label>
-                        <input type="text" class="form-control mx-auto" placeholder="32 Rue de l'Industrie">
+                        <label for="adress" class="form-label" >Adresse</label>
+                        <input type="text" class="form-control mx-auto" name="adress" id="adress" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
-                        <label for="city" class="form-label my-3">Ville</label>
-						<select id="city" name="city">
+                        <label for="cityid" class="form-label" >Ville</label>
+						<select id="cityid" name="cityid">
                             <option {if ($intCity == '')} selected {/if} value=''>--</option>
-							{foreach from=$arrCityToDisplay item=objCity}
+							{foreach from=$arrCityToDisplay item = objCity}
 								<option {$objCity->selected} value='{$objCity->getId()}'>{$objCity->getCp()} {$objCity->getName()}</option>
                             {/foreach}
 						</select>
@@ -52,7 +53,7 @@
                     
                     <div>
                         <div class="mt-3">
-                            <label for="forpFile" class="form-label">Description: </label>
+                            <label for="forpFile" class="form-label" name="description">Description:</label>
                             <textarea class="form-control" rows="6"></textarea>
                         </div>
                         <div class="form-check form-check-inline">

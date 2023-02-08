@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-07 10:00:25
+/* Smarty version 4.2.1, created on 2023-02-08 13:09:28
   from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e22139c65d87_60016232',
+  'unifunc' => 'content_63e39f087068a0_52352595',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675764023,
+      1 => 1675860840,
       2 => 'file',
     ),
   ),
@@ -20,69 +20,70 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e22139c65d87_60016232 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e39f087068a0_52352595 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89954376763e22139c5b6b3_10379975', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_206634209863e39f086f80e5_28888951', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_89954376763e22139c5b6b3_10379975 extends Smarty_Internal_Block
+class Block_206634209863e39f086f80e5_28888951 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_89954376763e22139c5b6b3_10379975',
+    0 => 'Block_206634209863e39f086f80e5_28888951',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
+
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row my-5 py-5">
+        <div class="row">
             <div class="offset-md-4 col-md-4">
                 <form action="" method="post">
-                    <div class="my-4">
-                        <label for="firstNam" class="form-label">Nom</label>
-                        <input type="text" class="form-control mx-auto" placeholder="Net">
+                    <div>
+                        <label for="name" class="form-label" >Nom</label>
+                        <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net">
                     </div>
                     <div>
-                        <label for="name" class="form-label">Prénom</label>
-                        <input type="text" class="form-control mx-auto" placeholder="Beans">
+                        <label for="firstname" class="form-label" >Prénom</label>
+                        <input type="text" class="form-control mx-auto" name="firstname" id="firstname" placeholder="Beans">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Email</label>
-                        <input type="email" class="form-control mx-auto" placeholder="vsCodeWinner@gmail.fr">
+                        <label for="mail" class="form-label" >Email</label>
+                        <input type="email" class="form-control mx-auto" name="mail" id="mail" placeholder="vsCodeWinner@gmail.fr">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Saisir un mot de passe</label>
-                        <input type="text" class="form-control mx-auto" placeholder="********">
+                        <label for="password" class="form-label" >Saisir un mot de passe</label>
+                        <input type="text" class="form-control mx-auto" name="password" id ="password" placeholder="********">
                     </div>
                     <div>
-                        <label for="mail" class="form-label">Confirmer le mot de passe</label>
-                        <input type="text" class="form-control mx-auto" placeholder="********">
+                        <label for="confirmpassword" class="form-label" >Confirmer le mot de passe</label>
+                        <input type="text" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
                     </div>
                     <div>
-                        <label for="phone" class="form-label">Télephone</label>
-                        <input type="tel" class="form-control mx-auto" placeholder="0367300236">
+                        <label for="phone" class="form-label" >Télephone</label>
+                        <input type="tel" class="form-control mx-auto" name="phone" id="phone" placeholder="0367300236">
                     </div>
                     <div>
-                        <label for="date" class="form-label">Date de naissance</label>
-                        <input type="date" class="form-control mx-auto">
+                        <label for="date" class="form-label" >Date de naissance</label>
+                        <input type="date" class="form-control mx-auto" name="birthday" id="birthday">
                     </div>
                     <div>
-                        <label for="adress" class="form-label">Adresse</label>
-                        <input type="text" class="form-control mx-auto" placeholder="32 Rue de l'Industrie">
+                        <label for="adress" class="form-label" >Adresse</label>
+                        <input type="text" class="form-control mx-auto" name="adress" id="adress" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
-                        <label for="city" class="form-label my-3">Ville</label>
-						<select id="city" name="city">
+                        <label for="cityid" class="form-label" >Ville</label>
+						<select id="cityid" name="cityid">
                             <option <?php if (($_smarty_tpl->tpl_vars['intCity']->value == '')) {?> selected <?php }?> value=''>--</option>
 							<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrCityToDisplay']->value, 'objCity');
@@ -104,7 +105,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     
                     <div>
                         <div class="mt-3">
-                            <label for="forpFile" class="form-label">Description: </label>
+                            <label for="forpFile" class="form-label" name="description">Description:</label>
                             <textarea class="form-control" rows="6"></textarea>
                         </div>
                         <div class="form-check form-check-inline">

@@ -22,5 +22,37 @@
 							
 			return $this->_db->query($strRqUser)->fetchAll();
 		}
+
+		public function verifUser($strMail, $strPassword){
+			$strRqUsers = "SELECT user_id AS 'id', 
+								  user_mail AS 'mail', 
+								  user_password 
+							FROM users
+							WHERE user_mail = '".$strMail."'";
+			$arrUser 	= $this->_db->query($strRqUsers)->fetch();
+
+			if ($arrUser !== false){
+				//if ($arrUser['user_pwd'] == $strPwd){ 
+				if(password_verify($strPassword, $arrUser['user_password'])) {
+					unset($arrUser['user_password']);
+					return $arrUser;
+				}
+			}
+			return false;
+		}
 		
+		
+		public function addUsers($objUser){
+
+           
+			// Insertion en BDD, si pas d'erreurs
+			$strRqAdd 	= "	INSERT INTO users
+								(user_name, user_firstname, user_birthday, user_mail, user_password, user_address, user_phone, user_description, user_cityid )
+							VALUES 
+							('".$objUser->getName()."','".$objUser->getFirstName()."','".$objUser->getBirthday()."','".$objUser->getMail()."','".$objUser->getPassword()."','".$objUser->getAdress()."','".$objUser->getPhone()."', '".$objUser->getDescription()."', '".$objUser->getCityId()."')";
+			
+		
+		return $this->_db->exec($strRqAdd);				
+		
+	}
 	}
