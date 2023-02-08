@@ -20,7 +20,7 @@
 				$objUserManager = new UserManager;
 				// Vérifier l'utilisateur / mdp en base de données
 				$arrUser = $objUserManager->verifUser($strMail, $strPassword);
-				var_dump($arrUser);
+				// var_dump($arrUser);
 				if ($arrUser === false){
 					$this->_arrData['strError'] = "Erreur de connexion";
 				}else{
