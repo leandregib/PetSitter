@@ -19,7 +19,7 @@
 		public function findPetSitter(){
 			
 				// Début de la requête
-			$strRq 		= "	SELECT DISTINCT city_name, user_name, user_birthday, home_type
+			$strRq 		= "	SELECT DISTINCT city_name, user_firstname, user_birthday, home_type
 							FROM users
 								INNER JOIN propose ON prop_userid = user_id
 								INNER JOIN pet_type ON prop_pet_typeid = pet_type_id

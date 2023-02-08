@@ -73,10 +73,10 @@
 			}
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
 			$this->_arrData['intSitter']	= $intSitter;
-		
+
+			//Pour la recherche 		
 			$arrResultPetsitter = array();
 			if(count($_POST) >0){
-				//Pour la recherche 
 		 		require("models/search_manager.php");
 		 		$objSearchManager = new SearchManager();
 		 		$arrResultPetsitter = $objSearchManager->findPetSitter();
@@ -135,6 +135,45 @@
 		* Page Reste Du Formulaire
 		*/
 		public function resteDuFormulaire(){
+			// Pour récupérer les informations dans le formulaire
+			$intPetType	    	= $_POST['animal']??array();
+			$intSitter		    = $_POST['garde']??array();
+		   	$intCP 				= $_POST['cp']??'';
+
+			// Liste des types d'animaux
+			require("entities/pet_type_entity.php"); 
+			require("models/pet_type_manager.php"); 
+			$objPetTypeManager  = new PetTypeManager(); 
+			$arrPetType 	    = $objPetTypeManager->findPetType(); 
+	 		$arrPetTypeToDisplay = array();
+	 		foreach($arrPetType as $arrDetPetType){
+		 		$objPetType = new Pet_type;
+		 		$objPetType->hydrate($arrDetPetType);
+		 		$objPetType->checked = (in_array($objPetType->getId(),$intPetType))?"checked":"";
+		 		$arrPetTypeToDisplay[] = $objPetType;
+	 		}
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+		 	$this->_arrData['intPetType']	= $intPetType;
+
+		 	// Liste des types de garde
+			require("entities/sitter_entity.php"); 
+			require("models/sitter_manager.php"); 
+		
+			$objSitterManager  	= new SitterManager(); 
+			$arrSitter	    	= $objSitterManager->findSitter();
+			
+			$arrSitterToDisplay = array();
+			foreach($arrSitter as $arrDetSitter){
+				$objSitter = new Sitter;
+				$objSitter->hydrate($arrDetSitter);
+				$objSitter->checked = (in_array($objSitter->getId(),$intSitter))?"checked":"";
+				$arrSitterToDisplay[] = $objSitter;
+			}
+			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
+			$this->_arrData['intSitter']	= $intSitter;
+
+
+			//Affichage
 			$this->_arrData['strTitle']	= "#";
 			$this->_arrData['strPage']	= "resteDuFormulaire";
 			$this->display("resteDuFormulaire");
