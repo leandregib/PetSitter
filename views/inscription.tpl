@@ -54,7 +54,7 @@
                     <div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label" name="description">Description:</label>
-                            <textarea class="form-control" rows="6"></textarea>
+                            <textarea class="form-control" rows="6" name="description"></textarea>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"

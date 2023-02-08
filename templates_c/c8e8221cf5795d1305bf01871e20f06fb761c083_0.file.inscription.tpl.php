@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 14:11:02
+/* Smarty version 4.2.1, created on 2023-02-08 14:39:55
   from 'C:\wamp\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e3ad76aa5f84_01670723',
+  'unifunc' => 'content_63e3b43b0be6d8_66733642',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c8e8221cf5795d1305bf01871e20f06fb761c083' => 
     array (
       0 => 'C:\\wamp\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675865444,
+      1 => 1675867190,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e3ad76aa5f84_01670723 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e3b43b0be6d8_66733642 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9863855963e3ad76a9aa18_97185609', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_124183187163e3b43b0b2f86_47250344', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_9863855963e3ad76a9aa18_97185609 extends Smarty_Internal_Block
+class Block_124183187163e3b43b0b2f86_47250344 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_9863855963e3ad76a9aa18_97185609',
+    0 => 'Block_124183187163e3b43b0b2f86_47250344',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -106,7 +106,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label" name="description">Description:</label>
-                            <textarea class="form-control" rows="6"></textarea>
+                            <textarea class="form-control" rows="6" name="description"></textarea>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
