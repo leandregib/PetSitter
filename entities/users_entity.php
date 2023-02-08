@@ -151,7 +151,7 @@
 		* @return string Phone
 		*/
 		public function getPhone():string{
-			return $this->Phone;
+			return $this->_phone;
 		}
 		/**
 		* Setter du numéro de téléphone
@@ -165,7 +165,7 @@
 		* Getter de la description
 		* @return string Drescription
 		*/
-		public function getDrescription():string{
+		public function getDescription():string{
 			return $this->_description;
 		}
 		/**

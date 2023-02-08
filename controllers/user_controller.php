@@ -77,7 +77,7 @@
 					if ($strName == ''){ // Tests sur le nom
 						$arrError[]	= "Merci de renseigner un nom";
 					}
-					if ($strFirstname == ''){ // Tests sur le prénom
+					if ($strFirstName == ''){ // Tests sur le prénom
 						$arrError[]	= "Merci de renseigner un prénom";
 					}
 					if ($strMail == ''){ // Tests sur le mail
@@ -91,14 +91,14 @@
 					}
 					// Si aucune erreur, on créer l'objet User et on l'insert en BDD
 					if (count($arrError) == 0){ 
-						require("entities/user_entity.php"); 
+						require("entities/users_entity.php"); 
 						$objUser = new User;
 						$objUser->hydrate($_POST);
 						//var_dump($objUser);
 						
 						require("models/user_manager.php"); 
 						$objUserManager = new UserManager;
-						if($objUserManager->addUser($objUser)){
+						if($objUserManager->addUsers($objUser)){
 							header("Location:index.php");
 						}else{
 							$arrError[]	= "Erreur lors de l'ajout";
