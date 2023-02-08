@@ -14,10 +14,9 @@
 		
 		/**
 		* Methode de récupération des petsitters
-		* @param int $intLimit Nombre limite de résultats
 		* @return array Liste des résultats
 		*/
-		public function findPetSitter(int $intLimit = 0){
+		public function findPetSitter(){
 			
 				// Début de la requête
 			$strRq 		= "	SELECT DISTINCT city_name, user_name, user_birthday, home_type
@@ -53,9 +52,7 @@
 			}
 
 			// Classement des résultats
-			//$strRq 		.= " ORDER BY city_cp DESC ";
-		
-			//return $this->_db->query($strRq)->fetchAll();
+			$strRq 		.= " ORDER BY city_cp";
 			
 
 			//Variable Selection de la table dans la base de données 

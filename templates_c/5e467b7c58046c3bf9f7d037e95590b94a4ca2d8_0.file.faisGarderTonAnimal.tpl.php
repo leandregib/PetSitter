@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 08:36:57
+/* Smarty version 4.2.1, created on 2023-02-08 10:20:44
   from 'C:\wamp\www\PetSitter\views\faisGarderTonAnimal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e35f29ba15f2_51681143',
+  'unifunc' => 'content_63e3777c2bec50_53119725',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e467b7c58046c3bf9f7d037e95590b94a4ca2d8' => 
     array (
       0 => 'C:\\wamp\\www\\PetSitter\\views\\faisGarderTonAnimal.tpl',
-      1 => 1675845378,
+      1 => 1675851644,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/resultPetsitter.tpl' => 1,
   ),
 ),false)) {
-function content_63e35f29ba15f2_51681143 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e3777c2bec50_53119725 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4429103663e35f29b8f7b7_06510565', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_43412050863e3777c2ac7b0_68336803', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_4429103663e35f29b8f7b7_06510565 extends Smarty_Internal_Block
+class Block_43412050863e3777c2ac7b0_68336803 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_4429103663e35f29b8f7b7_06510565',
+    0 => 'Block_43412050863e3777c2ac7b0_68336803',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -113,7 +113,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <p>Code postal: </p>
                         </div>
                         <div class="col-md-1 px-2">
-                            <input id="searchbar" onkeyup="search_animal()" type="text" name="cp" placeholder="68000">
+                            <input id="searchbar" onkeyup="search_animal()" type="text" name="cp" placeholder="68000" value="<?php echo $_smarty_tpl->tpl_vars['intCP']->value;?>
+">
                         </div>
                     </div>
                     <div class="mb-5 mt-2 pb-2 text-center">
@@ -135,142 +136,7 @@ $_smarty_tpl->tpl_vars['arrDetResultPetsitter']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
-
-
-            <!--div id="blocIcon" class="container mt-4">
-                <div class="row">
-                    <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Colmar</span></li>
-                                <li class="list-group-item">Prénom: <span>Mario</span></li>
-                                <li class="list-group-item">Age: <span>35 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Appartement</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS2.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Amiens</span></li>
-                                <li class="list-group-item">Prénom: <span>Marlène</span></li>
-                                <li class="list-group-item">Age: <span>53 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Appartement</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS3.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Brest</span></li>
-                                <li class="list-group-item">Prénom: <span>Yann</span></li>
-                                <li class="list-group-item">Age: <span>38 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Maison</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2  mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS4.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Besancon</span></li>
-                                <li class="list-group-item">Prénom: <span>Justine</span></li>
-                                <li class="list-group-item">Age: <span>31 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Maison</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="blocIcon" class="container">
-                <div class="row">
-                    <div id="blocFA" class="col-md-2  mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS5.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Marseille</span></li>
-                                <li class="list-group-item">Prénom: <span>Erick</span></li>
-                                <li class="list-group-item">Age: <span>64 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Maison</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2  mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS6.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Paris</span></li>
-                                <li class="list-group-item">Prénom: <span>Paul</span></li>
-                                <li class="list-group-item">Age: <span>25 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Appartement</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2  mx-5 my-3  py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS7.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Lyon</span></li>
-                                <li class="list-group-item">Prénom: <span>Pierre</span></li>
-                                <li class="list-group-item">Age: <span>68ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Maison</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="blocFA" class="col-md-2  mx-5 my-3 py-3 mx-3">
-                        <div class="text-center">
-                            <img src="assets/img/icon/iconPS8.png" alt="">
-                        </div>
-                        <div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Ville: <span>Poitiers</span></li>
-                                <li class="list-group-item">Prénom: <span>Delphine</span></li>
-                                <li class="list-group-item">Age: <span>21 ans</span></li>
-                                <li class="list-group-item">Type de logement:<span>Appartement</span></li>
-                                <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row text-center">
-                    <a class="mb-5" href="#">&#x2011; 2 &#x2011;</a>
-                </div>
-            </div>
-        </div-->
+        </div>
     </main>
 <?php
 }

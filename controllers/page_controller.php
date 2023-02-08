@@ -38,8 +38,9 @@
 		public function faisGarderTonAnimal(){	
 		
 			// Pour récupérer les informations dans le formulaire
-		 	$intPetType	    = $_POST['animal']??'';
+		 	$intPetType	    	= $_POST['animal']??'';
 		 	$intSitter		    = $_POST['garde']??'';
+			$intCP 				= $_POST['cp']??'';
 
 	 		// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
@@ -84,6 +85,8 @@
 
 			
 		 	//Affichage
+			var_dump($intCP);
+			$this->_arrData['intCP']	= $intCP; 
 			$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
 			$this->_arrData['strPage']	= "faisGarderTonAnimal";
 			$this->display("faisGarderTonAnimal");
