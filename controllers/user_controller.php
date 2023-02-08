@@ -53,14 +53,25 @@
 			$strPhone				= $_POST['phone']??'';
 			$textDescription		= $_POST['description']??'';
 			
-			
-			
-			if(count($_POST)>0){
+			$arrError = array(); // Tableau des erreurs initialisé
 
-				
+			// Liste des villes
+			require("entities/city_entity.php"); 
+			require("models/city_manager.php"); 
+			$objCityManager  = new CityManager(); 
+			$arrCity 	    = $objCityManager->findCity(); 
+			$arrCityToDisplay = array();
+			foreach($arrCity as $arrDetCity){
+				$objCity = new City;
+				$objCity->hydrate($arrDetCity);
+				$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
+				$arrCityToDisplay[] = $objCity;
+			}
+			
+			if(count($_POST)>0){	
 			
 				
-				$arrError = array(); // Tableau des erreurs initialisé
+				
 				if (count($_POST) > 0) { // Si le formulaire est envoyé
 					// On teste les informations
 					if ($strName == ''){ // Tests sur le nom
@@ -92,26 +103,15 @@
 						}else{
 							$arrError[]	= "Erreur lors de l'ajout";
 						}
-					}
-				
+					}				
 			
-					// Liste des villes
-					require("entities/city_entity.php"); 
-					require("models/city_manager.php"); 
-					$objCityManager  = new CityManager(); 
-					$arrCity 	    = $objCityManager->findCity(); 
-					$arrCityToDisplay = array();
-					foreach($arrCity as $arrDetCity){
-						$objCity = new City;
-						$objCity->hydrate($arrDetCity);
-						$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
-						$arrCityToDisplay[] = $objCity;
-					}
+					
 				}
-				$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
-				$this->_arrData['intCity']	= $intCityId;
+				
 
 			}
+			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
+			$this->_arrData['intCity']	= $intCityId;
 			$this->_arrData['strName']		= $strName; // On passe la variable strName dans le template
 			$this->_arrData['strFirstname']	= $strFirstName; 
 			$this->_arrData['strMail']		= $strMail; 
