@@ -40,7 +40,6 @@
 			// Pour récupérer les informations dans le formulaire
 		 	$intPetType	    = $_POST['animal']??'';
 		 	$intSitter		    = $_POST['garde']??'';
-		 	var_dump($_POST);
 
 	 		// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
@@ -80,7 +79,6 @@
 		 		require("models/search_manager.php");
 		 		$objSearchManager = new SearchManager();
 		 		$arrResultPetsitter = $objSearchManager->findPetSitter();
-				var_dump($arrResultPetsitter);
 			}
 			$this->_arrData['arrResultPetsitter']	= $arrResultPetsitter;
 

@@ -31,15 +31,17 @@
 			
 			
 			// Traitement du type d'animal
-			$intAnimal	= implode(",", $_POST['animal'])??'';
+			$intAnimal = $_POST['animal']??'';
 			if ($intAnimal != ''){
+				$intAnimal	= implode(",", $_POST['animal'])??'';
 				$strRq 		.= $strWhere." pet_type_id IN ( ".$intAnimal.")";
 				$strWhere	= " AND ";
 			}
 
 			// Traitement du type de garde
-			$intSitter	= implode(",", $_POST['garde'])??'';
+			$intSitter = $_POST['garde']??'';
 			if ($intSitter != ''){
+				$intSitter	= implode(",", $_POST['garde'])??'';
 				$strRq 		.= $strWhere." sitter_id IN ( ".$intSitter.")";
 				$strWhere	= " AND ";
 			}
@@ -53,12 +55,10 @@
 			// Classement des résultats
 			//$strRq 		.= " ORDER BY city_cp DESC ";
 		
-				var_dump($strRq);
 			//return $this->_db->query($strRq)->fetchAll();
 			
 
 			//Variable Selection de la table dans la base de données 
-			var_dump($strRq);
 			return $this->_db->query($strRq)->fetchAll();
 			
 		}
