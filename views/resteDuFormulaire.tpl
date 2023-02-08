@@ -10,35 +10,42 @@
                         <div class="mt-3">
                             <span>Animaux que tu veux garder: </span>
                             <div id="formDPS">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Chien</label>
-                                </div>
-                                <div class="form-check form-check-inline">
+                            {foreach from=$arrPetTypeToDisplay item=objPetType}                            
+                                    <div class="form-check form-check-inline">                            
+                                    <input class="form-check-input" type="checkbox" {$objPetType->checked} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
+                                <label class="form-check-label" for="{$objPetType->getId()}">{$objPetType->getKind()}</label>
+                                </div> 
+                            {/foreach}
+                                                           
+                                {* <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                     <label class="form-check-label" for="inlineCheckbox1">Chat</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                     <label class="form-check-label" for="inlineCheckbox1">Cage</label>
-                                </div>
+                                </div> *}
                             </div>
                         </div>
                         <div class="mt-3">
                             <span>Garde que tu souhaites: </span>
                             <div id="formDPS">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">A domicile</label>
+                                {foreach from=$arrSitterToDisplay item=objSitter}
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" {$objSitter->checked} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
+                                    <label class="form-check-label" for="{$objSitter->getId()}">{$objSitter->getType()}</label>
+                                    </div>
+                                {/foreach}
                                 </div>
-                                <div class="form-check form-check-inline">
+                                {* <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                     <label class="form-check-label" for="inlineCheckbox1">En pension</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                     <label class="form-check-label" for="inlineCheckbox1">Promenade</label>
-                                </div>
+                                </div> *}
                             </div>
                         </div>
                         <div class="mt-3">

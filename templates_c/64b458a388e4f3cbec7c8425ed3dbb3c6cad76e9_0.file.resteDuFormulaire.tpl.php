@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 10:23:12
+/* Smarty version 4.2.1, created on 2023-02-08 13:57:42
   from 'C:\wamp\www\PetSitter\views\resteDuFormulaire.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e378106f4553_65537978',
+  'unifunc' => 'content_63e3aa56acdca4_03075391',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64b458a388e4f3cbec7c8425ed3dbb3c6cad76e9' => 
     array (
       0 => 'C:\\wamp\\www\\PetSitter\\views\\resteDuFormulaire.tpl',
-      1 => 1675844563,
+      1 => 1675864662,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e378106f4553_65537978 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e3aa56acdca4_03075391 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_138671840463e378106f3461_40977715', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_65316897563e3aa56abe764_65502960', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_138671840463e378106f3461_40977715 extends Smarty_Internal_Block
+class Block_65316897563e3aa56abe764_65502960 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_138671840463e378106f3461_40977715',
+    0 => 'Block_65316897563e3aa56abe764_65502960',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,36 +51,51 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <div class="mt-3">
                             <span>Animaux que tu veux garder: </span>
                             <div id="formDPS">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Chien</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Chat</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Cage</label>
-                                </div>
-                            </div>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrPetTypeToDisplay']->value, 'objPetType');
+$_smarty_tpl->tpl_vars['objPetType']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objPetType']->value) {
+$_smarty_tpl->tpl_vars['objPetType']->do_else = false;
+?>                            
+                                    <div class="form-check form-check-inline">                            
+                                    <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objPetType']->value->checked;?>
+ value='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+' id='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+' name ="animal[]">
+                                <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getKind();?>
+</label>
+                                </div> 
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                                           
+                                                            </div>
                         </div>
                         <div class="mt-3">
                             <span>Garde que tu souhaites: </span>
                             <div id="formDPS">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">A domicile</label>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrSitterToDisplay']->value, 'objSitter');
+$_smarty_tpl->tpl_vars['objSitter']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objSitter']->value) {
+$_smarty_tpl->tpl_vars['objSitter']->do_else = false;
+?>
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objSitter']->value->checked;?>
+ value='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+' id='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+' name ="garde[]">
+                                    <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getType();?>
+</label>
+                                    </div>
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">En pension</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Promenade</label>
-                                </div>
-                            </div>
+                                                            </div>
                         </div>
                         <div class="mt-3">
                             <span>Ton logement actuel: </span>

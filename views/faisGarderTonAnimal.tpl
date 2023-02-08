@@ -23,10 +23,10 @@
                             <p>Animaux:</p>
                         </div>
                         {foreach from=$arrPetTypeToDisplay item=objPetType}
-                        <div class="form-check form-check-inline col-md-2">
-                            <input class="form-check-input" type="checkbox" {$objPetType->checked} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
-                            <label class="form-check-label" for="{$objPetType->getId()}">{$objPetType->getKind()}</label>
-                        </div>
+                            <div class="form-check form-check-inline col-md-2">
+                                <input class="form-check-input" type="checkbox" {$objPetType->checked} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
+                                <label class="form-check-label" for="{$objPetType->getId()}">{$objPetType->getKind()}</label>
+                            </div>
                         {/foreach}
                     </div>
                     <div class="row">
@@ -35,10 +35,10 @@
                             <p>Type de garde:</p>
                         </div>
                         {foreach from=$arrSitterToDisplay item=objSitter}
-                        <div class="form-check form-check-inline col-md-2">
-                        <input class="form-check-input" type="checkbox" {$objSitter->checked} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
-                        <label class="form-check-label" for="{$objSitter->getId()}">{$objSitter->getType()}</label>
-                        </div>
+                            <div class="form-check form-check-inline col-md-2">
+                            <input class="form-check-input" type="checkbox" {$objSitter->checked} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
+                            <label class="form-check-label" for="{$objSitter->getId()}">{$objSitter->getType()}</label>
+                            </div>
                         {/foreach}
                     </div>
                     <div class="row">
