@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 14:39:55
+/* Smarty version 4.2.1, created on 2023-02-08 15:24:54
   from 'C:\wamp\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e3b43b0be6d8_66733642',
+  'unifunc' => 'content_63e3bec6be4b02_86968971',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c8e8221cf5795d1305bf01871e20f06fb761c083' => 
     array (
       0 => 'C:\\wamp\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675867190,
+      1 => 1675869879,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e3b43b0be6d8_66733642 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e3bec6be4b02_86968971 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_124183187163e3b43b0b2f86_47250344', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_111530987363e3bec6bda829_79816766', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_124183187163e3b43b0b2f86_47250344 extends Smarty_Internal_Block
+class Block_111530987363e3bec6bda829_79816766 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_124183187163e3b43b0b2f86_47250344',
+    0 => 'Block_111530987363e3bec6bda829_79816766',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -46,10 +46,10 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row">
-            <div class="offset-md-4 col-md-4">
+        <div class="row mt-5">
+            <div class="offset-md-4 col-md-4 mt-5">
                 <form action="" method="post">
-                    <div>
+                    <div class="mt-5">
                         <label for="name" class="form-label" >Nom</label>
                         <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net">
                     </div>
