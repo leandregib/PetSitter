@@ -165,7 +165,7 @@
 		* Getter de la description
 		* @return string Drescription
 		*/
-		public function getDescription():string{
+		public function getDescription():text{
 			return $this->_description;
 		}
 		/**
