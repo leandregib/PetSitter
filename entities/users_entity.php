@@ -91,7 +91,7 @@
 		*/
 		public function getBirthday():string{
             $date = new DateTime($this->_birthday);
-			return $date->format('d/m/Y');
+			return $date->format('Y-m-d');
 		}
 		/**
 		* Setter de l'anniversaire

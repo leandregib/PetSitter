@@ -85,7 +85,6 @@
 
 			
 		 	//Affichage
-			var_dump($intCP);
 			$this->_arrData['intCP']	= $intCP; 
 			$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
 			$this->_arrData['strPage']	= "faisGarderTonAnimal";
