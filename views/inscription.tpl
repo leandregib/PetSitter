@@ -5,10 +5,10 @@
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row">
-            <div class="offset-md-4 col-md-4">
+        <div class="row mt-5">
+            <div class="offset-md-4 col-md-4 mt-5">
                 <form action="" method="post">
-                    <div>
+                    <div class="mt-5">
                         <label for="name" class="form-label" >Nom</label>
                         <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net">
                     </div>
