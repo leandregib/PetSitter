@@ -22,11 +22,11 @@
                     </div>
                     <div>
                         <label for="password" class="form-label" >Saisir un mot de passe</label>
-                        <input type="text" class="form-control mx-auto" name="password" id ="password" placeholder="********">
+                        <input type="password" class="form-control mx-auto" name="password" id ="password" placeholder="********">
                     </div>
                     <div>
                         <label for="confirmpassword" class="form-label" >Confirmer le mot de passe</label>
-                        <input type="text" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
+                        <input type="password" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
                     </div>
                     <div>
                         <label for="phone" class="form-label" >Télephone</label>

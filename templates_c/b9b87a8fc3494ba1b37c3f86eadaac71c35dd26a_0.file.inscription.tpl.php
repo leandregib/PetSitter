@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 13:09:28
+/* Smarty version 4.2.1, created on 2023-02-08 14:04:05
   from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e39f087068a0_52352595',
+  'unifunc' => 'content_63e3abd5cb5802_01749420',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675860840,
+      1 => 1675865039,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e39f087068a0_52352595 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e3abd5cb5802_01749420 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_206634209863e39f086f80e5_28888951', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2241741063e3abd5cafd01_70305840', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_206634209863e39f086f80e5_28888951 extends Smarty_Internal_Block
+class Block_2241741063e3abd5cafd01_70305840 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_206634209863e39f086f80e5_28888951',
+    0 => 'Block_2241741063e3abd5cafd01_70305840',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -63,11 +63,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     </div>
                     <div>
                         <label for="password" class="form-label" >Saisir un mot de passe</label>
-                        <input type="text" class="form-control mx-auto" name="password" id ="password" placeholder="********">
+                        <input type="password" class="form-control mx-auto" name="password" id ="password" placeholder="********">
                     </div>
                     <div>
                         <label for="confirmpassword" class="form-label" >Confirmer le mot de passe</label>
-                        <input type="text" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
+                        <input type="password" class="form-control mx-auto" name="confirmpassword" id="confirmpassword" placeholder="********">
                     </div>
                     <div>
                         <label for="phone" class="form-label" >Télephone</label>

@@ -104,12 +104,12 @@
 					foreach($arrCity as $arrDetCity){
 						$objCity = new City;
 						$objCity->hydrate($arrDetCity);
-						$objCity->selected = ($intCity == $objCity->getId())?"selected":"";
+						$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
 						$arrCityToDisplay[] = $objCity;
 					}
 				}
 				$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
-				$this->_arrData['intCity']	= $intCity;
+				$this->_arrData['intCity']	= $intCityId;
 
 			}
 			$this->_arrData['strName']		= $strName; // On passe la variable strName dans le template
