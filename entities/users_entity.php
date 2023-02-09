@@ -99,14 +99,14 @@
 		* @param $strBirthday Birthday
 		*/
 		public function setBirthday(string $strBirthday){
-			$this->_birthday = $strBirthday;
+			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 
 		/**
 		* Getter du mail
 		* @return string mail
 		*/
-		public function getMail():string{
+		public function getMail():string|null{
 			return $this->_mail;
 		}
 		/**
@@ -114,7 +114,7 @@
 		* @param $strMail Mail
 		*/
 		public function setMail($strMail){
-			$this->_mail = $strMail;
+			$this->_mail = filter_var(trim(strtolower($strMail)),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 
         	/**
@@ -129,29 +129,34 @@
 		* @param $strPassword mot de passe
 		*/
 		public function setPassword($strPassword){
-			$this->_password = $strPassword;
+			$strPassword = filter_var(trim($strPassword),FILTER_SANITIZE_SPECIAL_CHARS);
+			if ($strPwd != ''){ // On ne hache le mot de passe que s'il est renseigné
+				$this->_password = password_hash($strPassword, PASSWORD_DEFAULT);
+			}else{
+				$this->_password = $strPassword;
+			}
 		}
 		
         	/**
 		* Getter de l'adresse
 		* @return string adress
 		*/
-		public function getAdress():string{
-			return $this->_adress;
+		public function getAddress():string|null{
+			return $this->_address;
 		}
 		/**
 		* Setter de l'adresse
 		* @param $strAdress Adress
 		*/
-		public function setAdress($strAdress){
-			$this->_adress = $strAdress;
+		public function setAddress($strAddress){
+			$this->_address = filter_var(trim($strAddress),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
         	/**
 		* Getter du numéro de téléphone
 		* @return string Phone
 		*/
-		public function getPhone():string{
+		public function getPhone():string|null{
 			return $this->_phone;
 		}
 		/**
@@ -159,14 +164,14 @@
 		* @param $strPhone Phone
 		*/
 		public function setPhone($strPhone){
-			$this->_phone = $strPhone;
+			$this->_phone = filter_var(trim($strPhone),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
         	/**
 		* Getter de la description
 		* @return string Drescription
 		*/
-		public function getDescription():string{
+		public function getDescription():string|null{
 			return $this->_description;
 		}
 		/**
@@ -174,7 +179,7 @@
 		* @param $strDescription Description
 		*/
 		public function setDescription($strDescription){
-			$this->_description = $strDescription;
+			$this->_description = filter_var(trim($strDescription),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
         	/**

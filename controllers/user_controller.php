@@ -5,6 +5,15 @@
 	*/
 	class User_controller extends Base_controller{
 		
+
+		/**
+		* Constructeur de la classe
+		*/ 
+		public function __construct(){
+			require("models/user_manager.php"); 
+			require("entities/user_entity.php"); 
+		}
+
 		/**
 		* Page Se connecter
 		*/
@@ -42,17 +51,20 @@
 				// Pour récupérer les informations dans le formulaire
 				/*$intCity				= $_POST['city']??'';*/
 
-			$intCityId				= $_POST['cityid']??'';	
+			/*$intCityId				= $_POST['cityid']??'';	
 			$strName				= $_POST['name']??'';	
 			$strFirstName			= $_POST['firstname']??'';
 			$dateBirthday			= $_POST['birthday']??'';
 			$strMail				= $_POST['mail']??'';
 			$strPassword			= $_POST['password']??'';
-			$strConfirmPassword		= $_POST['confirmpassword']??'';	
+				
 			$strAdress				= $_POST['adress']??'';
 			$strPhone				= $_POST['phone']??'';
-			$textDescription		= $_POST['description']??'';
-			
+			$textDescription		= $_POST['description']??'';*/
+
+			$strConfirmPassword		= $_POST['confirmpassword']??'';
+
+			$objUser = new User;
 			$arrError = array(); // Tableau des erreurs initialisé
 
 			// Liste des villes
@@ -74,26 +86,26 @@
 				
 				if (count($_POST) > 0) { // Si le formulaire est envoyé
 					// On teste les informations
-					if ($strName == ''){ // Tests sur le nom
-						$arrError[]	= "Merci de renseigner un nom";
+					$objUser->hydrate($_POST);
+
+					if ($objUser->getName() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un nom";
 					}
-					if ($strFirstName == ''){ // Tests sur le prénom
+					if ($objUser->getFirstName() == ''){ // Tests sur le prénom
 						$arrError[]	= "Merci de renseigner un prénom";
 					}
-					if ($strMail == ''){ // Tests sur le mail
+					if ($objUser->getMail() == ''){ // Tests sur le mail
 						$arrError[]	= "Merci de renseigner une adresse mail";
 					}
-					if ($strPassword == ''){ // Tests sur le mot de passe
+					if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
 						$arrError[]	= "Merci de renseigner un mot de passe";
 					}
-					if ($strPassword != $strConfirmPassword){ // Tests sur la confirmation du mot de passe
+					if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 						$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
 					}
 					// Si aucune erreur, on créer l'objet User et on l'insert en BDD
 					if (count($arrError) == 0){ 
-						require("entities/users_entity.php"); 
-						$objUser = new User;
-						$objUser->hydrate($_POST);
+												
 						//var_dump($objUser);
 						
 						require("models/user_manager.php"); 
@@ -111,13 +123,13 @@
 
 			}
 			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
-			$this->_arrData['intCity']	= $intCityId;
-			$this->_arrData['strName']		= $strName; // On passe la variable strName dans le template
-			$this->_arrData['strFirstname']	= $strFirstName; 
-			$this->_arrData['strMail']		= $strMail; 
-			$this->_arrData['arrError']		= $arrError;
-			$this->_arrData['strTitle']	= "PetSitter - Inscription";
-			$this->_arrData['strPage']	= "inscription";
+			$this->_arrData['intCity']			= $intCityId;
+			$this->_arrData['strName']			= $strName; // On passe la variable strName dans le template
+			$this->_arrData['strFirstname']		= $strFirstName; 
+			$this->_arrData['strMail']			= $strMail; 
+			$this->_arrData['arrError']			= $arrError;
+			$this->_arrData['strTitle']			= "PetSitter - Inscription";
+			$this->_arrData['strPage']			= "inscription";
 			$this->display("inscription");
 		}
 		
