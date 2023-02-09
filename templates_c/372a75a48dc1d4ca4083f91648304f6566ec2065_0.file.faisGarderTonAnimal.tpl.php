@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 13:57:29
+/* Smarty version 4.2.1, created on 2023-02-09 14:43:29
   from 'C:\wamp64\www\PetSitter\views\faisGarderTonAnimal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e3aa499f61c2_41742497',
+  'unifunc' => 'content_63e506912b89a1_03345677',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '372a75a48dc1d4ca4083f91648304f6566ec2065' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\faisGarderTonAnimal.tpl',
-      1 => 1675860091,
+      1 => 1675947292,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/resultPetsitter.tpl' => 1,
   ),
 ),false)) {
-function content_63e3aa499f61c2_41742497 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e506912b89a1_03345677 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_157049216763e3aa499e1096_91538064', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_65649420963e5069121a905_59080484', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_157049216763e3aa499e1096_91538064 extends Smarty_Internal_Block
+class Block_65649420963e5069121a905_59080484 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_157049216763e3aa499e1096_91538064',
+    0 => 'Block_65649420963e5069121a905_59080484',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -70,15 +70,15 @@ $_smarty_tpl->tpl_vars['objPetType']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objPetType']->value) {
 $_smarty_tpl->tpl_vars['objPetType']->do_else = false;
 ?>
-                        <div class="form-check form-check-inline col-md-2">
-                            <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objPetType']->value->checked;?>
+                            <div class="form-check form-check-inline col-md-2">
+                                <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objPetType']->value->checked;?>
  value='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
 ' id='<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
 ' name ="animal[]">
-                            <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
+                                <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['objPetType']->value->getKind();?>
 </label>
-                        </div>
+                            </div>
                         <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -94,15 +94,15 @@ $_smarty_tpl->tpl_vars['objSitter']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objSitter']->value) {
 $_smarty_tpl->tpl_vars['objSitter']->do_else = false;
 ?>
-                        <div class="form-check form-check-inline col-md-2">
-                        <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objSitter']->value->checked;?>
+                            <div class="form-check form-check-inline col-md-2">
+                            <input class="form-check-input" type="checkbox" <?php echo $_smarty_tpl->tpl_vars['objSitter']->value->checked;?>
  value='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
 ' id='<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
 ' name ="garde[]">
-                        <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
+                            <label class="form-check-label" for="<?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['objSitter']->value->getType();?>
 </label>
-                        </div>
+                            </div>
                         <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>

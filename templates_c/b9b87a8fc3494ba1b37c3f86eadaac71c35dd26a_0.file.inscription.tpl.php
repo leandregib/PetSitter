@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 14:04:05
+/* Smarty version 4.2.1, created on 2023-02-09 14:43:53
   from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e3abd5cb5802_01749420',
+  'unifunc' => 'content_63e506a962f395_14591995',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675865039,
+      1 => 1675947292,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e3abd5cb5802_01749420 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e506a962f395_14591995 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2241741063e3abd5cafd01_70305840', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_155933699463e506a95dc327_65037616', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_2241741063e3abd5cafd01_70305840 extends Smarty_Internal_Block
+class Block_155933699463e506a95dc327_65037616 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_2241741063e3abd5cafd01_70305840',
+    0 => 'Block_155933699463e506a95dc327_65037616',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -46,10 +46,10 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-        <div class="row">
-            <div class="offset-md-4 col-md-4">
+        <div class="row mt-5">
+            <div class="offset-md-4 col-md-4 mt-5">
                 <form action="" method="post">
-                    <div>
+                    <div class="mt-5">
                         <label for="name" class="form-label" >Nom</label>
                         <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net">
                     </div>
@@ -106,7 +106,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label" name="description">Description:</label>
-                            <textarea class="form-control" rows="6"></textarea>
+                            <textarea class="form-control" rows="6" name="description"></textarea>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"

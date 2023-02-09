@@ -6,7 +6,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ville: <span>{$arrDetResultPetsitter['city_name']}</span></li>
                 <li class="list-group-item">Prénom: <span>{$arrDetResultPetsitter['user_firstname']}</span></li>
-                <li class="list-group-item">Age: <span>{$arrDetResultPetsitter['user_birthday']}</span></li>
+                <li class="list-group-item">Age: <span>{$arrDetResultPetsitter['user_birthday']|date_format:"d/m/Y"}</span></li>
                 <li class="list-group-item">Type de logement:<span>{$arrDetResultPetsitter['home_type']}</span></li>
                 <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
                 </li>

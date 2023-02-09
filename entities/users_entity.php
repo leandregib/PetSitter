@@ -59,7 +59,7 @@
 		* Getter du nom
 		* @return string Name
 		*/
-		public function getName():string{
+		public function getName():string|null{
 			return $this->_name;
 		}
 		/**
@@ -67,14 +67,14 @@
 		* @param $strName nom
 		*/
 		public function setName(string $strName){
-			$this->_name = $strName;
+			$this->_name = filter_var(trim($strName),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
 		/**
 		* Getter du nom de famille
 		* @return string Nom de famille
 		*/
-		public function getFirstName():string{
+		public function getFirstName():string|null{
 			return $this->_firstname;
 		}
 		/**
@@ -82,7 +82,7 @@
 		* @param $strLastName Nom de l'image
 		*/
 		public function setFirstName(string $strFirstName){
-			$this->_firstname = $strFirstName;
+			$this->_firstname = filter_var(trim($strFirstname),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
 		/**
@@ -90,8 +90,9 @@
 		* @return string Birthday
 		*/
 		public function getBirthday():string{
-            $date = new DateTime($this->_birthday);
-			return $date->format('Y-m-d');
+            $date = $this->_birthday;
+			/*$date = new DateTime($this->_birthday);
+			return $date->format('Y-m-d');*/
 		}
 		/**
 		* Setter de l'anniversaire
