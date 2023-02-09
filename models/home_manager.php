@@ -17,7 +17,7 @@
 		* @return array Liste des types de logement
 		*/
 		public function findHome(){
-			$strRqSitter = "SELECT home_id, home_type FROM home ;";
+			$strRqHome = "SELECT home_id, home_type FROM home ;";
 							
 			return $this->_db->query($strRqHome)->fetchAll();
 		}
