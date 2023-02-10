@@ -24,7 +24,7 @@ body {
 header {
   background-size: cover;
   background: linear-gradient(#71f1ce 0%, #6ae1c1 68.61%, #e3f9f3 100%);
-  position: fixed;
+  /*position: fixed;*/
   top: 0;
   width: 100%;
   z-index: 4;

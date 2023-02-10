@@ -9,7 +9,7 @@
 
     {block name="CSS"}
         <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/styles/style.css">/>
+        <link rel="stylesheet" href="assets/styles/style.css">
     {/block}
 
 </head>

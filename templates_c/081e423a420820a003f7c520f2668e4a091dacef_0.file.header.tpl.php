@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-09 14:43:20
+/* Smarty version 4.2.1, created on 2023-02-10 10:16:22
   from 'C:\wamp64\www\PetSitter\views\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e5068843a9e4_18951213',
+  'unifunc' => 'content_63e6197619b043_71715014',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '081e423a420820a003f7c520f2668e4a091dacef' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\header.tpl',
-      1 => 1675947292,
+      1 => 1676024179,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e5068843a9e4_18951213 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e6197619b043_71715014 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -35,7 +35,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <meta name="description" content="Un acceuil pour vous permettre la garde de vos animaux plus facilement">
 
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688439a22_01053775', "CSS");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_176341044963e619761997d1_08067946', "CSS");
 ?>
 
 
@@ -139,19 +139,19 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688
         </div>
 </header><?php }
 /* {block "CSS"} */
-class Block_212436474663e50688439a22_01053775 extends Smarty_Internal_Block
+class Block_176341044963e619761997d1_08067946 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'CSS' => 
   array (
-    0 => 'Block_212436474663e50688439a22_01053775',
+    0 => 'Block_176341044963e619761997d1_08067946',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
         <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/styles/style.css">/>
+        <link rel="stylesheet" href="assets/styles/style.css">
     <?php
 }
 }

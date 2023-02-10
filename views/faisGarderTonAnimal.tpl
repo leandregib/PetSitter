@@ -12,7 +12,7 @@
                 </div>
             </div>
             <!-- Filtres -->
-            <form action="" method="post">
+            <form action="index.php?ctrl=page&action=faisGarderTonAnimal" method="post">
                 <div class="container mt-4">
                     <div class="row">
                         <div class="col-md-1">
