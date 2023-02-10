@@ -183,11 +183,15 @@
 			foreach($arrHome as $arrDetHome){
 				$objHome = new Home;
 				$objHome ->hydrate($arrDetHome);
-				$objHome->checked = (in_array($objHome->getId(),$intHome))?"checked":"";
+				$objHome->checked = ($objHome->getId() == $intHome)?"checked":"";
 				$arrHomeToDisplay[] = $objHome;
 			}
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
 			$this->_arrData['intHome']	= $intHome;
+			var_dump($_POST);
+
+			//recup fichier image
+			$arrImageInfos		= $_FILES['image']??array();
 
 			if (count($_POST) > 0){
 				// Sauvegarde de l'image sur le serveur

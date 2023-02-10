@@ -34,7 +34,7 @@
                             <div id="formDPS">
                                 {foreach from=$arrHomeToDisplay item=objHome} 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" {$objHome->checked} name="logement[]" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
+                                        <input class="form-check-input" type="radio" {$objHome->checked} name="home" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
                                         <label class="form-check-label" for="home{$objHome->getId()}">{$objHome->getType()}</label>
                                     </div>
                                 {/foreach}
