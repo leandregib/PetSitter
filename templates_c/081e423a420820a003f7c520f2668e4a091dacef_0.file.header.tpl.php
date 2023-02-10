@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-09 14:43:20
+/* Smarty version 4.3.0, created on 2023-02-10 15:00:19
   from 'C:\wamp64\www\PetSitter\views\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.2.1',
-  'unifunc' => 'content_63e5068843a9e4_18951213',
+  'version' => '4.3.0',
+  'unifunc' => 'content_63e65c03d7de09_94196676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '081e423a420820a003f7c520f2668e4a091dacef' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\header.tpl',
-      1 => 1675947292,
+      1 => 1676038612,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e5068843a9e4_18951213 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e65c03d7de09_94196676 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -35,7 +35,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <meta name="description" content="Un acceuil pour vous permettre la garde de vos animaux plus facilement">
 
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688439a22_01053775', "CSS");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89560625263e65c03d76222_69322618', "CSS");
 ?>
 
 
@@ -68,9 +68,19 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688
                             <li class="nav-item mx-sm-5 text-center py-4">
                                 <a class="nav-link" href="index.php?ctrl=page&action=contact">Contact</a>
                             </li>
-                            <li class="nav-item mx-sm-5 text-center py-4 my-1">
-                                <button data-bs-toggle="modal" data-bs-target="#conlog" id="logbtn">Connexion</button>
-                            </li>
+                            
+                            <?php if ((isset($_SESSION['user']['id'])) && $_SESSION['user']['id'] != '') {?>
+                                
+                                <li class="nav-link mx-sm-5 text-center py-4 my-1">
+                                    Bonjour<?php echo $_SESSION['user']['firstname'];?>
+<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
+                                </li>
+                            
+                            <?php } else { ?>
+                                <li class="nav-link mx-sm-5 text-center py-4">
+                                    <button data-bs-toggle="modal" data-bs-target="#conlog" id="logbtn">Connexion</button>   
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </nav>
@@ -86,19 +96,19 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688
                         <div class="modal-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel">
-                                    <form>
+                                    <form name="FormCo" method="post" action="index.php?ctrl=page&action=accueil">
                                         <div class="text-center mb-3">
                                             <p>Connectez-vous</p>
                                         </div>
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="loginName" class="form-control" />
+                                            <input type="email" id="loginName" name="mail" class="form-control" />
                                             <label class="form-label" for="loginName">Email</label>
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="loginPassword" class="form-control" />
+                                            <input type="password" id="loginPassword" name="password" class="form-control" />
                                             <label class="form-label" for="loginPassword">Mot de passe</label>
                                         </div>
                                         <!-- 2 column grid layout -->
@@ -139,12 +149,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212436474663e50688
         </div>
 </header><?php }
 /* {block "CSS"} */
-class Block_212436474663e50688439a22_01053775 extends Smarty_Internal_Block
+class Block_89560625263e65c03d76222_69322618 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'CSS' => 
   array (
-    0 => 'Block_212436474663e50688439a22_01053775',
+    0 => 'Block_89560625263e65c03d76222_69322618',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
