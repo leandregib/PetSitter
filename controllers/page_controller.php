@@ -137,7 +137,8 @@
 			// Pour récupérer les informations dans le formulaire
 			$intPetType	    	= $_POST['animal']??array();
 			$intSitter		    = $_POST['garde']??array();
-		   	$intCP 				= $_POST['cp']??'';
+			$intHome		    = $_POST['home']??'';
+		   	$arrImageInfos 		= $_FILES['image']??array();
 
 			// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
@@ -171,10 +172,51 @@
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
 			$this->_arrData['intSitter']	= $intSitter;
 
+			// Liste des types de logements
+			require("entities/home_entity.php"); 
+			require("models/home_manager.php"); 
+		
+			$objHomeManager  	= new HomeManager(); 
+			$arrHome	    	= $objHomeManager->findHome();
+			
+			$arrHomeToDisplay = array();
+			foreach($arrHome as $arrDetHome){
+				$objHome = new Home;
+				$objHome ->hydrate($arrDetHome);
+				$objHome->checked = ($objHome->getId() == $intHome)?"checked":"";
+				$arrHomeToDisplay[] = $objHome;
+			}
+			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
+			$this->_arrData['intHome']	= $intHome;
+			var_dump($_POST);
+
+			//recup fichier image
+			$arrImageInfos		= $_FILES['image']??array();
+
+			if (count($_POST) > 0){
+				// Sauvegarde de l'image sur le serveur
+				$strFileName 	= $arrImageInfos['tmp_name'];
+				$objDate 		= new DateTime();
+				$arrImage 		= explode(".", $arrImageInfos['name']);
+				$strNewName 	= $objDate->format('YmdHis').".".$arrImage[count($arrImage)-1];/*."_".$arrImageInfos['name']*/; // Nom de l'image => A renommer par sécurité
+				$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/assets/img'.$strNewName;
+				
+				if (move_uploaded_file($strFileName, $strFileDest)){
+					// Insertion en BDD, si pas d'erreurs
+					$strRqAdd 	= "	INSERT INTO articles 
+										(article_title, article_img, article_content, article_createdate, article_creator)
+									VALUES 
+										('".addslashes($strArticleTitle)."', '".$strNewName."', '".addslashes($strArticleContent)."', NOW(), 3);";
+					$db->exec($strRqAdd);
+					header("Location:index.php"); // Redirection page d'accueil
+				}
+			}
+
 
 			//Affichage
 			$this->_arrData['strTitle']	= "#";
 			$this->_arrData['strPage']	= "resteDuFormulaire";
 			$this->display("resteDuFormulaire");
+		
 		}
 	}

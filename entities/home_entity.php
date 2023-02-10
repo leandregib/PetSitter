@@ -3,7 +3,7 @@
 	* Class d'une entité home
 	* @creator Jérémy Gallippi
 	*/
-	class Role {
+	class Home {
 		/* Attributs */
 		private $_id;
         private $_type;
