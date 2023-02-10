@@ -130,7 +130,7 @@
 		*/
 		public function setPassword($strPassword){
 			$strPassword = filter_var(trim($strPassword),FILTER_SANITIZE_SPECIAL_CHARS);
-			if ($strPwd != ''){ // On ne hache le mot de passe que s'il est renseigné
+			if ($strPassword != ''){ // On ne hache le mot de passe que s'il est renseigné
 				$this->_password = password_hash($strPassword, PASSWORD_DEFAULT);
 			}else{
 				$this->_password = $strPassword;
