@@ -195,7 +195,7 @@
 				$objDate 		= new DateTime();
 				$arrImage 		= explode(".", $arrImageInfos['name']);
 				$strNewName 	= $objDate->format('YmdHis').".".$arrImage[count($arrImage)-1];/*."_".$arrImageInfos['name']*/; // Nom de l'image => A renommer par sécurité
-				$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/blog_mvc/assets/images/'.$strNewName;
+				$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/assets/img'.$strNewName;
 				
 				if (move_uploaded_file($strFileName, $strFileDest)){
 					// Insertion en BDD, si pas d'erreurs
@@ -205,6 +205,7 @@
 										('".addslashes($strArticleTitle)."', '".$strNewName."', '".addslashes($strArticleContent)."', NOW(), 3);";
 					$db->exec($strRqAdd);
 					header("Location:index.php"); // Redirection page d'accueil
+				}
 			}
 
 
@@ -212,5 +213,6 @@
 			$this->_arrData['strTitle']	= "#";
 			$this->_arrData['strPage']	= "resteDuFormulaire";
 			$this->display("resteDuFormulaire");
+		
 		}
 	}
