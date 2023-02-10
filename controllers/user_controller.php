@@ -22,20 +22,21 @@
 			// Stocker les informations utiles de l'utilisateur en session
 			// Exemple : $_SESSION['id'] = 15; ou $_SESSION['user']['id'] = 15;
 			if (count($_POST) > 0){
-				$strMail 	= $_POST['mail']??'';
-				$strPwd 	= $_POST['password']??'';
+				$strMail 	= $_POST['mail'];
+				$strPassword 	= $_POST['password'];
 				
-				require("models/user_manager.php"); 
-				$objUserManager = new UserManager;
+				
+				$objUserManager = new UserManager();
 				// Vérifier l'utilisateur / mdp en base de données
 				$arrUser = $objUserManager->verifUser($strMail, $strPassword);
-				// var_dump($arrUser);
+				 //var_dump($arrUser);
 				if ($arrUser === false){
 					$this->_arrData['strError'] = "Erreur de connexion";
 				}else{
 					// Stocker les informations utiles de l'utilisateur en session
-					$_SESSION['user']	= $arrUser;
+					$_SESSION['user']	= $arrUser;var_dump($arrUser);
 				}
+				
 			}
 			
 			/*Affichage
@@ -144,6 +145,7 @@
 		* Page Se déconnecter
 		*/
 		public function logout(){
-			echo "je suis dans la page logout";
+			session_destroy();
+			header("Location:index.php");
 		}
 	}

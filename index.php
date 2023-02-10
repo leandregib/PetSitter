@@ -15,4 +15,5 @@
 	// appel à la méthode
 	$strMethodName	= $strAction;
 	$objCtrl->$strMethodName();
-	
+	var_dump($arrUser);
+	var_dump($_SESSION);

@@ -20,26 +20,28 @@
 			$strRqSitter = "SELECT user_id, user_name, user_firstname, user_homeid FROM users
 				INNER JOIN user_homeid ON user_homeid = home_id ;";
 							
-			return $this->_db->query($strRqUser)->fetchAll();
+			return $this->_db->query($strRqSitter)->fetchAll();
 		}
 
 		public function verifUser($strMail, $strPassword){
 			$strRqUsers = "SELECT user_id AS 'id', 
 								  user_mail AS 'mail', 
+								  user_firstname,
 								  user_password 
 							FROM users
 							WHERE user_mail = '".$strMail."'";
 			$arrUser 	= $this->_db->query($strRqUsers)->fetch();
 
 			if ($arrUser !== false){
-				//if ($arrUser['user_pwd'] == $strPwd){ 
+				//if ($arrUser['user_password'] == $strPassword){ 
 				if(password_verify($strPassword, $arrUser['user_password'])) {
 					unset($arrUser['user_password']);
 					return $arrUser;
 				}
 			}
 			return false;
-		}
+		
+	}
 		
 		
 		public function addUsers($objUser){

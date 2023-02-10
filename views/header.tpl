@@ -41,9 +41,18 @@
                             <li class="nav-item mx-sm-5 text-center py-4">
                                 <a class="nav-link" href="index.php?ctrl=page&action=contact">Contact</a>
                             </li>
-                            <li class="nav-item mx-sm-5 text-center py-4 my-1">
-                                <button data-bs-toggle="modal" data-bs-target="#conlog" id="logbtn">Connexion</button>
-                            </li>
+                            
+                            {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
+                                
+                                <li class="nav-link mx-sm-5 text-center py-4 my-1">
+                                    Bonjour{$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
+                                </li>
+                            
+                            {else}
+                                <li class="nav-link mx-sm-5 text-center py-4">
+                                    <button data-bs-toggle="modal" data-bs-target="#conlog" id="logbtn">Connexion</button>   
+                                </li>
+                            {/if}
                         </ul>
                     </div>
                 </nav>
@@ -59,19 +68,19 @@
                         <div class="modal-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel">
-                                    <form>
+                                    <form name="FormCo" method="post" action="index.php?ctrl=page&action=accueil">
                                         <div class="text-center mb-3">
                                             <p>Connectez-vous</p>
                                         </div>
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="loginName" class="form-control" />
+                                            <input type="email" id="loginName" name="mail" class="form-control" />
                                             <label class="form-label" for="loginName">Email</label>
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="loginPassword" class="form-control" />
+                                            <input type="password" id="loginPassword" name="password" class="form-control" />
                                             <label class="form-label" for="loginPassword">Mot de passe</label>
                                         </div>
                                         <!-- 2 column grid layout -->
