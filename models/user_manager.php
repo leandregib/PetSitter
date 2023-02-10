@@ -48,22 +48,26 @@
 			// Insertion en BDD, si pas d'erreurs
 			$strRqAdd 	= "	INSERT INTO users
 								(user_name, user_firstname, user_birthday, user_mail, user_password, user_address, user_phone, user_description, user_cityid, user_roleid, user_homeid)
-							VALUES (:name, :firstname, :mail, :password, :birthday, :address, :phone, :description, :cityid, 2, 5   )";
+							VALUES (:name, :firstname, :birthday, :mail, :password, :address, :phone, :description, :cityid, :roleid, :homeid   )";
 							
 							
-			/*('".$objUser->getName()."','".$objUser->getFirstName()."','".$objUser->getBirthday()."','".$objUser->getMail()."','".$objUser->getPassword()."','".$objUser->getAdress()."','".$objUser->getPhone()."', '".$objUser->getDescription()."', '".$objUser->getCityId()."', '2', '5' )*/	
+			/*('".$objUser->getName()."','".$objUser->getFirstName()."','".$objUser->getBirthday()."','".$objUser->getMail()."','".$objUser->getPassword()."','".$objUser->getAddress()."','".$objUser->getPhone()."', '".$objUser->getDescription()."', '".$objUser->getCityId()."', '2', '5' )*/	
 			//return $this->_db->exec($strRqAdd);
 			// Requête préparée	
-			
+			//var_dump($objUser);die;
 			$prep		= $this->_db->prepare($strRqAdd);
 
 			$prep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
 			$prep->bindValue(':mail', $objUser->getMail(), PDO::PARAM_STR);
 			$prep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
 			$prep->bindValue(':password', $objUser->getPassword(), PDO::PARAM_STR);
-			$prep->bindValue(':birthday', $objUser->getbirthday(), PDO::PARAM_STR);
+			$prep->bindValue(':birthday', $objUser->getBirthday(), PDO::PARAM_STR);
 			$prep->bindValue(':address', $objUser->getAddress(), PDO::PARAM_STR);
-			$prep->bindValue(':cityid', $objUser->getCityId(), PDO::PARAM_STR);
+			$prep->bindValue(':cityid', $objUser->getCityId(), PDO::PARAM_INT);
+			$prep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+			$prep->bindValue(':description', $objUser->getDescription(), PDO::PARAM_STR);
+			$prep->bindValue(':roleid', $objUser->getRoleId(), PDO::PARAM_INT);
+			$prep->bindValue(':homeid', $objUser->getHomeId(), PDO::PARAM_INT);
 		
 			return $prep->execute();				
 		

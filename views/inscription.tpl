@@ -37,8 +37,8 @@
                         <input type="date" class="form-control mx-auto" name="birthday" id="birthday">
                     </div>
                     <div>
-                        <label for="adress" class="form-label" >Adresse</label>
-                        <input type="text" class="form-control mx-auto" name="adress" id="adress" placeholder="32 Rue de l'Industrie">
+                        <label for="address" class="form-label" >Adresse</label>
+                        <input type="text" class="form-control mx-auto" name="address" id="address" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
                         <label for="cityid" class="form-label" >Ville</label>

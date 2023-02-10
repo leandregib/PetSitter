@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-09 14:43:53
+/* Smarty version 4.2.1, created on 2023-02-10 08:49:36
   from 'C:\wamp64\www\PetSitter\views\inscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e506a962f395_14591995',
+  'unifunc' => 'content_63e60520f1ee12_94720658',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9b87a8fc3494ba1b37c3f86eadaac71c35dd26a' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\inscription.tpl',
-      1 => 1675947292,
+      1 => 1676018960,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e506a962f395_14591995 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e60520f1ee12_94720658 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_155933699463e506a95dc327_65037616', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5201034763e60520de5a56_98804266', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/structure.tpl");
 }
 /* {block "content"} */
-class Block_155933699463e506a95dc327_65037616 extends Smarty_Internal_Block
+class Block_5201034763e60520de5a56_98804266 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_155933699463e506a95dc327_65037616',
+    0 => 'Block_5201034763e60520de5a56_98804266',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -78,8 +78,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <input type="date" class="form-control mx-auto" name="birthday" id="birthday">
                     </div>
                     <div>
-                        <label for="adress" class="form-label" >Adresse</label>
-                        <input type="text" class="form-control mx-auto" name="adress" id="adress" placeholder="32 Rue de l'Industrie">
+                        <label for="address" class="form-label" >Adresse</label>
+                        <input type="text" class="form-control mx-auto" name="address" id="address" placeholder="32 Rue de l'Industrie">
                     </div>
                     <div>
                         <label for="cityid" class="form-label" >Ville</label>

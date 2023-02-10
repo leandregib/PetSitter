@@ -11,13 +11,13 @@
 		private $_birthday;
 		private $_mail;
 		private $_password;
-        private $_adress;
+        private $_address;
         private $_phone;
         private $_description;
         private $_iban;
-        private $_homeid;
+        private $_homeid=5;
         private $_cityid;
-        private $_roleid;
+        private $_roleid=2;
 		
 		/**
 		* Constructeur de la classe
@@ -82,7 +82,7 @@
 		* @param $strLastName Nom de l'image
 		*/
 		public function setFirstName(string $strFirstName){
-			$this->_firstname = filter_var(trim($strFirstname),FILTER_SANITIZE_SPECIAL_CHARS);
+			$this->_firstname = filter_var(trim($strFirstName),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
 		/**
@@ -90,7 +90,7 @@
 		* @return string Birthday
 		*/
 		public function getBirthday():string{
-            $date = $this->_birthday;
+            return $this->_birthday;
 			/*$date = new DateTime($this->_birthday);
 			return $date->format('Y-m-d');*/
 		}
@@ -141,7 +141,7 @@
 		* Getter de l'adresse
 		* @return string adress
 		*/
-		public function getAddress():string|null{
+		public function getAddress():string{
 			return $this->_address;
 		}
 		/**
@@ -223,7 +223,7 @@
         * Setter du cityid
         * @param $intCityId
         */
-        public function setCityId(int $intCityId){
+        public function setCityId(int|string $intCityId){
             $this->_cityid = $intCityId;
         }
 

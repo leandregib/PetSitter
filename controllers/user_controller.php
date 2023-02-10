@@ -105,7 +105,7 @@
 											
 					//var_dump($objUser);
 					
-					require("models/user_manager.php"); 
+					
 					$objUserManager = new UserManager;
 					if($objUserManager->addUsers($objUser)){
 						header("Location:index.php");
