@@ -1,7 +1,6 @@
 <?php
 	// Session sur toutes les pages
 	session_start();
-	
 	require("controllers/base_controller.php");
 	
 	$strCtrl 	= $_GET['ctrl']??"page";
@@ -15,5 +14,3 @@
 	// appel à la méthode
 	$strMethodName	= $strAction;
 	$objCtrl->$strMethodName();
-	var_dump($arrUser);
-	var_dump($_SESSION);

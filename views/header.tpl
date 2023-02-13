@@ -45,7 +45,7 @@
                             {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
                                 
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
-                                    Bonjour{$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
+                                    Bonjour {$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
                                 </li>
                             
                             {else}
@@ -68,7 +68,7 @@
                         <div class="modal-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel">
-                                    <form name="FormCo" method="post" action="index.php?ctrl=page&action=accueil">
+                                    <form name="FormCo" method="post" action="index.php?ctrl=user&action=login">
                                         <div class="text-center mb-3">
                                             <p>Connectez-vous</p>
                                         </div>

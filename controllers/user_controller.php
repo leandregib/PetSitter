@@ -25,20 +25,17 @@
 				$strMail 	= $_POST['mail'];
 				$strPassword 	= $_POST['password'];
 				
-				
 				$objUserManager = new UserManager();
 				// Vérifier l'utilisateur / mdp en base de données
 				$arrUser = $objUserManager->verifUser($strMail, $strPassword);
-				 //var_dump($arrUser);
 				if ($arrUser === false){
 					$this->_arrData['strError'] = "Erreur de connexion";
 				}else{
 					// Stocker les informations utiles de l'utilisateur en session
 					$_SESSION['user']	= $arrUser;var_dump($arrUser);
 				}
-				
 			}
-			
+			header("Location:index.php");			
 			/*Affichage
 			$this->_arrData['strTitle']	= "Se connecter";
 			$this->_arrData['strPage']	= "login";

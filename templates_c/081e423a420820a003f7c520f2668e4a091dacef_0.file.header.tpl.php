@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-02-10 15:00:19
+/* Smarty version 4.3.0, created on 2023-02-13 14:41:51
   from 'C:\wamp64\www\PetSitter\views\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_63e65c03d7de09_94196676',
+  'unifunc' => 'content_63ea4c2f8d2bd7_71441671',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '081e423a420820a003f7c520f2668e4a091dacef' => 
     array (
       0 => 'C:\\wamp64\\www\\PetSitter\\views\\header.tpl',
-      1 => 1676038612,
+      1 => 1676299310,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e65c03d7de09_94196676 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63ea4c2f8d2bd7_71441671 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -35,7 +35,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <meta name="description" content="Un acceuil pour vous permettre la garde de vos animaux plus facilement">
 
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89560625263e65c03d76222_69322618', "CSS");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_124983016263ea4c2f8c8233_89175513', "CSS");
 ?>
 
 
@@ -72,7 +72,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89560625263e65c03d
                             <?php if ((isset($_SESSION['user']['id'])) && $_SESSION['user']['id'] != '') {?>
                                 
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
-                                    Bonjour<?php echo $_SESSION['user']['firstname'];?>
+                                    Bonjour <?php echo $_SESSION['user']['firstname'];?>
 <a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
                                 </li>
                             
@@ -96,7 +96,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89560625263e65c03d
                         <div class="modal-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel">
-                                    <form name="FormCo" method="post" action="index.php?ctrl=page&action=accueil">
+                                    <form name="FormCo" method="post" action="index.php?ctrl=user&action=login">
                                         <div class="text-center mb-3">
                                             <p>Connectez-vous</p>
                                         </div>
@@ -149,12 +149,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89560625263e65c03d
         </div>
 </header><?php }
 /* {block "CSS"} */
-class Block_89560625263e65c03d76222_69322618 extends Smarty_Internal_Block
+class Block_124983016263ea4c2f8c8233_89175513 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'CSS' => 
   array (
-    0 => 'Block_89560625263e65c03d76222_69322618',
+    0 => 'Block_124983016263ea4c2f8c8233_89175513',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

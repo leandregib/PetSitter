@@ -26,7 +26,7 @@
 		public function verifUser($strMail, $strPassword){
 			$strRqUsers = "SELECT user_id AS 'id', 
 								  user_mail AS 'mail', 
-								  user_firstname,
+								  user_firstname AS 'firstname',
 								  user_password 
 							FROM users
 							WHERE user_mail = '".$strMail."'";
