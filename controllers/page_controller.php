@@ -117,8 +117,60 @@
 		* Page Pet Type Form
 		*/
 		public function petTypeForm (){
-			$this->_arrData['strTitle']	= "#";
-			$this->_arrData['strPage']	= "petTypeForm";
+			if (!isset($_SESSION['user'])){
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			// Créer un objet vide avec l'entité => Dorian
+			// Création de l'objet User
+			$objUser = new User;
+					
+			$arrError = array(); // Tableau des erreurs initialisé
+			if (count($_POST) > 0) { // Si le formulaire est envoyé
+				// On hydrate l'objet
+				$objUser->hydrate($_POST);
+				// On teste les informations
+				if ($objUser->getName() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un nom";
+				}
+				if ($objUser->getFirstname() == ''){ // Tests sur le prénom
+					$arrError[]	= "Merci de renseigner un prénom";
+				}
+				if ($objUser->getMail() == ''){ // Tests sur le mail
+					$arrError[]	= "Merci de renseigner une adresse mail";
+				}
+				/*if ($objUser->getPwd() == ''){ // Tests sur le mot de passe
+					$arrError[]	= "Merci de renseigner un mot de passe";
+				}*/
+				if ($objUser->getPwd() != '' && !password_verify($_POST['confirmPwd'], $objUser->getPwd())){ // Tests sur la confirmation du mot de passe
+					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
+				}
+				
+				// Si aucune erreur on l'insert en BDD
+				if (count($arrError) == 0){ 
+					$objUserManager = new UserManager;
+					if($objUserManager->updateUser($objUser)){
+						// Mettre à jour la session, si compte de l'utilisateur connecté
+						if($_SESSION['user']['id'] == $objUser->getId()){
+							$_SESSION['user']['firstname'] = $objUser->getFirstname();
+						}
+						header("Location:index.php");
+					}else{
+						$arrError[]	= "Erreur lors de l'ajout";
+					}
+				}
+			}else{
+				// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
+				$objUserManager = new UserManager;
+				$arrUser 		= $objUserManager->getUser();
+				// Hydrater l'objet avec la méthode de l'entité
+				$objUser->hydrate($arrUser);
+			}
+
+			//Affichage
+			$this->_arrData['objUser']		= $objUser;
+			$this->_arrData['arrError']		= $arrError;
+			$this->_arrData['strTitle']		= "#";
+			$this->_arrData['strPage']		= "petTypeForm";
 			$this->display("petTypeForm");
 		}
 
