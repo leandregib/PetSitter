@@ -179,8 +179,6 @@
 			}
 
 			//Affichage
-			var_dump($_SESSION);
-			var_dump($objPet);
 			$this->_arrData['objPet']		= $objPet;
 			$this->_arrData['arrError']		= $arrError;
 			$this->_arrData['strTitle']		= "#";

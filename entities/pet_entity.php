@@ -8,7 +8,7 @@
 		private $_id;
 		private $_name;
 		private $_birthday;
-		private $_userid=$_SESSION['user']['id'];
+		private $_userid=9;
 		private $_typeid;
 		private $_sexid;
 		

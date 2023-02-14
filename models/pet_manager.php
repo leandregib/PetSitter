@@ -17,7 +17,7 @@
 		* @return array Liste des pets
 		*/
 		public function findPet(){
-			$strRqPet = "SELECT pet_id, pet_name, pet_userid, pet_typeid, pet_sexid FROM pet ;";
+			$strRqPet = "SELECT pet_id, pet_name, pet_birthday, pet_userid, pet_typeid, pet_sexid FROM pet ;";
 							
 			return $this->_db->query($strRqPet)->fetchAll();
 		}
@@ -29,12 +29,13 @@
 
 		// Insertion en BDD, si pas d'erreurs
 		$strRqAdd 	= "	INSERT INTO pet
-						(pet_name, pet_userid, pet_typeid, pet_sexid)
-						VALUES (:name, :birthday, :userid, :typeid, :sexid)";
+						(pet_id, pet_name, pet_birthday, pet_userid, pet_typeid, pet_sexid)
+						VALUES (:id, :name, :birthday, :userid, :typeid, :sexid)";
 
 		// Requête préparée	
 		$prep		= $this->_db->prepare($strRqAdd);
 
+		$prep->bindValue(':id', $objPet->getId(), PDO::PARAM_INT);
 		$prep->bindValue(':name', $objPet->getName(), PDO::PARAM_STR);
 		$prep->bindValue(':birthday', $objPet->getBirthday(), PDO::PARAM_STR);
 		$prep->bindValue(':userid', $objPet->getUserid(), PDO::PARAM_INT);
