@@ -51,7 +51,11 @@
         <div class="container">
                     <div class="row text-center">
                         <div class="col-md-12 my-4">
+<<<<<<< Updated upstream
                             <p>Pour faire parti de nos PetSitter, <a href="index.php?ctrl=page&action=resteDuFormulaire">Clique ici</a> </p>
+=======
+                            <p>Pour faire parti de nos PetSitter, <a href="index.php?ctrl=user&action=resteDuFormulaire">Clique ici</a> </p>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>

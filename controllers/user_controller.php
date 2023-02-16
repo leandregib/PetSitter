@@ -21,6 +21,7 @@
 			// Vérifier l'utilisateur / mdp en base de données (Attention aux infos vides)
 			// Stocker les informations utiles de l'utilisateur en session
 			// Exemple : $_SESSION['id'] = 15; ou $_SESSION['user']['id'] = 15;
+<<<<<<< Updated upstream
 			if (count($_POST) > 0){
 				$strMail 	= $_POST['mail'];
 				$strPassword 	= $_POST['password'];
@@ -40,12 +41,45 @@
 			$this->_arrData['strTitle']	= "Se connecter";
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");*/
+=======
+
+			
+			//Affichage
+			/*$this->_arrData['strTitle']	= "Se connecter";
+			$this->_arrData['strPage']	= "login";
+			$this->display("login");*/
+			
+			if (count($_POST) > 0){
+				$strMail 	= $_POST['mail']??'';
+				$strPwd 	= $_POST['passwd']??'';
+				
+				require("models/user_manager.php"); 
+				$objUserManager = new UserManager;
+				// Vérifier l'utilisateur / mdp en base de données
+				$arrUser = $objUserManager->verifUser($strMail, $strPwd);
+				var_dump($arrUser);
+				if ($arrUser === false){
+					$this->_arrData['strError'] = "Erreur de connexion";
+				}else{
+					// Stocker les informations utiles de l'utilisateur en session
+					$_SESSION['user']	= $arrUser;
+				}
+			}
+			
+			//Affichage
+			/*$this->_arrData['strTitle']	= "Se connecter";
+			$this->_arrData['strPage']	= "login";
+			$this->display("login");*/
+			
+>>>>>>> Stashed changes
 		}
 
 		/**
 		* Page Inscription
 		*/
+		
 		public function inscription(){
+<<<<<<< Updated upstream
 				// Pour récupérer les informations dans le formulaire
 				/*$intCity				= $_POST['city']??'';*/
 
@@ -59,6 +93,36 @@
 			$strAdress				= $_POST['adress']??'';
 			$strPhone				= $_POST['phone']??'';
 			$textDescription		= $_POST['description']??'';*/
+=======
+			if(count($_POST)>0){
+
+			require("entities/users_entity.php");
+			require("models/user_manager.php");
+			$objUserManager = new UserManager();
+			
+			
+		    // Pour récupérer les informations dans le formulaire
+			/*$intCity				= $_POST['city']??'';*/
+			$intCityId				= $_POST['cityid']??'';	
+    		$strName				= $_POST['name']??'';	
+			$strFirstName			= $_POST['firstname']??'';
+			$dateBirthday			= $_POST['birthday']??'';
+			$strMail				= $_POST['mail']??'';
+			$strPassword			= $_POST['password']??'';	
+         	$strAdress				= $_POST['adress']??'';
+        	$strPhone				= $_POST['phone']??'';
+        	$textDescription		= $_POST['description']??'';
+
+			var_dump($_POST);
+
+			$objUser = new User();
+			$objUser->hydrate($_POST);
+			$strQuery= $objUserManager->addUsers($objUser);
+			
+       
+        
+
+>>>>>>> Stashed changes
 
 			$strConfirmPassword		= $_POST['confirmpassword']??'';
 
@@ -83,6 +147,7 @@
 				// On teste les informations
 				$objUser->hydrate($_POST);
 
+<<<<<<< Updated upstream
 				if ($objUser->getName() == ''){ // Tests sur le nom
 				$arrError[]	= "Merci de renseigner un nom";
 				}
@@ -125,8 +190,14 @@
 			$this->_arrData['arrError']			= $arrError;
 			$this->_arrData['strTitle']			= "PetSitter - Inscription";
 			$this->_arrData['strPage']			= "inscription";
-			$this->display("inscription");
+=======
+			
 		}
+		$this->_arrData['strTitle']	= "PetSitter - Inscription";
+			$this->_arrData['strPage']	= "inscription";
+>>>>>>> Stashed changes
+			$this->display("inscription");
+	}	
 		
 		/**
 		* Page Créer un compte
@@ -143,6 +214,7 @@
 		*/
 		public function logout(){
 			session_destroy();
+<<<<<<< Updated upstream
 			header("Location:index.php");
 		}
 
@@ -207,5 +279,7 @@
 			$this->_arrData['strTitle']		= "Créer un compte";
 			$this->_arrData['strPage']		= "edit_account";
 			$this->display("inscription");
+=======
+>>>>>>> Stashed changes
 		}
 	}

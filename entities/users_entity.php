@@ -15,9 +15,15 @@
         private $_phone;
         private $_description;
         private $_iban;
+<<<<<<< Updated upstream
         private $_homeid=5;
         private $_cityid;
         private $_roleid=2;
+=======
+        private $_homeid;
+        private $_cityid;
+        private $_roleid;
+>>>>>>> Stashed changes
 		
 		/**
 		* Constructeur de la classe
@@ -74,7 +80,11 @@
 		* Getter du nom de famille
 		* @return string Nom de famille
 		*/
+<<<<<<< Updated upstream
 		public function getFirstName():string|null{
+=======
+		public function getFirstName():string{
+>>>>>>> Stashed changes
 			return $this->_firstname;
 		}
 		/**
@@ -82,7 +92,11 @@
 		* @param $strLastName Nom de l'image
 		*/
 		public function setFirstName(string $strFirstName){
+<<<<<<< Updated upstream
 			$this->_firstname = filter_var(trim($strFirstName),FILTER_SANITIZE_SPECIAL_CHARS);
+=======
+			$this->_firstname = $strFirstName;
+>>>>>>> Stashed changes
 		}
 		
 		/**

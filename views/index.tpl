@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 {extends file="views/structure.tpl"}
+=======
+{extends file="views/modele.tpl"}
+
+{block name="content"}
+>>>>>>> Stashed changes
     
 {block name="content"}
     <main>

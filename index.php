@@ -1,6 +1,11 @@
 <?php
 	// Session sur toutes les pages
 	session_start();
+<<<<<<< Updated upstream
+=======
+	
+	
+>>>>>>> Stashed changes
 	require("controllers/base_controller.php");
 	
 	$strCtrl 	= $_GET['ctrl']??"page";
