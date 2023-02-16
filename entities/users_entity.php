@@ -89,7 +89,7 @@
 		* Getter de l'anniversaire
 		* @return string Birthday
 		*/
-		public function getBirthday():string{
+		public function getBirthday():string|null{
             return $this->_birthday;
 			/*$date = new DateTime($this->_birthday);
 			return $date->format('Y-m-d');*/
@@ -141,7 +141,7 @@
 		* Getter de l'adresse
 		* @return string adress
 		*/
-		public function getAddress():string{
+		public function getAddress():string|null{
 			return $this->_address;
 		}
 		/**

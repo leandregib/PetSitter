@@ -74,4 +74,34 @@
 			return $prep->execute();				
 		
 		}
+
+		public function updateUser($objUser){
+			$strRqUpdate	= "UPDATE users 
+								SET user_name = :name, 
+									user_firstname = :firstname, 
+									user_mail = :mail";
+			if ($objUser->getPassword() != ''){
+				$strRqUpdate	.=	", user_password = :password";
+			}
+			$strRqUpdate	.= " WHERE user_id = ".$objUser->getId();//$_SESSION['user']['id'];
+			$prep			= $this->_db->prepare($strRqUpdate);
+			
+			$prep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
+			$prep->bindValue(':mail', $objUser->getMail(), PDO::PARAM_STR);
+			$prep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
+			if ($objUser->getPassword() != ''){
+				$prep->bindValue(':password', $objUser->getPassword(), PDO::PARAM_STR);
+			}
+			$prep->bindValue(':birthday', $objUser->getBirthday(), PDO::PARAM_STR);
+			$prep->bindValue(':address', $objUser->getAddress(), PDO::PARAM_STR);
+			$prep->bindValue(':cityid', $objUser->getCityId(), PDO::PARAM_INT);
+			$prep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+			$prep->bindValue(':description', $objUser->getDescription(), PDO::PARAM_STR);
+			$prep->bindValue(':roleid', $objUser->getRoleId(), PDO::PARAM_INT);
+			$prep->bindValue(':homeid', $objUser->getHomeId(), PDO::PARAM_INT);
+			
+			return $prep->execute();
+		}
+		
+
 	}
