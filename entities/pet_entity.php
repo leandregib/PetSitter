@@ -7,8 +7,8 @@
 		/* Attributs */
 		private $_id;
 		private $_name;
-		private $_date;
-		private $_userid;
+		private $_birthday;
+		private $_userid=9;
 		private $_typeid;
 		private $_sexid;
 		
@@ -36,7 +36,7 @@
 		* Getter de l'id
 		* @return int Identifiant
 		*/
-		public function getId():int{
+		public function getId():int|null{
 			return $this->_id;
 		}
 		/**
@@ -51,7 +51,7 @@
 		* Getter du nom
 		* @return string Nom
 		*/
-		public function getName():string{
+		public function getName():string|null{
 			return $this->_name;
 		}
 		/**
@@ -59,30 +59,30 @@
 		* @param $strTitle Nom
 		*/
 		public function setName(string $strName){
-			$this->_name= $strName;
+			$this->_name = filter_var(trim($strName),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		//___________________________________________________________________________
 		/**
-		* Getter de la date 
-		* @return string Date au format d/m/Y
+		* Getter de la date d'anniversaire
+		* @return string Date d'anniversaire 
 		*/
-		public function getDate():string{
-			$date = new DateTime($this->_date);
-			return $date->format('d/m/Y');
+		public function getBirthday():string|null{
+            return $this->_birthday;
 		}
 		/**
-		* Setter de la date
-		* @param $date Date 
+		* Setter de l'anniversaire
+		* @param $strBirthday Birthday
 		*/
-		public function setDate(string $date){
-			$this->_date = $date;
+		public function setBirthday(string $strBirthday){
+			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
+
 		//___________________________________________________________________________
 		/**
 		* Getter du userid
 		* @return int Id Userid
 		*/
-		public function getUserid():int{
+		public function getUserid():int|null{
 			return $this->_userid;
 		}
 		/**
@@ -97,7 +97,7 @@
 		* Getter du typeid
 		* @return int Id Type
 		*/
-		public function getTypeid():int{
+		public function getTypeid():int|null{
 			return $this->_typeid;
 		}
 		/**
@@ -112,7 +112,7 @@
 		* Getter du sexid
 		* @return int Id Sex
 		*/
-		public function getSexid():int{
+		public function getSexid():int|null{
 			return $this->_sexid;
 		}
 		/**

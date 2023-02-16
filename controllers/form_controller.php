@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Controller des pages des formulaires
-	* @autor Timothée KERN
+	* @author Timothée KERN
 	*/
 	class Form_controller extends Base_controller{
 		

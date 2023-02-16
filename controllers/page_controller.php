@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Controller des pages
-	* @autor Timothée KERN
+	* @author Timothée KERN
 	*/
 	class Page_controller extends Base_controller{
 		
@@ -117,8 +117,72 @@
 		* Page Pet Type Form
 		*/
 		public function petTypeForm (){
-			$this->_arrData['strTitle']	= "#";
-			$this->_arrData['strPage']	= "petTypeForm";
+			//Interdire l'accès si utilisateur non connecté
+			// if (!isset($_SESSION['user'])){
+			// 	header("Location:index.php?ctrl=error&action=error_403");
+			// }
+
+		 	// Liste des types d'animaux
+			require("entities/pet_type_entity.php"); 
+			require("models/pet_type_manager.php"); 
+
+			$objPetTypeManager  = new PetTypeManager(); 
+			$arrPetType 	    = $objPetTypeManager->findPetType(); 
+
+	 		$arrPetTypeToDisplay = array();
+	 		foreach($arrPetType as $arrDetPetType){
+		 		$objPetType = new Pet_type;
+		 		$objPetType->hydrate($arrDetPetType);
+		 		$arrPetTypeToDisplay[] = $objPetType;
+	 		}
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+
+			// Liste des sexes
+			require("entities/sex_entity.php"); 
+			require("models/sex_manager.php"); 
+		
+			$objSexManager  	= new SexManager(); 
+			$arrSex	    	= $objSexManager->findSex();
+			
+			$arrSexToDisplay = array();
+			foreach($arrSex as $arrDetSex){
+				$objSex = new Sex;
+				$objSex->hydrate($arrDetSex);
+				$arrSexToDisplay[] = $objSex;
+			}
+			$this->_arrData['arrSexToDisplay']	= $arrSexToDisplay;
+			
+
+			// Création de l'objet Pet
+			require("entities/pet_entity.php"); 
+			require("models/pet_manager.php"); 
+			$objPet = new Pet;
+					
+			$arrError = array(); // Tableau des erreurs initialisé
+			if (count($_POST) > 0) { // Si le formulaire est envoyé
+				// On hydrate l'objet
+				$objPet->hydrate($_POST);
+				// On teste les informations
+				if ($objPet->getName() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un nom pour votre animal";
+				}
+				
+				// Si aucune erreur on l'insert en BDD
+				if (count($arrError) == 0){ 
+					$objPetManager = new PetManager;
+					if($objPetManager->addPet($objPet)){
+						header("Location:index.php");
+					}else{
+						$arrError[]	= "Erreur lors de l'ajout";
+					}
+				}
+			}
+
+			//Affichage
+			$this->_arrData['objPet']		= $objPet;
+			$this->_arrData['arrError']		= $arrError;
+			$this->_arrData['strTitle']		= "#";
+			$this->_arrData['strPage']		= "petTypeForm";
 			$this->display("petTypeForm");
 		}
 

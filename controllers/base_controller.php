@@ -2,7 +2,7 @@
 	require("libs/Smarty.class.php");
 	/**
 	* Controller mère
-	* @autor Timothée KERN
+	* @author Timothée KERN
 	*/	
 	class Base_controller {
 		

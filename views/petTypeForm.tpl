@@ -8,29 +8,29 @@
                 <div class="offset-md-4 col-md-4">
                     <form name="formPet" action="" method="post">
                         <div>
-                            <label for="petName" class="form-label">Nom</label>
-                            <input type="text" class="form-control mx-auto" placeholder="Net" name="petName">
+                            <label for="name" class="form-label">Nom</label>
+                            <input type="text" class="form-control mx-auto" placeholder="Net" name="name">
                         </div>
                         <div class="my-2">
-                            <label for="petBirth" class="form-label">Date de naissance</label>
-                            <input name="petBirth" type="date" class="form-control mx-auto">
+                            <label for="birthday" class="form-label">Date de naissance</label>
+                            <input name="birthday" type="date" class="form-control mx-auto">
                         </div>
                         <div>
-                            <label for="sitterType">Choisissez un type de garde</label>
-                            <select name="sitterType" class="form-select my-2" aria-label="Default select example">
-                                <option selected>Type de garde</option>
-                                <option value="1">A domicile</option>
-                                <option value="2">En pension</option>
-                                <option value="3">Promenade</option>
+                            <label for="typeid">Choisissez un type d'animal</label>
+                            <select name="typeid" class="form-select my-2" aria-label="Default select example">                            
+                                {foreach from=$arrPetTypeToDisplay item=objPetType} 
+                                    <option value='{$objPetType->getId()}'>{$objPetType->getKind()}</option>
+                                {/foreach}
+                            
                             </select>
                         </div>
 
                         <div>
-                            <label for="petSex">Sélectionné le sexe de l'animal</label>
-                            <select name="petSex" class="form-select my-2" aria-label="Default select example">
-                                <option selected>Sexe</option>
-                                <option value="1">Femelle</option>
-                                <option value="2">Mâle</option>
+                            <label for="sexid">Sélectionné le sexe de l'animal</label>
+                            <select name="sexid" class="form-select my-2" aria-label="Default select example">
+                                {foreach from=$arrSexToDisplay item=objSex} 
+                                    <option value='{$objSex->getId()}'>{$objSex->getType()}</option>
+                                {/foreach}
                             </select>
                         </div>
                         <div class="form-check form-check-inline my-2">
