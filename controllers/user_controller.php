@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Controller des utilisateurs
-	* @autor Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class User_controller extends Base_controller{
 		

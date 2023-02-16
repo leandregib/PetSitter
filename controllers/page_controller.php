@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Controller des pages
-	* @autor Timothée KERN
+	* @author Timothée KERN
 	*/
 	class Page_controller extends Base_controller{
 		
