@@ -74,4 +74,27 @@
 			return $prep->execute();				
 		
 		}
+
+		/**
+		* Methode d'ajout d'un type d'habitation pour l'utilisateur
+		* @creator Timothée KERN
+		* @param $objPetsitter objet du Petsitter à ajouter dans la base de données
+		*/		
+		public function addHome($objUser){
+
+           
+			// Insertion en BDD, si pas d'erreurs
+			$strRqAddPetsitter 	= "UPDATE users
+								SET user_homeid = :homeid
+								WHERE user_id = :userid";
+							
+			// Requête préparée	
+			$prep		= $this->_db->prepare($strRqAddPetsitter);
+
+			$prep->bindValue(':userid', $objPetsitter->getUserId(), PDO::PARAM_INT);
+			$prep->bindValue(':homeid', $objPetsitter->getHomeId(), PDO::PARAM_INT);
+		
+			return $prep->execute();				
+		
+		}
 	}

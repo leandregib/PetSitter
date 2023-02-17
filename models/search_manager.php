@@ -14,7 +14,7 @@
 		
 		/**
 		* Methode de récupération des petsitters
-		* @return array Liste des résultats
+		* @return array Liste des résultats en fonction des filtres (type d'animal, type de garde et code postal) appliqués
 		*/
 		public function findPetSitter(){
 			

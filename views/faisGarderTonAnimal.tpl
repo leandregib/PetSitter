@@ -24,7 +24,7 @@
                         </div>
                         {foreach from=$arrPetTypeToDisplay item=objPetType}
                             <div class="form-check form-check-inline col-md-2">
-                                <input class="form-check-input" type="checkbox" {$objPetType->checked} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
+                                <input class="form-check-input" type="checkbox"  {if (in_array($objPetType->getId(), $arrCheckedPet))}checked{/if} value='{$objPetType->getId()}' id='{$objPetType->getId()}' name ="animal[]">
                                 <label class="form-check-label" for="{$objPetType->getId()}">{$objPetType->getKind()}</label>
                             </div>
                         {/foreach}
@@ -36,7 +36,7 @@
                         </div>
                         {foreach from=$arrSitterToDisplay item=objSitter}
                             <div class="form-check form-check-inline col-md-2">
-                            <input class="form-check-input" type="checkbox" {$objSitter->checked} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
+                            <input class="form-check-input" type="checkbox"  {if (in_array($objSitter->getId(), $arrCheckedSitter))} checked {/if} value='{$objSitter->getId()}' id='{$objSitter->getId()}' name ="garde[]">
                             <label class="form-check-label" for="{$objSitter->getId()}">{$objSitter->getType()}</label>
                             </div>
                         {/foreach}

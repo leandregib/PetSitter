@@ -12,7 +12,7 @@
                             <div id="formDPS">
                                 {foreach from=$arrPetTypeToDisplay item=objPetType}                            
                                         <div class="form-check form-check-inline">                            
-                                        <input class="form-check-input" type="checkbox"  {if (in_array($objPetType->getId(), $arrCheckedPet))} checked {/if} value='{$objPetType->getId()}' id='pt{$objPetType->getId()}' name ="animal[]">
+                                        <input class="form-check-input" type="checkbox"   {if (in_array($objPetType->getId(), $arrCheckedPet))}checked{/if} value='{$objPetType->getId()}' id='pt{$objPetType->getId()}' name ="animal[]">
                                     <label class="form-check-label" for="pt{$objPetType->getId()}">{$objPetType->getKind()}</label>
                                     </div> 
                                 {/foreach}
@@ -23,7 +23,7 @@
                             <div id="formDPS">                                
                                 {foreach from=$arrSitterToDisplay item=objSitter}
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" {if (in_array($objSitter->getId(), $arrChekedSitter))} checked {/if} value='{$objSitter->getId()}' id='sit{$objSitter->getId()}' name ="garde[]">
+                                        <input class="form-check-input" type="checkbox" {if (in_array($objSitter->getId(), $arrCheckedSitter))} checked {/if} value='{$objSitter->getId()}' id='sit{$objSitter->getId()}' name ="garde[]">
                                         <label class="form-check-label" for="sit{$objSitter->getId()}">{$objSitter->getType()}</label>
                                     </div>
                                 {/foreach}                                
@@ -34,7 +34,7 @@
                             <div id="formDPS">
                                 {foreach from=$arrHomeToDisplay item=objHome} 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" {if (in_array($objHome->getId(), $arrChecked))} checked {/if} name="home" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
+                                        <input class="form-check-input" type="radio" {if (in_array($objHome->getId(), $arrCheckedHome))} checked {/if} name="home" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
                                         <label class="form-check-label" for="home{$objHome->getId()}">{$objHome->getType()}</label>
                                     </div>
                                 {/foreach}
@@ -43,18 +43,6 @@
                         
                         <div>
                             <div class="mt-5">
-                                <p>- Ici tu vas devoir télécharger une photo de toi et te décrire.
-                                    Permettant aux utilisateurs de mieux choisir leur PetSitter
-                                </p>
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label"></label>
-                                <input class="form-control" type="file" id="formFile" name="image">
-                            </div>
-                            <div class="mt-3">
-                                <label for="forpFile" class="form-label">Description: </label>
-                                <textarea class="form-control" rows="6"></textarea>
-                            </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                 <label class="form-check-label" for="inlineCheckbox1">J’autorise ce site à conserver
@@ -62,7 +50,7 @@
                             </div>
                         </div>
                         <div class="mb-5 mt-2 pb-2 text-center">
-                            <button id="bouttonForm" type="submit">M'inscrire</button>
+                            <button id="bouttonForm" type="submit">Mettre à jour</button>
                         </div>
                     </form>
                 </div>

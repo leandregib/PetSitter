@@ -24,6 +24,7 @@
 
 		/**
 		* Methode de création d'un pet
+		* @param $objPet objet de l'animal à ajouter dans la BDD
 		*/
 		public function addPet($objPet){
 

@@ -39,8 +39,8 @@
 		public function faisGarderTonAnimal(){	
 		
 			// Pour récupérer les informations dans le formulaire
-		 	$intPetType	    	= $_POST['animal']??array();
-		 	$intSitter		    = $_POST['garde']??array();
+		 	$arrPetTypeSelected = $_POST['animal']??array();
+		 	$arrSitterSelected	= $_POST['garde']??array();
 			$intCP 				= $_POST['cp']??'';
 
 	 		// Liste des types d'animaux
@@ -48,15 +48,18 @@
 			require("models/pet_type_manager.php"); 
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
-	 		$arrPetTypeToDisplay = array();
+			$arrCheckedPet		= array();
+			
 	 		foreach($arrPetType as $arrDetPetType){
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
-		 		$objPetType->checked = (in_array($objPetType->getId(),$intPetType))?"checked":"";
+		 		if (in_array($objPetType->getId(), $arrPetTypeSelected)) {
+					$arrCheckedPet[] = $objPetType->getId();
+				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
+			$this->_arrData['arrCheckedPet']		= $arrCheckedPet;
 		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
-		 	$this->_arrData['intPetType']	= $intPetType;
 
 		 	// Liste des types de garde
 			require("entities/sitter_entity.php"); 
@@ -64,16 +67,20 @@
 		
 			$objSitterManager  	= new SitterManager(); 
 			$arrSitter	    	= $objSitterManager->findSitter();
+			$arrCheckedSitter	= array();
 			
 			$arrSitterToDisplay = array();
 			foreach($arrSitter as $arrDetSitter){
 				$objSitter = new Sitter;
 				$objSitter->hydrate($arrDetSitter);
-				$objSitter->checked = (in_array($objSitter->getId(),$intSitter))?"checked":"";
+				if (in_array($objSitter->getId(), $arrSitterSelected)) {
+					$arrCheckedSitter[] = $objSitter->getId();
+				}
 				$arrSitterToDisplay[] = $objSitter;
 			}
+			$this->_arrData['arrCheckedSitter']		= $arrCheckedSitter;
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
-			$this->_arrData['intSitter']	= $intSitter;
+
 
 			//Pour la recherche 		
 			$arrResultPetsitter = array();
@@ -200,27 +207,26 @@
 		*/
 		public function resteDuFormulaire(){
 			// Pour récupérer les informations dans le formulaire
-			$intPetType	    	= $_POST['animal']??array();
-			$intSitter		    = $_POST['garde']??array();
+			$arrPetTypeSelected = $_POST['animal']??array();
+			$arrSitterSelected  = $_POST['garde']??array();
 			$intHome		    = $_POST['home']??'';
-		   	$arrImageInfos 		= $_FILES['image']??array();
-
+			
 			// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
 			require("models/pet_type_manager.php"); 
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
-			$arrChekedPet		= array();
+			$arrCheckedPet		= array();
 			
 	 		foreach($arrPetType as $arrDetPetType){
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
-		 		if ($intPetType == $objPetType->getId()) {
-					$arrChekedPet[] = $objPetType->getId();
+		 		if (in_array($objPetType->getId(), $arrPetTypeSelected)) {
+					$arrCheckedPet[] = $objPetType->getId();
 				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
-			 $this->_arrData['arrChekedPet']		= $arrChekedPet;
+			$this->_arrData['arrCheckedPet']		= $arrCheckedPet;
 		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
 		 	
 
@@ -230,18 +236,18 @@
 		
 			$objSitterManager  	= new SitterManager(); 
 			$arrSitter	    	= $objSitterManager->findSitter();
-			$arrChekedSitter	= array();
+			$arrCheckedSitter	= array();
 			
 			$arrSitterToDisplay = array();
 			foreach($arrSitter as $arrDetSitter){
 				$objSitter = new Sitter;
 				$objSitter->hydrate($arrDetSitter);
-				if ($intSitter == $objSitter->getId()) {
-					$arrChekedSitter[] = $objSitter->getId();
+				if (in_array($objSitter->getId(), $arrSitterSelected)) {
+					$arrCheckedSitter[] = $objSitter->getId();
 				}
 				$arrSitterToDisplay[] = $objSitter;
 			}
-			$this->_arrData['arrChekedSitter']		= $arrChekedSitter;
+			$this->_arrData['arrCheckedSitter']		= $arrCheckedSitter;
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
 
 
@@ -251,41 +257,27 @@
 		
 			$objHomeManager  	= new HomeManager(); 
 			$arrHome	    	= $objHomeManager->findHome();
-			$arrChekedSitter	= array();
+			$arrCheckedHome		= array();
 			
 			$arrHomeToDisplay 	= array();
 			foreach($arrHome as $arrDetHome){
 				$objHome = new Home;
 				$objHome ->hydrate($arrDetHome);
 				if ($intHome == $objHome->getId()) {
-					$arrCheked[] = $objUser->getId();
+					$arrCheckedHome[] = $objHome->getId();
 				}
 				$arrHomeToDisplay[] = $objHome;
 			}
-			$this->_arrData['arrChecked']		= $arrCheked;
+			$this->_arrData['arrCheckedHome']	= $arrCheckedHome;
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
 
-			//recup fichier image
-			$arrImageInfos		= $_FILES['image']??array();
+			
+			
 
-			if (count($_POST) > 0){
-				// Sauvegarde de l'image sur le serveur
-				$strFileName 	= $arrImageInfos['tmp_name'];
-				$objDate 		= new DateTime();
-				$arrImage 		= explode(".", $arrImageInfos['name']);
-				$strNewName 	= $objDate->format('YmdHis').".".$arrImage[count($arrImage)-1];/*."_".$arrImageInfos['name']*/; // Nom de l'image => A renommer par sécurité
-				$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/assets/img'.$strNewName;
-				
-				if (move_uploaded_file($strFileName, $strFileDest)){
-					// Insertion en BDD, si pas d'erreurs
-					$strRqAdd 	= "	INSERT INTO articles 
-										(pic_name, pic_date, pic_description, pic_userid)
-									VALUES 
-										('".$strNewName."', NOW(), '".addslashes($XXXX)."', '".$intId."');";
-					$db->exec($strRqAdd);
-					header("Location:index.php"); // Redirection page d'accueil
-				}
-			}
+			// if (count($_POST) > 0){
+			// 		header("Location:index.php"); // Redirection page d'accueil
+			// 	}
+			// }
 
 
 			//Affichage

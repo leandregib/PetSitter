@@ -24,7 +24,7 @@
 
 		/**
 		* Methode d'ajout d'image dans la BDD
-		* @return array Objet image
+		* @param $objPicture objet de l'image à ajouter dans la BDD
 		*/
 		public function addPicture($objPicture){
            
