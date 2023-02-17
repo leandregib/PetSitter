@@ -21,7 +21,7 @@
 			// Vérifier l'utilisateur / mdp en base de données (Attention aux infos vides)
 			// Stocker les informations utiles de l'utilisateur en session
 			// Exemple : $_SESSION['id'] = 15; ou $_SESSION['user']['id'] = 15;
-<<<<<<< Updated upstream
+
 			if (count($_POST) > 0){
 				$strMail 	= $_POST['mail'];
 				$strPassword 	= $_POST['password'];
@@ -41,7 +41,7 @@
 			$this->_arrData['strTitle']	= "Se connecter";
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");*/
-=======
+
 
 			
 			//Affichage
@@ -71,7 +71,7 @@
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");*/
 			
->>>>>>> Stashed changes
+
 		}
 
 		/**
@@ -79,7 +79,7 @@
 		*/
 		
 		public function inscription(){
-<<<<<<< Updated upstream
+
 				// Pour récupérer les informations dans le formulaire
 				/*$intCity				= $_POST['city']??'';*/
 
@@ -93,7 +93,7 @@
 			$strAdress				= $_POST['adress']??'';
 			$strPhone				= $_POST['phone']??'';
 			$textDescription		= $_POST['description']??'';*/
-=======
+
 			if(count($_POST)>0){
 
 			require("entities/users_entity.php");
@@ -122,7 +122,7 @@
        
         
 
->>>>>>> Stashed changes
+
 
 			$strConfirmPassword		= $_POST['confirmpassword']??'';
 
@@ -147,7 +147,7 @@
 				// On teste les informations
 				$objUser->hydrate($_POST);
 
-<<<<<<< Updated upstream
+
 				if ($objUser->getName() == ''){ // Tests sur le nom
 				$arrError[]	= "Merci de renseigner un nom";
 				}
@@ -189,13 +189,11 @@
 			$this->_arrData['strMail']			= $strMail; */
 			$this->_arrData['arrError']			= $arrError;
 			$this->_arrData['strTitle']			= "PetSitter - Inscription";
-			$this->_arrData['strPage']			= "inscription";
-=======
-			
+	
 		}
 		$this->_arrData['strTitle']	= "PetSitter - Inscription";
 			$this->_arrData['strPage']	= "inscription";
->>>>>>> Stashed changes
+
 			$this->display("inscription");
 	}	
 		
@@ -214,7 +212,7 @@
 		*/
 		public function logout(){
 			session_destroy();
-<<<<<<< Updated upstream
+
 			header("Location:index.php");
 		}
 
@@ -279,7 +277,6 @@
 			$this->_arrData['strTitle']		= "Créer un compte";
 			$this->_arrData['strPage']		= "edit_account";
 			$this->display("inscription");
-=======
->>>>>>> Stashed changes
+
 		}
 	}

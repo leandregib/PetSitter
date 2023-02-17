@@ -1,8 +1,7 @@
-<<<<<<< Updated upstream
-{extends file="views/structure.tpl"}
-=======
+
+
 {extends file="views/modele.tpl"}
->>>>>>> Stashed changes
+
 
 {block name="content"}
 
@@ -23,7 +22,7 @@
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
-<<<<<<< Updated upstream
+
         <div class="row mt-5">
             <div class="offset-md-4 col-md-4 mt-5">
                 <form action="index.php?ctrl=user&action={$strPage}" name="inscription" method="post">
@@ -59,7 +58,7 @@
                     <div>
                         <label for="address" class="form-label" >Adresse</label>
                         <input type="text" class="form-control mx-auto" name="address" id="address" placeholder="32 Rue de l'Industrie" value="{if $objUser->getAddress() != ''}{$objUser->getAddress()|unescape}{/if}">
-=======
+
         <div class="row">
             <div class="offset-md-4 col-md-4">
                 <form action="" method="post">
@@ -94,7 +93,7 @@
                     <div>
                         <label for="adress" class="form-label" >Adresse</label>
                         <input type="text" class="form-control mx-auto" name="adress" id="adress" placeholder="32 Rue de l'Industrie">
->>>>>>> Stashed changes
+
                     </div>
                     <div>
                         <label for="cityid" class="form-label" >Ville</label>
@@ -110,11 +109,11 @@
                     <div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label" name="description">Description:</label>
-<<<<<<< Updated upstream
+
                             <textarea class="form-control" rows="6" name="description" value="{if $objUser->getDescription() != ''}{$objUser->getDescription()|unescape}{/if}"></textarea>
-=======
+
                             <textarea class="form-control" rows="6"></textarea>
->>>>>>> Stashed changes
+
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"

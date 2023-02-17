@@ -1,13 +1,13 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-<<<<<<< Updated upstream
+
 	* Class manager de pet_type
 	* @creator Timothée KERN
-=======
+
 	* Class manager des users
 	* @creator Jérémy Gallippi
->>>>>>> Stashed changes
+
 	*/
 	class UserManager extends Manager{
 		/**
@@ -21,7 +21,7 @@
 		* Methode de récupération des utilisateurs
 		* @return array Liste des utilisateurs
 		*/
-<<<<<<< Updated upstream
+
 		public function findUser(){
 			$strRqSitter = "SELECT user_id, user_name, user_firstname, user_homeid FROM users
 				INNER JOIN user_homeid ON user_homeid = home_id ;";
@@ -41,8 +41,14 @@
 			if ($arrUser !== false){
 				//if ($arrUser['user_password'] == $strPassword){ 
 				if(password_verify($strPassword, $arrUser['user_password'])) {
-=======
-        public function findUsers(){
+					unset($arrUser['user_password']);
+                    return $arrUser;
+                }
+            }
+            return false;
+
+        }
+       /* public function findUsers(){
 			$strRqUsers = "SELECT user_id, user_firstname FROM users;";
 							
 			return $this->_db->query($strRqUsers)->fetchAll();
@@ -58,15 +64,15 @@
             var_dump($strRqUsers);
 			if ($arrUser !== false){
 				if ($arrUser['user_password'] == $strPwd){
->>>>>>> Stashed changes
+
 					unset($arrUser['user_password']);
 					return $arrUser;
 				}
 			}
 			return false;
-<<<<<<< Updated upstream
+
 		
-	}
+		}*/
 		
 		
 		public function addUsers($objUser){
@@ -129,23 +135,10 @@
 		}
 		
 
-=======
-		}
 
-
-		public function addUsers($objUser){
-
-           
-				// Insertion en BDD, si pas d'erreurs
-				$strRqAdd 	= "	INSERT INTO users
-									(user_name, user_firstname, user_birthday, user_mail, user_password, user_address, user_phone, user_description, user_cityid )
-								VALUES 
-                                ('".$objUser->getName()."','".$objUser->getFirstName()."','".$objUser->getBirthday()."','".$objUser->getMail()."','".$objUser->getPassword()."','".$objUser->getAdress()."','".$objUser->getPhone()."', '".$objUser->getDescription()."', '".$objUser->getCityId()."')";
-				
-			
-			return $this->_db->exec($strRqAdd);				
-			
-		}
 		
->>>>>>> Stashed changes
+
+		
+		
+
 	}
