@@ -9,7 +9,7 @@
 {/block}
 
 {block name="content"}
-	<h2>Liste des utilisateurs</h2>
+	<h2 class="text-center mb-5 mt-5">Liste des utilisateurs</h2>
 	<table id="list" class="table table-striped" style="width:100%">
 		<thead>
 			<tr>
@@ -25,7 +25,7 @@
 			<tr>
 				<td>{$objUser->getName()|unescape}</td>
 				<td>{$objUser->getFirstName()|unescape}</td>
-				<td>{$objUser->getMail()|unescape}</td>
+				
 				<td>
 					<a href="index.php?ctrl=user&action=edit_account&id={$objUser->getId()}" >Modifier</a>
 					<a href="index.php?ctrl=user&action=delete&id={$objUser->getId()}" >Désactiver</a>
