@@ -264,8 +264,6 @@
 			}
 			$this->_arrData['arrChecked']		= $arrCheked;
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
-			
-			var_dump($_POST);
 
 			//recup fichier image
 			$arrImageInfos		= $_FILES['image']??array();
