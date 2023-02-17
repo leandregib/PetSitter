@@ -23,8 +23,8 @@
 		*/
 
 		public function findUser(){
-			$strRqSitter = "SELECT user_id, user_name, user_firstname, user_homeid FROM users
-				INNER JOIN user_homeid ON user_homeid = home_id ;";
+			$strRqSitter = "SELECT user_id, user_name, user_firstname, user_homeid, user_roleid FROM users
+				 ;";
 							
 			return $this->_db->query($strRqSitter)->fetchAll();
 		}
@@ -33,6 +33,7 @@
 			$strRqUsers = "SELECT user_id AS 'id', 
 								  user_mail AS 'mail', 
 								  user_firstname AS 'firstname',
+								  user_roleid,
 								  user_password 
 							FROM users
 							WHERE user_mail = '".$strMail."'";
@@ -48,31 +49,7 @@
             return false;
 
         }
-       /* public function findUsers(){
-			$strRqUsers = "SELECT user_id, user_firstname FROM users;";
-							
-			return $this->_db->query($strRqUsers)->fetchAll();
-		}
-		
-		public function verifUser($strMail, $strPwd){
-			$strRqUsers = "SELECT user_id AS 'id', 
-								  user_mail AS 'mail', 
-								  user_password
-							FROM users
-							WHERE user_mail = '".$strMail."'";
-			$arrUser 	= $this->_db->query($strRqUsers)->fetch();
-            var_dump($strRqUsers);
-			if ($arrUser !== false){
-				if ($arrUser['user_password'] == $strPwd){
-
-					unset($arrUser['user_password']);
-					return $arrUser;
-				}
-			}
-			return false;
-
-		
-		}*/
+     
 		
 		
 		public function addUsers($objUser){
@@ -180,5 +157,29 @@
 
         }
 		
+		/**
+		* Méthode permettant de vérifier que le mail n'existe pas déjà en bdd
+		* @param object $objUser Objet de l'utilisateur
+		* @return bool le mail existe ou non
+		*/
+		public function mail_exist(object $objUser):bool{
+			$strRqUsers = "SELECT *
+							FROM users
+							WHERE user_mail = :mail";
+			if ($objUser->getId() != ''){
+				$strRqUsers	.=	" AND user_id <> :id";
+			}							
+			$prep	= $this->_db->prepare($strRqUsers);
+			
+			$prep->bindValue(':mail', $objUser->getMail(), PDO::PARAM_STR);	
+			if ($objUser->getId() != ''){
+				$prep->bindValue(':id', $objUser->getId(), PDO::PARAM_INT);	
+			}
+
+			$prep->execute();
+			$arrUser = $prep->fetch();
+			
+			return ($arrUser !== false);
+		}
 
 	}
