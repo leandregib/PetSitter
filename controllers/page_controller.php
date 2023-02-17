@@ -125,9 +125,9 @@
 		*/
 		public function petTypeForm (){
 			//Interdire l'accès si utilisateur non connecté
-			// if (!isset($_SESSION['user'])){
-			// 	header("Location:index.php?ctrl=error&action=error_403");
-			// }
+			if (!isset($_SESSION['user'])){
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
 
 		 	// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
