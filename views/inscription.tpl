@@ -1,6 +1,6 @@
 
 
-{extends file="views/modele.tpl"}
+{extends file="views/structure.tpl"}
 
 
 {block name="content"}
