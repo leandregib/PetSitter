@@ -12,7 +12,7 @@
                             <div id="formDPS">
                                 {foreach from=$arrPetTypeToDisplay item=objPetType}                            
                                         <div class="form-check form-check-inline">                            
-                                        <input class="form-check-input" type="checkbox"   {if (in_array($objPetType->getId(), $arrCheckedPet))}checked{/if} value='{$objPetType->getId()}' id='pt{$objPetType->getId()}' name ="animal[]">
+                                        <input class="form-check-input" type="checkbox"   {if (in_array($objPetType->getId(), $arrCheckedPet))}checked{/if} value='{$objPetType->getId()}' id='pt{$objPetType->getId()}' name ="pet_typeid[]">
                                     <label class="form-check-label" for="pt{$objPetType->getId()}">{$objPetType->getKind()}</label>
                                     </div> 
                                 {/foreach}
@@ -23,7 +23,7 @@
                             <div id="formDPS">                                
                                 {foreach from=$arrSitterToDisplay item=objSitter}
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" {if (in_array($objSitter->getId(), $arrCheckedSitter))} checked {/if} value='{$objSitter->getId()}' id='sit{$objSitter->getId()}' name ="garde[]">
+                                        <input class="form-check-input" type="checkbox" {if (in_array($objSitter->getId(), $arrCheckedSitter))} checked {/if} value='{$objSitter->getId()}' id='sit{$objSitter->getId()}' name ="sitterid[]">
                                         <label class="form-check-label" for="sit{$objSitter->getId()}">{$objSitter->getType()}</label>
                                     </div>
                                 {/foreach}                                
@@ -34,7 +34,7 @@
                             <div id="formDPS">
                                 {foreach from=$arrHomeToDisplay item=objHome} 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" {if (in_array($objHome->getId(), $arrCheckedHome))} checked {/if} name="home" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
+                                        <input class="form-check-input" type="radio" {if (in_array($objHome->getId(), $arrCheckedHome))} checked {/if} name="homeid" id='home{$objHome->getId()}' value='{$objHome->getId()}'>
                                         <label class="form-check-label" for="home{$objHome->getId()}">{$objHome->getType()}</label>
                                     </div>
                                 {/foreach}
