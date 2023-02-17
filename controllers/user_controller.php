@@ -51,27 +51,6 @@
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");*/
 			
-			if (count($_POST) > 0){
-				$strMail 	= $_POST['mail']??'';
-				$strPwd 	= $_POST['passwd']??'';
-				
-				require("models/user_manager.php"); 
-				$objUserManager = new UserManager;
-				// Vérifier l'utilisateur / mdp en base de données
-				$arrUser = $objUserManager->verifUser($strMail, $strPwd);
-				var_dump($arrUser);
-				if ($arrUser === false){
-					$this->_arrData['strError'] = "Erreur de connexion";
-				}else{
-					// Stocker les informations utiles de l'utilisateur en session
-					$_SESSION['user']	= $arrUser;
-				}
-			}
-			
-			//Affichage
-			/*$this->_arrData['strTitle']	= "Se connecter";
-			$this->_arrData['strPage']	= "login";
-			$this->display("login");*/
 			
 
 		}
@@ -145,10 +124,12 @@
 				}
 				if ($objUser->getFirstName() == ''){ // Tests sur le prénom
 					$arrError[]	= "Merci de renseigner un prénom";
+				}else if($objUserManager->mail_exist($objUser)){ // test si déjà existant
+					$arrError[]	= "Mail déjà utilisé, merci d'en renseigner une autre ou de vous connecter";
 				}
-				if ($objUser->getMail() == ''){ // Tests sur le mail
+				/*if ($objUser->getMail() == ''){ // Tests sur le mail
 					$arrError[]	= "Merci de renseigner une adresse mail";
-				}
+				}*/
 				if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
 					$arrError[]	= "Merci de renseigner un mot de passe";
 				}
@@ -281,5 +262,28 @@
 			$this->_arrData['strPage']		= "edit_account";
 			$this->display("inscription");
 
+		}
+
+		public function list_user(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objUserManager = new UserManager;
+			$arrUsers = $objUserManager->findUser();
+			
+			// Liste des utilisateurs en mode objet
+			$arrUsersToDisplay = array();
+			foreach($arrUsers as $arrDetUser){
+				$objUser = new User;
+				$objUser->hydrate($arrDetUser);
+				$arrUsersToDisplay[] = $objUser;
+			}
+			// Affichage
+			$this->_arrData['strTitle']		= "Liste des utilisateurs";
+			$this->_arrData['strPage']		= "list_user";
+			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
+			$this->display("list_user");
 		}
 	}
