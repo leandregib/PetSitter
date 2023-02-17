@@ -1,7 +1,5 @@
-
 {extends file="views/structure.tpl"}
-
-   
+    
 {block name="content"}
     <main>
         <div class="container">

@@ -21,7 +21,6 @@
 			// Vérifier l'utilisateur / mdp en base de données (Attention aux infos vides)
 			// Stocker les informations utiles de l'utilisateur en session
 			// Exemple : $_SESSION['id'] = 15; ou $_SESSION['user']['id'] = 15;
-
 			if (count($_POST) > 0){
 				$strMail 	= $_POST['mail'];
 				$strPassword 	= $_POST['password'];
@@ -41,45 +40,12 @@
 			$this->_arrData['strTitle']	= "Se connecter";
 			$this->_arrData['strPage']	= "login";
 			$this->display("login");*/
-
-
-			
-			//Affichage
-			/*$this->_arrData['strTitle']	= "Se connecter";
-			$this->_arrData['strPage']	= "login";
-			$this->display("login");*/
-			
-			if (count($_POST) > 0){
-				$strMail 	= $_POST['mail']??'';
-				$strPwd 	= $_POST['passwd']??'';
-				
-				require("models/user_manager.php"); 
-				$objUserManager = new UserManager;
-				// Vérifier l'utilisateur / mdp en base de données
-				$arrUser = $objUserManager->verifUser($strMail, $strPwd);
-				var_dump($arrUser);
-				if ($arrUser === false){
-					$this->_arrData['strError'] = "Erreur de connexion";
-				}else{
-					// Stocker les informations utiles de l'utilisateur en session
-					$_SESSION['user']	= $arrUser;
-				}
-			}
-			
-			//Affichage
-			/*$this->_arrData['strTitle']	= "Se connecter";
-			$this->_arrData['strPage']	= "login";
-			$this->display("login");*/
-			
-
 		}
 
 		/**
 		* Page Inscription
 		*/
-		
 		public function inscription(){
-
 				// Pour récupérer les informations dans le formulaire
 				/*$intCity				= $_POST['city']??'';*/
 
@@ -93,36 +59,6 @@
 			$strAdress				= $_POST['adress']??'';
 			$strPhone				= $_POST['phone']??'';
 			$textDescription		= $_POST['description']??'';*/
-
-			if(count($_POST)>0){
-
-			require("entities/users_entity.php");
-			require("models/user_manager.php");
-			$objUserManager = new UserManager();
-			
-			
-		    // Pour récupérer les informations dans le formulaire
-			/*$intCity				= $_POST['city']??'';*/
-			$intCityId				= $_POST['cityid']??'';	
-    		$strName				= $_POST['name']??'';	
-			$strFirstName			= $_POST['firstname']??'';
-			$dateBirthday			= $_POST['birthday']??'';
-			$strMail				= $_POST['mail']??'';
-			$strPassword			= $_POST['password']??'';	
-         	$strAdress				= $_POST['adress']??'';
-        	$strPhone				= $_POST['phone']??'';
-        	$textDescription		= $_POST['description']??'';
-
-			var_dump($_POST);
-
-			$objUser = new User();
-			$objUser->hydrate($_POST);
-			$strQuery= $objUserManager->addUsers($objUser);
-			
-       
-        
-
-
 
 			$strConfirmPassword		= $_POST['confirmpassword']??'';
 
@@ -146,7 +82,6 @@
 			if (count($_POST) > 0) { // Si le formulaire est envoyé
 				// On teste les informations
 				$objUser->hydrate($_POST);
-
 
 				if ($objUser->getName() == ''){ // Tests sur le nom
 				$arrError[]	= "Merci de renseigner un nom";
@@ -189,13 +124,9 @@
 			$this->_arrData['strMail']			= $strMail; */
 			$this->_arrData['arrError']			= $arrError;
 			$this->_arrData['strTitle']			= "PetSitter - Inscription";
-	
-		}
-		$this->_arrData['strTitle']	= "PetSitter - Inscription";
-			$this->_arrData['strPage']	= "inscription";
-
+			$this->_arrData['strPage']			= "inscription";
 			$this->display("inscription");
-	}	
+		}
 		
 		/**
 		* Page Créer un compte
@@ -212,71 +143,6 @@
 		*/
 		public function logout(){
 			session_destroy();
-
 			header("Location:index.php");
-		}
-
-			/**
-		* Page modifier le compte
-		*/
-		public function edit_account(){
-			if (!isset($_SESSION['user'])){
-				header("Location:index.php?ctrl=error&action=error_403");
-			}
-			// Créer un objet vide avec l'entité 
-			// Création de l'objet User
-			
-
-			$objUser = new User;
-					
-			$arrError = array(); // Tableau des erreurs initialisé
-			if (count($_POST) > 0) { // Si le formulaire est envoyé
-				// On hydrate l'objet
-				$objUser->hydrate($_POST);
-				// On teste les informations
-				if ($objUser->getName() == ''){ // Tests sur le nom
-					$arrError[]	= "Merci de renseigner un nom";
-				}
-				if ($objUser->getFirstName() == ''){ // Tests sur le prénom
-					$arrError[]	= "Merci de renseigner un prénom";
-				}
-				if ($objUser->getMail() == ''){ // Tests sur le mail
-					$arrError[]	= "Merci de renseigner une adresse mail";
-				}
-				/*if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
-					$arrError[]	= "Merci de renseigner un mot de passe";
-				}*/
-				if ($objUser->getPassword() != '' && !password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
-					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
-				}
-				
-				// Si aucune erreur on l'insert en BDD
-				if (count($arrError) == 0){ 
-					$objUserManager = new UserManager;
-					if($objUserManager->updateUser($objUser)){
-						// Mettre à jour la session, si compte de l'utilisateur connecté
-						if($_SESSION['user']['id'] == $objUser->getId()){
-							$_SESSION['user']['firstname'] = $objUser->getFirstName();
-						}
-						header("Location:index.php");
-					}else{
-						$arrError[]	= "Erreur lors de l'ajout";
-					}
-				}
-			}else{
-				// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
-				$objUserManager = new UserManager;
-				$arrUser 		= $objUserManager->getUser();
-				// Hydrater l'objet avec la méthode de l'entité
-				$objUser->hydrate($arrUser);
-			}
-			//var_dump($objUser);
-			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
-			$this->_arrData['objUser']		= $objUser;
-			$this->_arrData['arrError']		= $arrError;
-			$this->_arrData['strTitle']		= "Créer un compte";
-			$this->_arrData['strPage']		= "edit_account";
-			$this->display("inscription");
-
 		}
 	}

@@ -18,7 +18,7 @@
         private $_homeid=5;
         private $_cityid;
         private $_roleid=2;
-
+		
 		/**
 		* Constructeur de la classe
 		*/
@@ -74,10 +74,7 @@
 		* Getter du nom de famille
 		* @return string Nom de famille
 		*/
-
 		public function getFirstName():string|null{
-
-
 			return $this->_firstname;
 		}
 		/**
@@ -85,17 +82,14 @@
 		* @param $strLastName Nom de l'image
 		*/
 		public function setFirstName(string $strFirstName){
-
-
-			$this->_firstname = $strFirstName;
-
+			$this->_firstname = filter_var(trim($strFirstName),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
 		/**
 		* Getter de l'anniversaire
 		* @return string Birthday
 		*/
-		public function getBirthday():string|null{
+		public function getBirthday():string{
             return $this->_birthday;
 			/*$date = new DateTime($this->_birthday);
 			return $date->format('Y-m-d');*/
@@ -147,7 +141,7 @@
 		* Getter de l'adresse
 		* @return string adress
 		*/
-		public function getAddress():string|null{
+		public function getAddress():string{
 			return $this->_address;
 		}
 		/**

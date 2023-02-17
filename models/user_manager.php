@@ -1,13 +1,8 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-
 	* Class manager de pet_type
 	* @creator Timothée KERN
-
-	* Class manager des users
-	* @creator Jérémy Gallippi
-
 	*/
 	class UserManager extends Manager{
 		/**
@@ -21,7 +16,6 @@
 		* Methode de récupération des utilisateurs
 		* @return array Liste des utilisateurs
 		*/
-
 		public function findUser(){
 			$strRqSitter = "SELECT user_id, user_name, user_firstname, user_homeid FROM users
 				INNER JOIN user_homeid ON user_homeid = home_id ;";
@@ -42,37 +36,12 @@
 				//if ($arrUser['user_password'] == $strPassword){ 
 				if(password_verify($strPassword, $arrUser['user_password'])) {
 					unset($arrUser['user_password']);
-                    return $arrUser;
-                }
-            }
-            return false;
-
-        }
-       /* public function findUsers(){
-			$strRqUsers = "SELECT user_id, user_firstname FROM users;";
-							
-			return $this->_db->query($strRqUsers)->fetchAll();
-		}
-		
-		public function verifUser($strMail, $strPwd){
-			$strRqUsers = "SELECT user_id AS 'id', 
-								  user_mail AS 'mail', 
-								  user_password
-							FROM users
-							WHERE user_mail = '".$strMail."'";
-			$arrUser 	= $this->_db->query($strRqUsers)->fetch();
-            var_dump($strRqUsers);
-			if ($arrUser !== false){
-				if ($arrUser['user_password'] == $strPwd){
-
-					unset($arrUser['user_password']);
 					return $arrUser;
 				}
 			}
 			return false;
-
 		
-		}*/
+		}
 		
 		
 		public function addUsers($objUser){
@@ -105,40 +74,4 @@
 			return $prep->execute();				
 		
 		}
-
-		public function updateUser($objUser){
-			$strRqUpdate	= "UPDATE users 
-								SET user_name = :name, 
-									user_firstname = :firstname, 
-									user_mail = :mail";
-			if ($objUser->getPassword() != ''){
-				$strRqUpdate	.=	", user_password = :password";
-			}
-			$strRqUpdate	.= " WHERE user_id = ".$objUser->getId();//$_SESSION['user']['id'];
-			$prep			= $this->_db->prepare($strRqUpdate);
-			
-			$prep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
-			$prep->bindValue(':mail', $objUser->getMail(), PDO::PARAM_STR);
-			$prep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
-			if ($objUser->getPassword() != ''){
-				$prep->bindValue(':password', $objUser->getPassword(), PDO::PARAM_STR);
-			}
-			$prep->bindValue(':birthday', $objUser->getBirthday(), PDO::PARAM_STR);
-			$prep->bindValue(':address', $objUser->getAddress(), PDO::PARAM_STR);
-			$prep->bindValue(':cityid', $objUser->getCityId(), PDO::PARAM_INT);
-			$prep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
-			$prep->bindValue(':description', $objUser->getDescription(), PDO::PARAM_STR);
-			$prep->bindValue(':roleid', $objUser->getRoleId(), PDO::PARAM_INT);
-			$prep->bindValue(':homeid', $objUser->getHomeId(), PDO::PARAM_INT);
-			
-			return $prep->execute();
-		}
-		
-
-
-		
-
-		
-		
-
 	}

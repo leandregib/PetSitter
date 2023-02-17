@@ -16,12 +16,9 @@
 
 <body>
     <header>
-
-    {*$smarty.session.user.id*}
-   
         <div class="container">
             <div class="row">
-                <nav class="navbar navbar-expand-xl ">
+                <nav class="navbar navbar-expand-xl">
                     <div class="logoNav" class="container">
                         <a href="index.php"><img src="assets/img/logo.png" alt="Logo du site"></a>
                     </div>
@@ -48,7 +45,7 @@
                             {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
                                 
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
-                                    Bonjour <a href="index.php?ctrl=user&action=edit_account" title="Modifier son profil">{$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
+                                    Bonjour {$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
                                 </li>
                             
                             {else}
@@ -71,36 +68,19 @@
                         <div class="modal-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel">
-
-                                {if isset($strError)}
-                                    <div class="error">
-                                        <p>{$strError}</p>
-                                    </div>
-                                {/if}
-                                
                                     <form name="FormCo" method="post" action="index.php?ctrl=user&action=login">
-
-                                    <form method="post" action = "index.php?ctrl=user&action=login">
-
                                         <div class="text-center mb-3">
                                             <p>Connectez-vous</p>
                                         </div>
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-
                                             <input type="email" id="loginName" name="mail" class="form-control" />
-
-                                            <input type="email" id="loginName" class="form-control" name="mail" />
-
                                             <label class="form-label" for="loginName">Email</label>
                                         </div>
 
                                         <!-- Password input -->
                                         <div class="form-outline mb-4">
-
                                             <input type="password" id="loginPassword" name="password" class="form-control" />
-                                <input type="password" id="loginPassword" class="form-control" name="passwd"/>
-
                                             <label class="form-label" for="loginPassword">Mot de passe</label>
                                         </div>
                                         <!-- 2 column grid layout -->
@@ -123,7 +103,7 @@
 
                                         <div class="d-flex justify-content-center">
                                             <button type="submit"
-                                                 id="bouttonForm">Connexion</button>
+                                                class="btn btn-danger  btn-block mb-3">Connexion</button>
                                         </div>
 
                                         <!-- Register buttons -->
@@ -139,8 +119,4 @@
                 </div>
             </div>
         </div>
-
 </header>
-
-    </header>
-

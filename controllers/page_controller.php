@@ -210,15 +210,19 @@
 			require("models/pet_type_manager.php"); 
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
-	 		$arrPetTypeToDisplay = array();
+			$arrChekedPet		= array();
+			
 	 		foreach($arrPetType as $arrDetPetType){
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
-		 		$objPetType->checked = (in_array($objPetType->getId(),$intPetType))?"checked":"";
+		 		if ($intPetType == $objPetType->getId()) {
+					$arrChekedPet[] = $objPetType->getId();
+				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
+			 $this->_arrData['arrChekedPet']		= $arrChekedPet;
 		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
-		 	$this->_arrData['intPetType']	= $intPetType;
+		 	
 
 		 	// Liste des types de garde
 			require("entities/sitter_entity.php"); 
@@ -226,16 +230,20 @@
 		
 			$objSitterManager  	= new SitterManager(); 
 			$arrSitter	    	= $objSitterManager->findSitter();
+			$arrChekedSitter	= array();
 			
 			$arrSitterToDisplay = array();
 			foreach($arrSitter as $arrDetSitter){
 				$objSitter = new Sitter;
 				$objSitter->hydrate($arrDetSitter);
-				$objSitter->checked = (in_array($objSitter->getId(),$intSitter))?"checked":"";
+				if ($intSitter == $objSitter->getId()) {
+					$arrChekedSitter[] = $objSitter->getId();
+				}
 				$arrSitterToDisplay[] = $objSitter;
 			}
+			$this->_arrData['arrChekedSitter']		= $arrChekedSitter;
 			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
-			$this->_arrData['intSitter']	= $intSitter;
+
 
 			// Liste des types de logements
 			require("entities/home_entity.php"); 
@@ -243,16 +251,20 @@
 		
 			$objHomeManager  	= new HomeManager(); 
 			$arrHome	    	= $objHomeManager->findHome();
+			$arrChekedSitter	= array();
 			
-			$arrHomeToDisplay = array();
+			$arrHomeToDisplay 	= array();
 			foreach($arrHome as $arrDetHome){
 				$objHome = new Home;
 				$objHome ->hydrate($arrDetHome);
-				$objHome->checked = ($objHome->getId() == $intHome)?"checked":"";
+				if ($intHome == $objHome->getId()) {
+					$arrCheked[] = $objUser->getId();
+				}
 				$arrHomeToDisplay[] = $objHome;
 			}
+			$this->_arrData['arrChecked']		= $arrCheked;
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
-			$this->_arrData['intHome']	= $intHome;
+			
 			var_dump($_POST);
 
 			//recup fichier image
@@ -269,9 +281,9 @@
 				if (move_uploaded_file($strFileName, $strFileDest)){
 					// Insertion en BDD, si pas d'erreurs
 					$strRqAdd 	= "	INSERT INTO articles 
-										(article_title, article_img, article_content, article_createdate, article_creator)
+										(pic_name, pic_date, pic_description, pic_userid)
 									VALUES 
-										('".addslashes($strArticleTitle)."', '".$strNewName."', '".addslashes($strArticleContent)."', NOW(), 3);";
+										('".$strNewName."', NOW(), '".addslashes($XXXX)."', '".$intId."');";
 					$db->exec($strRqAdd);
 					header("Location:index.php"); // Redirection page d'accueil
 				}
