@@ -181,5 +181,11 @@
 			
 			return ($arrUser !== false);
 		}
-
+		
+		public function deleteUser()
+		{
+			$intId = $_GET['id']??$_SESSION['user']['id'];
+			$strDelUserQuery = "DELETE FROM users WHERE user_id = $intId";
+			return $this->_db->exec($strDelUserQuery);
+		}
 	}

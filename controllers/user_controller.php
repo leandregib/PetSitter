@@ -279,6 +279,31 @@
 				$objUser = new User;
 				$objUser->hydrate($arrDetUser);
 				$arrUsersToDisplay[] = $objUser;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']		= "Liste des utilisateurs";
+			$this->_arrData['strPage']		= "list_user";
+			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
+			$this->display("list_user");
+		}
+		public function DeleteUser(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objUserManager = new UserManager;
+			$objUserManager->deleteUser($objUser);
+			$arrUsers = $objUserManager->findUser();
+			
+			// Liste des utilisateurs en mode objet
+			$arrUsersToDisplay = array();
+			foreach($arrUsers as $arrDetUser){
+				$objUser = new User;
+				$objUser->hydrate($arrDetUser);
+				$arrUsersToDisplay[] = $objUser;
+				
 			}
 			// Affichage
 			$this->_arrData['strTitle']		= "Liste des utilisateurs";
