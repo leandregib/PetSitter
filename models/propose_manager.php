@@ -16,19 +16,37 @@
 		* Methode de récupération des petsitters
 		* @return array Liste des petsitters
 		*/
-		public function findPropose(){
+		public function findPetsitter(){
 			$strRqSitter = "SELECT prop_id, prop_userid, prop_sitterid, prop_pet_typeid FROM propose
 				INNER JOIN propose ON user_userid = user_id ;";
 							
 			return $this->_db->query($strRqSitter)->fetchAll();
 		}
-
+		
+		/**
+		* Methode de récupération des infos du Petsitter connecté
+		* @return array Liste des infos du Petsitter connecté
+		*/
+		public function getPetsitter(){
+			$intId 				= $_GET['id']??$_SESSION['user']['id'];
+			$strRqPetsitter 	= "SELECT prop_id AS 'id', 
+								  prop_userid AS 'userid', 
+								  prop_sitterid AS 'sitterid', 
+								  prop_pet_typeid AS 'pet_typeid'
+								  
+							FROM propose
+							WHERE prop_userid = '".$intId."'";
+							
+			$arrPetsitter 	= $this->_db->query($strRqPetsitter)->fetch();
+			
+			return $arrPetsitter;
+		}
 		
 		/**
 		* Methode de création d'un petsitter
 		* @param $objPetsitter objet du Petsitter à ajouter dans la base de données
 		*/		
-		public function addUsers($objPetsitter){
+		public function addPetsitter($objPetsitter){
 
            
 			// Insertion en BDD, si pas d'erreurs

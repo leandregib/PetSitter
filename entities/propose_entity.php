@@ -3,7 +3,7 @@
 	* Class d'une entité propose
 	* @creator Jérémy Gallippi
 	*/
-	class User {
+	class Propose {
 		/* Attributs */
 		private $_id;
         private $_userid;

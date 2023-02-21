@@ -125,9 +125,9 @@
 		*/
 		public function petTypeForm (){
 			//Interdire l'accès si utilisateur non connecté
-			// if (!isset($_SESSION['user'])){
-			// 	header("Location:index.php?ctrl=error&action=error_403");
-			// }
+			if (!isset($_SESSION['user'])){
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
 
 		 	// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
@@ -207,9 +207,9 @@
 		*/
 		public function resteDuFormulaire(){
 			// Pour récupérer les informations dans le formulaire
-			$arrPetTypeSelected = $_POST['animal']??array();
-			$arrSitterSelected  = $_POST['garde']??array();
-			$intHome		    = $_POST['home']??'';
+			$arrPetTypeSelected = $_POST['pet_typeid']??array();
+			$arrSitterSelected  = $_POST['sitterid']??array();
+			$intHome		    = $_POST['homeid']??'';
 			
 			// Liste des types d'animaux
 			require("entities/pet_type_entity.php"); 
@@ -271,18 +271,37 @@
 			$this->_arrData['arrCheckedHome']	= $arrCheckedHome;
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
 
+			// Création de l'objet User
+			require("entities/users_entity.php"); 
+			require("models/user_manager.php");
+			$objUser = new User;
+			$objUserManager = new UserManager;
+			// Création de l'objet Propose
+			require("entities/propose_entity.php"); 
+			require("models/propose_manager.php");
+			$objPetsitter = new Propose;
+			$objPetsitterManager = new ProposeManager;
 			
-			
+			// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
+			$arrUser 		= $objUserManager->getUser();
+			//$arrPetsitter 	= $objPetsitterManager->getPetsitter();
 
-			// if (count($_POST) > 0){
-			// 		header("Location:index.php"); // Redirection page d'accueil
-			// 	}
-			// }
+			// tests sur utilisateur trouvé
+			if ($arrUser === false){
+				header("Location:index.php?ctrl=error&action=error_403");
+			}else{
+			// Hydrater l'objet avec la méthode de l'entité
+				$objUser->hydrate($arrUser);
+				$objPetsitter->hydrate($_POST);
+			}
 
 
 			//Affichage
-			$this->_arrData['strTitle']	= "#";
-			$this->_arrData['strPage']	= "resteDuFormulaire";
+			var_dump($objPetsitter);
+			$this->_arrData['objUser']			= $objUser;
+			//$this->_arrData['objPetsitter']		= $objPetsitter;
+			$this->_arrData['strTitle']			= "#";
+			$this->_arrData['strPage']			= "resteDuFormulaire";
 			$this->display("resteDuFormulaire");
 		
 		}
