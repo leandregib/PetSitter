@@ -28,7 +28,7 @@
 				
 				<td>
 					<a href="index.php?ctrl=user&action=edit_account&id={$objUser->getId()}" >Modifier</a>
-					<a href="index.php?ctrl=user&action=deleteUser&id={$objUser->getId()}" >Désactiver</a>
+					<a href="index.php?ctrl=user&action=deleteUser&id={$objUser->getId()}" >Supprimer</a>
 				</td>
 			</tr>
 			{/foreach}
