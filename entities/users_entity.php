@@ -51,8 +51,8 @@
 		* Setter de l'id
 		* @param $intId Identifiant
 		*/
-		public function setId(int $intId){
-			$this->_id = $intId;
+		public function setId(int|string $intId){
+			$this->_id = intval($intId);
 		}
 
 		/**
