@@ -68,4 +68,14 @@
 			
 			return ($arrPet !== false);
 		}
+
+		/**
+		* Methode de suppression d'un animal
+		* @param int $intPetId Id de l'animal à supprimer
+		*/
+		public function deletePet($intPetId)
+		{
+			$strDelPet = "DELETE FROM pet WHERE pet_id = $intPetId";
+			return $this->_db->exec($strDelPet);
+		}
 	}

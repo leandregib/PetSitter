@@ -60,4 +60,14 @@
 			return $prep->execute();				
 		
 		}
+
+		/**
+		* Methode de suppression d'un petsitter
+		*/
+		public function deletePetSitter()
+		{
+			$intId = $_GET['id']??$_SESSION['user']['id'];
+			$strDelPetSitter = "DELETE FROM propose WHERE prop_userid = $intId";
+			return $this->_db->exec($strDelPetSitter);
+		}
 	}
