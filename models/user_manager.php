@@ -87,7 +87,19 @@
 			$strRqUpdate	= "UPDATE users 
 								SET user_name = :name, 
 									user_firstname = :firstname, 
-									user_mail = :mail";
+									user_mail = :mail,
+									user_birthday = :birthday,
+									
+									user_address  = :address,
+									user_cityid   = :cityid,
+									user_phone    = :phone,
+									user_description = :description,
+									user_roleid   = :roleid,
+									user_homeid   = :homeid";
+									if ($objUser->getPassword() != ''){
+										$strRqUpdate	.=	", user_password = :password";
+									}
+
 			if ($objUser->getPassword() != ''){
 				$strRqUpdate	.=	", user_password = :password";
 			}
@@ -107,7 +119,7 @@
 			$prep->bindValue(':description', $objUser->getDescription(), PDO::PARAM_STR);
 			$prep->bindValue(':roleid', $objUser->getRoleId(), PDO::PARAM_INT);
 			$prep->bindValue(':homeid', $objUser->getHomeId(), PDO::PARAM_INT);
-			
+			//var_dump($prep->execute());die;
 			return $prep->execute();
 		}
 		
@@ -181,5 +193,11 @@
 			
 			return ($arrUser !== false);
 		}
-
+		
+		public function deleteUser()
+		{
+			$intId = $_GET['id']??$_SESSION['user']['id'];
+			$strDelUserQuery = "DELETE FROM users WHERE user_id = $intId";
+			return $this->_db->exec($strDelUserQuery);
+		}
 	}

@@ -195,20 +195,11 @@
 			$intCityId				= $_POST['cityid']??'';	
 			$objUserManager = new UserManager;
 			$objUser = new User;
-			$objUser->hydrate($arrUser);
+			
 			
 			$objCityManager  = new CityManager(); 
 			$arrCity 	    = $objCityManager->findCity(); 
 			
-			foreach($arrCity as $arrDetCity){
-				$objCity = new City;
-				$objCity->hydrate($arrDetCity);
-				if ($intCityId == $objCity->getId()) {
-					$arrSelected[] = $objCity->getId();
-				}
-				//$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
-				$arrCityToDisplay[] = $objCity;
-			}
 		
 					
 			$arrError = array(); // Tableau des erreurs initialisé
@@ -252,10 +243,21 @@
 				// Hydrater l'objet avec la méthode de l'entité
 				$objUser->hydrate($arrUser);
 				
-		
+			}
+			
+			foreach($arrCity as $arrDetCity){
+				$objCity = new City;
+				$objCity->hydrate($arrDetCity);
+				if ($objUser->getCityId() == $objCity->getId()) {
+					$arrSelected[] = $objCity->getId();
+				}
+				//$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
+				$arrCityToDisplay[] = $objCity;
 			}
 			var_dump($objUser);
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
+			$this->_arrData['arrSelected']			= $arrSelected;
+			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
 			$this->_arrData['objUser']		= $objUser;
 			$this->_arrData['arrError']		= $arrError;
 			$this->_arrData['strTitle']		= "Créer un compte";
@@ -279,6 +281,31 @@
 				$objUser = new User;
 				$objUser->hydrate($arrDetUser);
 				$arrUsersToDisplay[] = $objUser;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']		= "Liste des utilisateurs";
+			$this->_arrData['strPage']		= "list_user";
+			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
+			$this->display("list_user");
+		}
+		public function DeleteUser(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objUserManager = new UserManager;
+			$objUserManager->deleteUser($objUser);
+			$arrUsers = $objUserManager->findUser();
+			
+			// Liste des utilisateurs en mode objet
+			$arrUsersToDisplay = array();
+			foreach($arrUsers as $arrDetUser){
+				$objUser = new User;
+				$objUser->hydrate($arrDetUser);
+				$arrUsersToDisplay[] = $objUser;
+				
 			}
 			// Affichage
 			$this->_arrData['strTitle']		= "Liste des utilisateurs";

@@ -27,7 +27,7 @@
             <div class="offset-md-4 col-md-4 mt-5">
                 <form action="index.php?ctrl=user&action={$strPage}" name="inscription" method="post">
                     <div class="mt-5">
-                        
+                        <input type="hidden" name="id" value="{$objUser->getId()}" />
                         <label for="name" class="form-label" >Nom</label>
                         <input type="text" class="form-control mx-auto" name ="name" id="name" placeholder="Net" value="{if $objUser->getName() != ''}{$objUser->getName()|unescape}{/if}">
                     </div>
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="mb-5 mt-2 pb-2 text-center">
-                        <button id="bouttonForm" type="submit" value="{if $strPage == 'inscription'}M'inscrire{else}Modifier{/if}">Envoyer</button>
+                        <input id="bouttonForm" type="submit" value="{if $strPage == 'inscription'}M'inscrire{else}Modifier{/if}"></input>
                     </div>
                 </form>
             </div>
