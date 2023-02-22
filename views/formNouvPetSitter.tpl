@@ -7,7 +7,7 @@
             <div class="row">
             {include file="views/error_display.tpl"}
                 <div class="offset-md-4 col-md-4">
-                    <form action="" method="post">
+                    <form action="index.php?ctrl=form&action=formNouvPetSitter" method="post">
                         <div class="mt-3">
                             <span>Animaux que tu veux garder: </span>
                             <div id="formDPS">

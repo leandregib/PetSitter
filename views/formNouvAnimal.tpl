@@ -6,7 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="offset-md-4 col-md-4">
-                    <form name="formPet" action="" method="post">
+                {include file="views/error_display.tpl"}
+                    <form name="formPet" action="index.php?ctrl=form&action=formNouvAnimal" method="post">
                         <div>
                             <label for="name" class="form-label">Nom</label>
                             <input type="text" class="form-control mx-auto" placeholder="Net" name="name">
@@ -34,8 +35,8 @@
                             </select>
                         </div>
                         <div class="form-check form-check-inline my-2">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">J’autorise ce site à conserver
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="personal_data">
+                            <label class="form-check-label" for="inlineCheckbox1" name="personal_data">J’autorise ce site à conserver
                                 mes données transmises via ce formulaire</label>
                         </div>
                 </div>

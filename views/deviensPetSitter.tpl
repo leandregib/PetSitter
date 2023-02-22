@@ -51,8 +51,8 @@
         <div class="container">
                     <div class="row text-center">
                         <div class="col-md-12 my-4">
-                            <p>Pour faire parti de nos PetSitter, <a href="index.php?ctrl=form&action=resteDuFormulaire">Clique ici</a> </p>
-                            <p>Pour faire garder ton animal, <a href="index.php?ctrl=page&action=petTypeForm">Clique ici</a> </p>
+                            <p>Pour faire parti de nos PetSitter, <a href="index.php?ctrl=form&action=formNouvPetSitter">Clique ici</a> </p>
+                            <p>Pour ajouter ton animal, <a href="index.php?ctrl=form&action=formNouvAnimal">Clique ici</a> </p>
                         </div>
                     </div>
                 </div>

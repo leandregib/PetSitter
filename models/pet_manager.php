@@ -45,4 +45,27 @@
 	
 		return $prep->execute();
 		}
+
+		/**
+		* Méthode permettant de vérifier que l'animal n'existe pas déjà en bdd
+		* @param object $objPet Objet de l'animal
+		* @return bool l'animal existe ou non
+		*/
+		public function pet_exist(object $objPet):bool{
+			$strRqPet = "SELECT *
+							FROM pet
+							WHERE pet_name = :petName 
+							AND pet_userid = :petUserId
+							AND pet_typeid = :petTypeId";				
+			$prep	= $this->_db->prepare($strRqPet);
+			
+			$prep->bindValue(':petName', $objPet->getName(), PDO::PARAM_STR);	
+			$prep->bindValue(':petUserId', $objPet->getUserid(), PDO::PARAM_INT);
+			$prep->bindValue(':petTypeId', $objPet->getTypeid(), PDO::PARAM_INT);
+
+			$prep->execute();
+			$arrPet = $prep->fetch();
+			
+			return ($arrPet !== false);
+		}
 	}

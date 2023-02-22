@@ -31,7 +31,7 @@
                     <div class="collapse navbar-collapse" id="mynavbar">
                         <ul class="navbar-nav me-auto mx-5">
                             <li class="nav-item mx-5 text-center py-4">
-                                <a class="nav-link" href="index.php?ctrl=page&action=faisGarderTonAnimal">Fais garder
+                                <a class="nav-link" href="index.php?ctrl=form&action=faisGarderTonAnimal">Fais garder
                                     ton animal</a>
                             </li>
                             <li class="nav-item mx-sm-5 text-center py-4">
