@@ -29,11 +29,36 @@
 		* Page Reste Du Formulaire
 		*/
 		public function resteDuFormulaire(){
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id']) && $_SESSION['user']['role'] != 1) 
+		   ){
+			header("Location:index.php?ctrl=error&action=error_403");
+			}
+
 			// Pour récupérer les informations dans le formulaire
 			$arrPetTypeSelected = $_POST['pet_typeid']??array();
 			$arrSitterSelected  = $_POST['sitterid']??array();
 			$intHome		    = $_POST['homeid']??'';
 			$intId 				= $_SESSION['user']['id'];
+			$boolPersonalData 	=  $_POST['personal_data']??'';
+
+			// Création de l'objet User
+			$objUser = new User;
+			$objUserManager = new UserManager;
+
+			// Création de l'objet Propose
+			$objPetsitter = new Propose;
+			$objPetsitterManager = new ProposeManager;
+
+			//Vérifie que le petsitter n'existe pas déjà
+			$boolOK = $objPetsitterManager->getPetsitter($intId);
+			if ($boolOK==true) {
+				header("Location:index.php?ctrl=error&action=error_error_form_already_completed");
+			}
 			
 			// Liste des types d'animaux
 			$objPetTypeManager  = new PetTypeManager(); 
@@ -87,56 +112,52 @@
 			$this->_arrData['arrCheckedHome']	= $arrCheckedHome;
 			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
 
-			// Création de l'objet User
-			$objUser = new User;
-			$objUserManager = new UserManager;
-
-			// Création de l'objet Propose
-			$objPetsitter = new Propose;
-			$objPetsitterManager = new ProposeManager;
-			
-			// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
-			$arrUser 		= $objUserManager->getUser($intId);
-
+			$arrError = array(); // Tableau des erreurs initialisé
 			// Si formulaire envoyé
 			if (count($_POST) > 0) {
-				if ($intHome != '') {
-					$objUser->setHomeId($intHome);
-					$objUserManager->editHome($objUser, $intId); 
+				// On teste les informations
+				if ($arrPetTypeSelected != array() && $arrSitterSelected == array()){ // 1er test sur la combinaison des types de gardes aux types d'animaux
+					$arrError[]	= "Merci de renseigner au moins un type de garde";
 				}
-				if ($arrPetTypeSelected != array() && $arrSitterSelected != array()) {
-					foreach($arrPetTypeSelected as $intPetTypeSelected){
-						foreach($arrSitterSelected as $intSitterSelected){
-							$arrSelected = array('sitterid' => $intSitterSelected, 'pettypeid' => $intPetTypeSelected);
+				if ($arrPetTypeSelected == array() && $arrSitterSelected != array()){ // 2nd test sur la combinaison des types de gardes aux types d'animaux
+					$arrError[]	= "Merci de renseigner au moins un type d'animal";
+				}
+				if ($arrPetTypeSelected == array() && $arrSitterSelected == array()){ // 2nd test sur la combinaison des types de gardes aux types d'animaux
+					$arrError[]	= "Merci de renseigner au moins un type d'animal et un type de garde correspondante";
+				}
+				if ($boolPersonalData == ''){ // Case d'autorisation de traitement des données personnelles
+					$arrError[]	= "Merci d'accepter le traitement des données transmises";
+				}
+		
+				
+				// Si aucune erreur on l'insert en BDD
+				if (count($arrError) == 0){ 
+					if ($intHome != '') {
+						$objUser->setHomeId($intHome);
+						$objUserManager->editHome($objUser, $intId); 
+					}
+					if ($arrPetTypeSelected != array() && $arrSitterSelected != array()) {
+						foreach($arrPetTypeSelected as $intPetTypeSelected){
+							foreach($arrSitterSelected as $intSitterSelected){
+								$arrSelected = array('sitterid' => $intSitterSelected, 'pettypeid' => $intPetTypeSelected);
 
-							$objPropose = new Propose;
-							$objPropose->hydrate($arrSelected);
-							var_dump($objPropose);die;
-						$objPetsitter->hydrate($_POST);
-						$objPetsitterManager->addPetsitter($objPetsitter, $intId);
+								$objPropose = new Propose;
+								$objPropose->hydrate($arrSelected);
+								$objPetsitterManager->addPetsitter($objPropose, $intId);
+							}
 						}
 					}
-				}
+					header("Location:index.php"); // Redirection page d'accueil
+				}			
+
 				
-
-				header("Location:index.php"); // Redirection page d'accueil
 			}
-
-			// $arrPetsitter 	= $objPetsitterManager->getPetsitter();
-
-			// // tests sur utilisateur trouvé
-			// if ($arrUser === false){
-			// 	header("Location:index.php?ctrl=error&action=error_403");
-			// }else{
-			// // Hydrater l'objet avec la méthode de l'entité
-			// 	$objUser->hydrate($arrUser);
-			// 	$objPetsitter->hydrate($_POST);
-			// }
 
 
 			//Affichage
 			$this->_arrData['objUser']			= $objUser;
 			//$this->_arrData['objPetsitter']		= $objPetsitter;
+			$this->_arrData['arrError']			= $arrError;
 			$this->_arrData['strTitle']			= "#";
 			$this->_arrData['strPage']			= "resteDuFormulaire";
 			$this->display("resteDuFormulaire");

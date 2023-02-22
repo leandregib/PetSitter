@@ -17,5 +17,12 @@
 			$this->_arrData['strTitle']	= "Accès interdit";
 			$this->_arrData['strPage']	= "error_403";
 			$this->display("error_403");
-		}		
+		}
+		
+		public function error_error_form_already_completed(){
+			//Affichage
+			$this->_arrData['strTitle']	= "Accès interdit";
+			$this->_arrData['strPage']	= "error_form_already_completed";
+			$this->display("error_form_already_completed");
+		}
 	}

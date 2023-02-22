@@ -5,6 +5,7 @@
     <div>
         <div class="container">
             <div class="row">
+            {include file="views/error_display.tpl"}
                 <div class="offset-md-4 col-md-4">
                     <form action="" method="post">
                         <div class="mt-3">
@@ -44,8 +45,8 @@
                         <div>
                             <div class="mt-5">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">J’autorise ce site à conserver
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="personal_data">
+                                <label class="form-check-label" for="inlineCheckbox1" name="personal_data">J’autorise ce site à conserver
                                     mes données transmises via ce formulaire</label>
                             </div>
                         </div>

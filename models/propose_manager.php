@@ -25,21 +25,17 @@
 		
 		/**
 		* Methode de récupération des infos du Petsitter connecté
-		* @return array Liste des infos du Petsitter connecté
+		* @param $intId int id de l'utilisateur 
+		* @return bool retourne vrai si trouve un petsitter avec l'id renseigné dans la BDD
 		*/
-		public function getPetsitter(){
-			$intId 				= $_GET['id']??$_SESSION['user']['id'];
-			$strRqPetsitter 	= "SELECT prop_id AS 'id', 
-								  prop_userid AS 'userid', 
-								  prop_sitterid AS 'sitterid', 
-								  prop_pet_typeid AS 'pet_typeid'
-								  
+		public function getPetsitter(int $intId):bool{
+			$strRqPetsitter 	= "SELECT * 								  
 							FROM propose
-							WHERE prop_userid = '".$intId."'";
+							WHERE prop_userid = ".$intId;
 							
-			$arrPetsitter 	= $this->_db->query($strRqPetsitter)->fetch();
+			$arrPetsitter = $this->_db->query($strRqPetsitter)->fetch();
 			
-			return $arrPetsitter;
+			return ($arrPetsitter !== false);
 		}
 		
 		/**
