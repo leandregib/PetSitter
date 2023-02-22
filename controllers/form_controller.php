@@ -4,58 +4,143 @@
 	* @author Timothée KERN
 	*/
 	class Form_controller extends Base_controller{
+		/**
+		* Constructeur de la classe
+		*/ 
+		public function __construct(){
+			//user
+			require("models/user_manager.php"); 
+			require("entities/users_entity.php");
+			//pet_type 
+			require("entities/pet_type_entity.php"); 
+			require("models/pet_type_manager.php"); 
+			//sitter
+			require("entities/sitter_entity.php"); 
+			require("models/sitter_manager.php"); 
+			//home
+			require("entities/home_entity.php"); 
+			require("models/home_manager.php"); 
+			//propose
+			require("entities/propose_entity.php"); 
+			require("models/propose_manager.php");
+		}
 		
-		public function petTypeForm(){
-			include("connect.php");
-			$strTitle 	= "#";
-			$strPage	= "petTypeForm";
-			include("views/header.php");
+		/**
+		* Page Reste Du Formulaire
+		*/
+		public function resteDuFormulaire(){
+			// Pour récupérer les informations dans le formulaire
+			$arrPetTypeSelected = $_POST['pet_typeid']??array();
+			$arrSitterSelected  = $_POST['sitterid']??array();
+			$intHome		    = $_POST['homeid']??'';
+			$intId 				= $_SESSION['user']['id'];
 			
-			// Récupérer les informations du formulaire
-			$strPetName 		= $_POST['petName']??'';
-			$strPetBirth		= $_POST['petBirth']??'';
-			$strSitterType		= $_POST['sitterType']??'';
-			$strPetSex			= $_POST['petSex']??'';
-			//var_dump($_POST);
-			//var_dump($_SERVER);
-			$arrErrors 	= array(); // Initialisation du tableau des erreurs
-			if (count($_POST) > 0){ // si formulaire envoyé
-				// Tests erreurs
-				if ($strPetName == ''){
-					$arrErrors['name'] = "Merci de renseigner un nom pour votre animal";
+			// Liste des types d'animaux
+			$objPetTypeManager  = new PetTypeManager(); 
+			$arrPetType 	    = $objPetTypeManager->findPetType(); 
+			$arrCheckedPet		= array();
+			
+	 		foreach($arrPetType as $arrDetPetType){
+		 		$objPetType = new Pet_type;
+		 		$objPetType->hydrate($arrDetPetType);
+		 		if (in_array($objPetType->getId(), $arrPetTypeSelected)) {
+					$arrCheckedPet[] = $objPetType->getId();
 				}
-				if ($strPetBirth == ''){
-					$arrErrors['birth'] = "Merci de renseigner une date de naissance";
+		 		$arrPetTypeToDisplay[] = $objPetType;
+	 		}
+			$this->_arrData['arrCheckedPet']		= $arrCheckedPet;
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+		 	
+
+		 	// Liste des types de garde		
+			$objSitterManager  	= new SitterManager(); 
+			$arrSitter	    	= $objSitterManager->findSitter();
+			$arrCheckedSitter	= array();
+			
+			$arrSitterToDisplay = array();
+			foreach($arrSitter as $arrDetSitter){
+				$objSitter = new Sitter;
+				$objSitter->hydrate($arrDetSitter);
+				if (in_array($objSitter->getId(), $arrSitterSelected)) {
+					$arrCheckedSitter[] = $objSitter->getId();
 				}
-				if ($strSitterType == ''){
-					$arrErrors['type'] = "Merci de renseigner un type d'animal";
-				}
-				if ($strPetSex == ''){
-					$arrErrors['sex'] = "Merci de renseigner le sexe de votre animal";
-				}
-				
-				if (count($arrErrors)>0){ // Affichage des erreurs, s'il y en a
-					echo "<div class='error'>";
-					foreach($arrErrors as $strError){
-						echo "<p>".$strError."</p>";
-					}
-					echo "</div>";
-				}else{	
-					// Créer un objet vide avec l'entité
-					// Hydrater l'objet avec le $_POST
-					// Appeler le user_manager et ajouter la méthode d'ajout en passant l'objet en paramètre
-						
-					// Insertion en BDD, si pas d'erreurs => dans la méthode du user_manager
-						$strRqAdd 	= "	INSERT INTO articles 
-											(article_title, article_img, article_content, article_createdate, article_creator)
-										VALUES 
-											('".addslashes($strArticleTitle)."', '".$strNewName."', '".addslashes($strArticleContent)."', NOW(), 3);";
-						$db->exec($strRqAdd);
-						header("Location:index.php"); // Redirection page d'accueil
-					}
-				
+				$arrSitterToDisplay[] = $objSitter;
 			}
-			include("views/footer.php");
+			$this->_arrData['arrCheckedSitter']		= $arrCheckedSitter;
+			$this->_arrData['arrSitterToDisplay']	= $arrSitterToDisplay;
+
+
+			// Liste des types de logements
+			$objHomeManager  	= new HomeManager(); 
+			$arrHome	    	= $objHomeManager->findHome();
+			$arrCheckedHome		= array();
+			
+			$arrHomeToDisplay 	= array();
+			foreach($arrHome as $arrDetHome){
+				$objHome = new Home;
+				$objHome ->hydrate($arrDetHome);
+				if ($intHome == $objHome->getId()) {
+					$arrCheckedHome[] = $objHome->getId();
+				}
+				$arrHomeToDisplay[] = $objHome;
+			}
+			$this->_arrData['arrCheckedHome']	= $arrCheckedHome;
+			$this->_arrData['arrHomeToDisplay']	= $arrHomeToDisplay;
+
+			// Création de l'objet User
+			$objUser = new User;
+			$objUserManager = new UserManager;
+
+			// Création de l'objet Propose
+			$objPetsitter = new Propose;
+			$objPetsitterManager = new ProposeManager;
+			
+			// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
+			$arrUser 		= $objUserManager->getUser($intId);
+
+			// Si formulaire envoyé
+			if (count($_POST) > 0) {
+				if ($intHome != '') {
+					$objUser->setHomeId($intHome);
+					$objUserManager->editHome($objUser, $intId); 
+				}
+				if ($arrPetTypeSelected != array() && $arrSitterSelected != array()) {
+					foreach($arrPetTypeSelected as $intPetTypeSelected){
+						foreach($arrSitterSelected as $intSitterSelected){
+							$arrSelected = array('sitterid' => $intSitterSelected, 'pettypeid' => $intPetTypeSelected);
+
+							$objPropose = new Propose;
+							$objPropose->hydrate($arrSelected);
+							var_dump($objPropose);die;
+						$objPetsitter->hydrate($_POST);
+						$objPetsitterManager->addPetsitter($objPetsitter, $intId);
+						}
+					}
+				}
+				
+
+				header("Location:index.php"); // Redirection page d'accueil
+			}
+
+			// $arrPetsitter 	= $objPetsitterManager->getPetsitter();
+
+			// // tests sur utilisateur trouvé
+			// if ($arrUser === false){
+			// 	header("Location:index.php?ctrl=error&action=error_403");
+			// }else{
+			// // Hydrater l'objet avec la méthode de l'entité
+			// 	$objUser->hydrate($arrUser);
+			// 	$objPetsitter->hydrate($_POST);
+			// }
+
+
+			//Affichage
+			$this->_arrData['objUser']			= $objUser;
+			//$this->_arrData['objPetsitter']		= $objPetsitter;
+			$this->_arrData['strTitle']			= "#";
+			$this->_arrData['strPage']			= "resteDuFormulaire";
+			$this->display("resteDuFormulaire");
+		
 		}
 				
 		

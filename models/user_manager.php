@@ -111,7 +111,7 @@
 			return $prep->execute();
 		}
 		
-		public function getUser(){
+		public function getUser($intId){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
 			$strRqUser 	= "SELECT user_id AS 'id', 
 								  user_firstname AS 'firstname', 
@@ -137,21 +137,21 @@
 		/**
         * Methode d'ajout d'un type d'habitation pour l'utilisateur
         * @creator Timothée KERN
-        * @param $objPetsitter objet du Petsitter à ajouter dans la base de données
+        * @param $objUser objet de l'utilisateur à modifier dans la base de données
+		* @param $intId int Id de l'utilisateur connecté
         */
-        public function addHome($objUser){
+        public function editHome(object $objUser, int $intId){
 
 
             // Insertion en BDD, si pas d'erreurs
             $strRqAddPetsitter     = "UPDATE users
                                 SET user_homeid = :homeid
-                                WHERE user_id = :userid";
+                                WHERE user_id = $intId";
 
             // Requête préparée
             $prep        = $this->_db->prepare($strRqAddPetsitter);
 
-            $prep->bindValue(':userid', $objPetsitter->getUserId(), PDO::PARAM_INT);
-            $prep->bindValue(':homeid', $objPetsitter->getHomeId(), PDO::PARAM_INT);
+            $prep->bindValue(':homeid', $objUser->getHomeId(), PDO::PARAM_INT);
 
             return $prep->execute();
 

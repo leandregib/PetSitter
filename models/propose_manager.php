@@ -45,19 +45,19 @@
 		/**
 		* Methode de création d'un petsitter
 		* @param $objPetsitter objet du Petsitter à ajouter dans la base de données
+		* @param $intId int Id de l'utilisateur connecté
 		*/		
-		public function addPetsitter($objPetsitter){
+		public function addPetsitter(object $objPetsitter, int $intId){
 
            
 			// Insertion en BDD, si pas d'erreurs
 			$strRqAddPetsitter 	= "	INSERT INTO propose
 								(prop_userid, prop_sitterid, prop_pet_typeid)
-							VALUES (:userid, :sitterid, :pet_typeid)";
+							VALUES ($intId, :sitterid, :pet_typeid)";
 							
 			// Requête préparée	
 			$prep		= $this->_db->prepare($strRqAddPetsitter);
 
-			$prep->bindValue(':userid', $objPetsitter->getUserId(), PDO::PARAM_INT);
 			$prep->bindValue(':sitterid', $objPetsitter->getSitterId(), PDO::PARAM_INT);
 			$prep->bindValue(':pet_typeid', $objPetsitter->getPetTypeId(), PDO::PARAM_INT);
 		
