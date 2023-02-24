@@ -8,11 +8,7 @@
 		<h2>Modifier une image</h2>
 		<p>Formulaire permettant de modifier une image</p>
 	{/if}
-<<<<<<< Updated upstream
-	<form name="formAdd" method="POST" action="index.php?ctrl=article&action={$strPage}" enctype="multipart/form-data">
-=======
 	<form name="formAdd" method="POST" action="index.php?ctrl=form&action={$strPage}" enctype="multipart/form-data">
->>>>>>> Stashed changes
 		<fieldset>
 			<p>
 				<label for="description">Description</label>
@@ -20,11 +16,7 @@
 			</p>
 			<p>
 				{if $objPicture->getName() != ''}
-<<<<<<< Updated upstream
-				<img src="assets/img-users/{$objPicture->getName()}" />
-=======
 				<img src="assets/imgUsers/{$objPicture->getName()}" />
->>>>>>> Stashed changes
 				<input type="hidden" name="name" value="{$objPicture->getName()}" />
 				{/if}
 				<label for="image">Image</label>

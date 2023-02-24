@@ -52,11 +52,7 @@
 		* @return boolean Fichier bien enregistré ou non 
 		*/
 		protected function _photoTraitement(array $arrImageInfos, string $strNewName, int $intWidth=500, int $intHeight=-1):bool{
-<<<<<<< Updated upstream
-			$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/PetSitter/assets/img-users'.$strNewName;
-=======
 			$strFileDest 	= $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/PetSitter/assets/imgUsers/'.$strNewName;
->>>>>>> Stashed changes
 			$strFileName 	= $arrImageInfos['tmp_name'];
 			switch ($arrImageInfos['type']){
 				case "image/jpeg":
