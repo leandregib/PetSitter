@@ -32,7 +32,7 @@
 		}
 		
 		/**
-		* Page Reste Du Formulaire
+		* Page Formulaire Nouveau PetSitter
 		*/
 		public function formNouvPetSitter(){
 			if (	
@@ -172,7 +172,7 @@
 		//_________________________________________________________________________________________________________
 
 		/**
-		* Page Pet Type Form
+		* Page Formulaire Nouvel Animal
 		*/
 		public function formNouvAnimal (){
 			if (	
@@ -211,6 +211,7 @@
 			
 			// Pour récupérer les informations dans le formulaire (case RGPD à cocher)
 			$boolPersonalData 	=  $_POST['personal_data']??'';
+			$intId 				= $_SESSION['user']['id'];
 
 			// Création de l'objet Pet
 			$objPet = new Pet;
@@ -233,7 +234,7 @@
 				
 				// Si aucune erreur on l'insert en BDD
 				if (count($arrError) == 0){ 
-					if($objPetManager->addPet($objPet)){
+					if($objPetManager->addPet($objPet, $intId)){
 						header("Location:index.php"); // Redirection page d'accueil;
 					}else{
 						$arrError[]	= "Erreur lors de l'ajout";

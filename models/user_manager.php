@@ -123,7 +123,7 @@
 			return $prep->execute();
 		}
 		
-		public function getUser($intId){
+		public function getUser(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
 			$strRqUser 	= "SELECT user_id AS 'id', 
 								  user_firstname AS 'firstname', 

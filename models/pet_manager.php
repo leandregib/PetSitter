@@ -26,12 +26,12 @@
 		* Methode de création d'un pet
 		* @param $objPet objet de l'animal à ajouter dans la BDD
 		*/
-		public function addPet($objPet){
+		public function addPet($objPet,$intId){
 
 		// Insertion en BDD, si pas d'erreurs
 		$strRqAdd 	= "	INSERT INTO pet
 						(pet_id, pet_name, pet_birthday, pet_userid, pet_typeid, pet_sexid)
-						VALUES (:id, :name, :birthday, :userid, :typeid, :sexid)";
+						VALUES (:id, :name, :birthday, $intId, :typeid, :sexid)";
 
 		// Requête préparée	
 		$prep		= $this->_db->prepare($strRqAdd);
@@ -39,7 +39,6 @@
 		$prep->bindValue(':id', $objPet->getId(), PDO::PARAM_INT);
 		$prep->bindValue(':name', $objPet->getName(), PDO::PARAM_STR);
 		$prep->bindValue(':birthday', $objPet->getBirthday(), PDO::PARAM_STR);
-		$prep->bindValue(':userid', $objPet->getUserid(), PDO::PARAM_INT);
 		$prep->bindValue(':typeid', $objPet->getTypeid(), PDO::PARAM_INT);
 		$prep->bindValue(':sexid', $objPet->getSexid(), PDO::PARAM_INT);
 	
