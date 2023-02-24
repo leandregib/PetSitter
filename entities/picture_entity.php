@@ -50,7 +50,7 @@
 		* Getter du nom
 		* @return string Nom
 		*/
-		public function getName():string{
+		public function getName():string|null{
 			return $this->_name;
 		}
 		/**
@@ -81,7 +81,7 @@
 		* Getter de la description
 		* @return string Description
 		*/
-		public function getDescription():string{
+		public function getDescription():string|null{
 			return $this->_description;
 		}
 		/**

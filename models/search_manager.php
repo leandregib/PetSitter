@@ -19,7 +19,7 @@
 		public function findPetSitter(){
 			
 				// Début de la requête
-			$strRq 		= "	SELECT city_name, user_firstname, user_birthday, home_type
+			$strRq 		= "	SELECT user_id, city_name, user_firstname, user_birthday, home_type
 							FROM users
 								INNER JOIN home ON user_homeid = home_id
 								INNER JOIN city ON user_cityid = city_id 

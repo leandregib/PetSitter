@@ -62,4 +62,13 @@
 			$this->display("planDuSite");
 		}
 
+		/**
+		* Page profil
+		*/
+		public function vueProfil(){
+			$this->_arrData['strTitle']	= "PetSitter - Plan de site";
+			$this->_arrData['strPage']	= "planDuSite";
+			$this->display("planDuSite");
+		}
+
 	}

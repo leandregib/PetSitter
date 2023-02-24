@@ -31,14 +31,13 @@
 			//Préparer la requête
 			$strRqAdd 	= "	INSERT INTO picture
 								(pic_name, pic_date, pic_description, pic_userid)
-							VALUES (:name, :date, :description, :userid)";			
+							VALUES (:name, NOW(), :description, :userid)";			
 			$prep		= $this->_db->prepare($strRqAdd);
 
 			//Associer des valeurs aux place holders
-			$prep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
-			$prep->bindValue(':date', $objUser->getDate(), PDO::PARAM_STR);
-			$prep->bindValue(':description', $objUser->getDescription(), PDO::PARAM_STR);
-			$prep->bindValue(':userid', $objUser->getUserid(), PDO::PARAM_INT);
+			$prep->bindValue(':name', $objPicture->getName(), PDO::PARAM_STR);
+			$prep->bindValue(':description', $objPicture->getDescription(), PDO::PARAM_STR);
+			$prep->bindValue(':userid', $objPicture->getUserid(), PDO::PARAM_INT);
 		
 			return $prep->execute();				
 		

@@ -29,6 +29,9 @@
 			//pet (utilisé par le form "ajoute ton animal")
 			require("entities/pet_entity.php"); 
 			require("models/pet_manager.php"); 
+			//picture (utilisé par le form "ajoutez votre image")
+			require("entities/picture_entity.php"); 
+			require("models/picture_manager.php"); 
 		}
 		
 		/**
@@ -205,7 +208,7 @@
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
 				if ($objPet->getTypeid() == $objPetType->getId()) {
-					$arrSexSelected[] = $objPetType->getId();
+					$arrPetTypeSelected[] = $objPetType->getId();
 				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
@@ -221,7 +224,7 @@
 				$objSex = new Sex;
 				$objSex->hydrate($arrDetSex);
 				if ($objPet->getSexid() == $objSex->getId()) {
-					$arrPetTypeSelected[] = $objSex->getId();
+					$arrSexSelected[] = $objSex->getId();
 				}
 				$arrSexToDisplay[] = $objSex;
 			}
@@ -323,7 +326,78 @@
 			$this->_arrData['strPage']	= "faisGarderTonAnimal";
 			$this->display("faisGarderTonAnimal");
 		}
+
+
+		//_________________________________________________________________________________________________________
+
+		
+		/**
+		* Page Ajouter une Image
+		*/
+		public function ajoutImg(){	
+			if (!isset($_SESSION['user'])) { // utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}	
+			
+			//Création de l'objet
+			$objPicture = new Picture;
+			
+			$arrErrors 	= array(); // Initialisation du tableau des erreurs
+			if (count($_POST) > 0){ // si formulaire envoyé
+
+				//Hydrate l'objet en fonction des données entrées dans le formulaire
+				$objPicture->hydrate($_POST);
+				//Récupère l'image mise dans le formulaire
+				$arrImageInfos		= $_FILES['image']??array();
+
+				// // Tests erreurs
+				// if ($_POST['csrf'] != $_SESSION['token_csrf']){
+				// 	$arrErrors['csrf'] = "Erreur sur le formulaire";
+				// }
+				// if ($objArticle->getTitle() == ''){
+				// 	$arrErrors['title'] = "Merci de renseigner un titre";
+				// }
+				// if ($objArticle->getContent() == ''){
+				// 	$arrErrors['content'] = "Merci de renseigner un contenu";
+				// }
+				// if ($arrImageInfos['size'] == 0){
+				// 	$arrErrors['image'] = "Merci de renseigner une image";
+				// }
+				
+				if (count($arrErrors)==0){ 
+					// Sauvegarde de l'image sur le serveur
+					$strNewName = $this->_photoName($arrImageInfos['name']);
+					$boolOk 	= $this->_photoTraitement($arrImageInfos, $strNewName);
+					
+					if($boolOk){
+					//if (move_uploaded_file($strFileName, $strFileDest)){
+						// Insertion en BDD, si pas d'erreurs
+						$objManager 	= new PictureManager(); // instancier la classe
+						$objPicture->setName($strNewName);
+						$objPicture->setUserid($_SESSION['user']['id']);
+						$objManager->addPicture($objPicture); 
+						
+						header("Location:index.php"); // Redirection page d'accueil
+					}
+				}
+			}
+
+
+
+
+			
+		 	//Affichage
+			$this->_arrData['objPicture']	= $objPicture;
+			$this->_arrData['arrError']		= $arrErrors;
+			$this->_arrData['strTitle']	= "Ajoutez votre image";
+			$this->_arrData['strPage']	= "ajoutImg";
+			$this->display("ajoutImg");
+		}
 				
 		
 		
 	}
+
+	
+
+	
