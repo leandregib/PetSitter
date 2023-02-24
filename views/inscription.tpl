@@ -12,18 +12,13 @@
     <h2 class="text-center mt-3">Modifier un compte</h2>
     <p class="text-center">Page de modification de compte</p>
     {/if}
-    {if count($arrError) > 0}
-        <div class="error">
-        {foreach from=$arrError item=strError}
-            <p>{$strError}</p>
-        {/foreach}
-        </div>
-    {/if}
+ 
 <!-- Formulaire Deviens PetSitter -->
 <div>
     <div class="container" id="aaaa">
 
         <div class="row mt-5">
+        {include file="views/error_display.tpl"}
             <div class="offset-md-4 col-md-4 mt-5">
                 <form action="index.php?ctrl=user&action={$strPage}" name="inscription" method="post">
                     <div class="mt-5">
@@ -80,7 +75,7 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                value="option1">
+                                value="option1" checked>
                             <label class="form-check-label" for="inlineCheckbox1">J' autorise ce site à conserver
                                 mes données transmises via ce formulaire</label>
                         </div>
