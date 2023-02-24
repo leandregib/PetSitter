@@ -14,6 +14,8 @@
 			require("entities/users_entity.php"); 
 			require("models/city_manager.php");
 			require("entities/city_entity.php");
+			require("entities/role_entity.php"); 
+			require("models/role_manager.php"); 
 		}
 
 		/**
@@ -39,18 +41,6 @@
 				}
 			}
 			header("Location:index.php");			
-			/*Affichage
-			$this->_arrData['strTitle']	= "Se connecter";
-			$this->_arrData['strPage']	= "login";
-			$this->display("login");*/
-
-
-			
-			//Affichage
-			/*$this->_arrData['strTitle']	= "Se connecter";
-			$this->_arrData['strPage']	= "login";
-			$this->display("login");*/
-			
 			
 
 		}
@@ -63,7 +53,6 @@
 
 			// Pour récupérer les informations dans le formulaire
 			
-
 			$intCityId				= $_POST['cityid']??'';	
 			
 
@@ -138,6 +127,7 @@
 					$objUserManager = new UserManager;
 					if($objUserManager->addUsers($objUser)){
 						header("Location:index.php");
+						echo("Inscription réussie!");
 					}else{
 						$arrError[]	= "Erreur lors de l'ajout";
 					}
@@ -146,29 +136,14 @@
 
 			$this->_arrData['arrSelected']			= $arrSelected;
 			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
-			
-		
-			/*$this->_arrData['strName']			= $strName; // On passe la variable strName dans le template
-			$this->_arrData['strFirstname']		= $strFirstName; 
-			$this->_arrData['strMail']			= $strMail; */
-			$this->_arrData['objUser']			= $objUser;
-			$this->_arrData['arrError']			= $arrError;
-			$this->_arrData['strTitle']			= "PetSitter - Inscription";
-			$this->_arrData['strPage']			= "inscription";
+			$this->_arrData['objUser']				= $objUser;
+			$this->_arrData['arrError']				= $arrError;
+			$this->_arrData['strTitle']				= "PetSitter - Inscription";
+			$this->_arrData['strPage']				= "inscription";
 
 			$this->display("inscription");
 		}	
 		
-		/**
-		* Page Créer un compte
-		*/
-		/*public function create_account(){
-
-			//Affichage
-			$this->_arrData['strTitle']	= "Créer un compte";
-			$this->_arrData['strPage']	= "create_account";
-			$this->display("create_account");
-		}*/
 		/**
 		* Page Se déconnecter
 		*/
@@ -191,7 +166,7 @@
 			$objUserManager = new UserManager;
 			$objUser 		= new User;
 			
-			
+			$objRoleManager  = new RoleManager();
 			$objCityManager  = new CityManager(); 
 			$arrCity 	     = $objCityManager->findCity(); 
 			
@@ -232,14 +207,15 @@
 					}
 				}
 			}else{
-				// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 
-				$objUserManager = new UserManager;
+				// Récupérer les informations de l'utilisateur qui est en session, dans la BDD 				
 				$arrUser 		= $objUserManager->getUser();
+				
 				// Hydrater l'objet avec la méthode de l'entité
 				$objUser->hydrate($arrUser);
-				
+				$intId = 	$objUser->getId();	
+				$arrRole 		= $objRoleManager->getRoleId();
 			}
-			
+			//liste des villes dans le formulaire
 			foreach($arrCity as $arrDetCity){
 				$objCity = new City;
 				$objCity->hydrate($arrDetCity);
@@ -249,10 +225,25 @@
 				//$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
 				$arrCityToDisplay[] = $objCity;
 			}
-			var_dump($objUser);
+
+			//liste des role dans le formulaire
+			foreach($arrRole as $arrDetRole){
+
+				$objRole = new Role;
+				$objRole->hydrate($arrDetRole);
+				if ($objUser->getRoleId() == $objRole->getId()) {
+					$arrSelectedRole[] = $objRole->getId();
+				}
+				//$objCity->selected = ($intCityId == $objCity->getId())?"selected":"";
+				$arrRoleToDisplay[] = $objRole;
+				
+			}
+			
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
 			$this->_arrData['arrSelected']			= $arrSelected;
+			$this->_arrData['arrSelectedRole']			= $arrSelected;
 			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
+			$this->_arrData['arrRoleToDisplay']		= $arrRoleToDisplay;
 			$this->_arrData['objUser']				= $objUser;
 			$this->_arrData['arrError']				= $arrError;
 			$this->_arrData['strTitle']				= "Créer un compte";
@@ -261,6 +252,7 @@
 
 		}
 
+		//liste des utilisateurs à consulter pour l'admin
 		public function list_user(){
 			if (!isset($_SESSION['user'])) {// utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");
@@ -284,6 +276,9 @@
 			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
 			$this->display("list_user");
 		}
+
+
+
 		public function DeleteUser(){
 			if (!isset($_SESSION['user'])) {// utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");

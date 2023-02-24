@@ -200,4 +200,14 @@
 			$strDelUserQuery = "DELETE FROM users WHERE user_id = $intId";
 			return $this->_db->exec($strDelUserQuery);
 		}
+
+
+		public function findRole($intId){
+			$strRqRole ="SELECT user_roleid AS role_id, role_name FROM users 
+							INNER JOIN role ON user_roleid = role_id
+							 WHERE user_id = $intId";
+			return $this->_db->query($strRqRole)->fetchAll();
+		}
+		
+		
 	}

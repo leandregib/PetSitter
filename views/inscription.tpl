@@ -59,11 +59,21 @@
 						<select id="cityid" name="cityid">
                             <option value=''>--</option>
 							{foreach from=$arrCityToDisplay item = objCity}
-                            <option {if (in_array($objCity->getId(), $arrSelected))} selected {/if}  value='{$objCity->getId()}'>{$objCity->getCp()} {$objCity->getName()}</option>
+                                <option {if (in_array($objCity->getId(), $arrSelected))} selected {/if}  value='{$objCity->getId()}'>{$objCity->getCp()} {$objCity->getName()}</option>
                             {/foreach}
 						</select>
                     </div>
-                    
+                    {if isset($smarty.session.user.id) && $smarty.session.user.user_roleid == 1}
+                    <div>
+                    <label for="roleid" class="form-label" >Rôle</label>
+                    <select id="roleid" name="roleid">
+                        <option value=''>--</option>
+                        {foreach from=$arrRoleToDisplay item = objRole}
+                            <option {if (in_array($objUser->getId(), $arrSelected))} selected {/if}  value='{$objRole->getId()}'>{$objRole->getId()} {$objRole->getName()}</option>
+                        {/foreach}
+                    </select>
+                    </div>
+                    {/if}   
                     
                     <div>
                         <div class="mt-3">

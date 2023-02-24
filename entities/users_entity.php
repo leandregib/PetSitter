@@ -230,7 +230,7 @@
         * @param $intCityId
         */
         public function setCityId(int|string $intCityId){
-            $this->_cityid = $intCityId;
+            $this->_cityid = intval($intCityId);
         }
 
         /* Getter du roleid
