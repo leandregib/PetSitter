@@ -1,7 +1,7 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-	* Class manager des articles
+	* Class manager de la recherche
 	* @creator Timothée KERN 
 	*/
 	class SearchManager extends Manager{
