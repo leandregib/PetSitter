@@ -45,6 +45,25 @@
 		return $prep->execute();
 		}
 
+		public function updatePet($objPet,$intId){
+
+			// Insertion en BDD, si pas d'erreurs
+			$strRqAdd 	= "	UPDATE pet
+							(pet_id, pet_name, pet_birthday, pet_userid, pet_typeid, pet_sexid)
+							VALUES (:id, :name, :birthday, $intId, :typeid, :sexid)";
+	
+			// Requête préparée	
+			$prep		= $this->_db->prepare($strRqAdd);
+	
+			$prep->bindValue(':id', $objPet->getId(), PDO::PARAM_INT);
+			$prep->bindValue(':name', $objPet->getName(), PDO::PARAM_STR);
+			$prep->bindValue(':birthday', $objPet->getBirthday(), PDO::PARAM_STR);
+			$prep->bindValue(':typeid', $objPet->getTypeid(), PDO::PARAM_INT);
+			$prep->bindValue(':sexid', $objPet->getSexid(), PDO::PARAM_INT);
+		
+			return $prep->execute();
+			}
+
 		/**
 		* Méthode permettant de vérifier que l'animal n'existe pas déjà en bdd
 		* @param object $objPet Objet de l'animal

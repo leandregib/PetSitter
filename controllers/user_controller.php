@@ -127,7 +127,6 @@
 					$objUserManager = new UserManager;
 					if($objUserManager->addUsers($objUser)){
 						header("Location:index.php");
-						echo("Inscription réussie!");
 					}else{
 						$arrError[]	= "Erreur lors de l'ajout";
 					}
@@ -162,7 +161,7 @@
 			}
 			// Créer un objet vide avec l'entité 
 			// Création de l'objet User
-			$intCityId				= $_POST['cityid']??'';	
+			$intCityId		= $_POST['cityid']??'';	
 			$objUserManager = new UserManager;
 			$objUser 		= new User;
 			
@@ -212,7 +211,7 @@
 				
 				// Hydrater l'objet avec la méthode de l'entité
 				$objUser->hydrate($arrUser);
-				$intId = 	$objUser->getId();	
+				$intId 			= $objUser->getId();	
 				$arrRole 		= $objRoleManager->getRoleId();
 			}
 			//liste des villes dans le formulaire
@@ -241,7 +240,7 @@
 			
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
 			$this->_arrData['arrSelected']			= $arrSelected;
-			$this->_arrData['arrSelectedRole']			= $arrSelected;
+			$this->_arrData['arrSelectedRole']		= $arrSelected;
 			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
 			$this->_arrData['arrRoleToDisplay']		= $arrRoleToDisplay;
 			$this->_arrData['objUser']				= $objUser;
@@ -271,8 +270,8 @@
 				
 			}
 			// Affichage
-			$this->_arrData['strTitle']		= "Liste des utilisateurs";
-			$this->_arrData['strPage']		= "list_user";
+			$this->_arrData['strTitle']					= "Liste des utilisateurs";
+			$this->_arrData['strPage']					= "list_user";
 			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
 			$this->display("list_user");
 		}
@@ -298,8 +297,8 @@
 				
 			}
 			// Affichage
-			$this->_arrData['strTitle']		= "Liste des utilisateurs";
-			$this->_arrData['strPage']		= "list_user";
+			$this->_arrData['strTitle']					= "Liste des utilisateurs";
+			$this->_arrData['strPage']					= "list_user";
 			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
 			$this->display("list_user");
 		}

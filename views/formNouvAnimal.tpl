@@ -41,7 +41,7 @@
                         </div>
                 </div>
                 <div class="mb-5 mt-2 pb-2 text-center">
-                    <button id="bouttonForm" type="submit">M'inscrire</button>
+                    <input id="bouttonForm" type="submit" value="{if $strPage == 'formNouvAnimal'}Ajouter{else}Modifier{/if}"></input>
                 </div>
                 </form>
             </div>

@@ -263,6 +263,96 @@
 			$this->display("formNouvAnimal");
 		}
 
+
+		/**
+		* Page de modif d'un Animal
+		*/
+		public function modifNouvAnimal (){
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id']) && $_SESSION['user']['role'] != 1) 
+		   ){
+			header("Location:index.php?ctrl=error&action=error_403");
+			}
+
+			// Pour récupérer les informations dans le formulaire
+			$boolPersonalData 	=  $_POST['personal_data']??'';
+			$intId 				= $_SESSION['user']['id'];
+			$arrSexSelected		= array();
+			$arrPetTypeSelected	= array();
+
+			// Création de l'objet Pet
+			$objPet = new Pet;
+			// Création de l'objet PetManager
+			$objPetManager = new PetManager;
+
+		 	// Liste des types d'animaux
+			$objPetTypeManager  = new PetTypeManager(); 
+			$arrPetType 	    = $objPetTypeManager->findPetType(); 
+
+	 		$arrPetTypeToDisplay = array();
+	 		foreach($arrPetType as $arrDetPetType){
+		 		$objPetType = new Pet_type;
+		 		$objPetType->hydrate($arrDetPetType);
+				if ($objPet->getTypeid() == $objPetType->getId()) {
+					$arrPetTypeSelected[] = $objPetType->getId();
+				}
+		 		$arrPetTypeToDisplay[] = $objPetType;
+	 		}
+			$this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+			
+			// Liste des sexes
+			$objSexManager  	= new SexManager(); 
+			$arrSex	    	= $objSexManager->findSex();
+			
+			$arrSexToDisplay = array();
+			foreach($arrSex as $arrDetSex){
+				$objSex = new Sex;
+				$objSex->hydrate($arrDetSex);
+				if ($objPet->getSexid() == $objSex->getId()) {
+					$arrSexSelected[] = $objSex->getId();
+				}
+				$arrSexToDisplay[] = $objSex;
+			}
+			$this->_arrData['arrSexSelected']		= $arrSexSelected;
+			$this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
+					
+			$arrError = array(); // Tableau des erreurs initialisé
+			if (count($_POST) > 0) { // Si le formulaire est envoyé
+				// On hydrate l'objet
+				$objPet->hydrate($_POST);
+				// On teste les informations
+				if ($objPet->getName() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un nom pour votre animal";
+				}else if($objPetManager->pet_exist($objPet)){ // test si déjà existant
+				$arrError[]	= "Cet animal a déjà été enregistré";
+				}
+				if ($boolPersonalData == ''){ // Case d'autorisation de traitement des données personnelles
+					$arrError[]	= "Merci d'accepter le traitement des données transmises";
+				}
+				
+				// Si aucune erreur on l'insert en BDD
+				if (count($arrError) == 0){ 
+					if($objPetManager->updatePet($objPet, $intId)){
+						header("Location:index.php"); // Redirection page d'accueil;
+					}else{
+						$arrError[]	= "Erreur lors de l'ajout";
+					}
+				}
+			}
+
+			//Affichage
+			$this->_arrData['objPet']		= $objPet;
+			$this->_arrData['arrError']		= $arrError;
+			$this->_arrData['strTitle']		= "Ajoute ton animal";
+			$this->_arrData['strPage']		= "formNouvAnimal";
+			$this->display("formNouvAnimal");
+		}
+
 		//_________________________________________________________________________________________________________
 
 		

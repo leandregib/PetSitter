@@ -83,6 +83,7 @@
 		
 		}
 
+		//fonction de modif de compte utilisateur
 		public function updateUser($objUser){
 			$strRqUpdate	= "UPDATE users 
 								SET user_name = :name, 
