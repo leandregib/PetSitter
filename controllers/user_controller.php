@@ -62,38 +62,17 @@
 		public function inscription(){
 
 			// Pour récupérer les informations dans le formulaire
-			/*$intCity				= $_POST['city']??'';*/
+			
 
 			$intCityId				= $_POST['cityid']??'';	
-			/*$strName				= $_POST['name']??'';	
-			$strFirstName			= $_POST['firstname']??'';
-			$dateBirthday			= $_POST['birthday']??'';
-			$strMail				= $_POST['mail']??'';
-			$strPassword			= $_POST['password']??'';
-				
-			$strAdress				= $_POST['adress']??'';
-			$strPhone				= $_POST['phone']??'';
-			$textDescription		= $_POST['description']??'';*/
+			
 
 			$arrError 			= array(); // Tableau des erreurs initialisé
 			$arrCityToDisplay 	= array();
 			$arrSelected		= array();
-			
-
-	//		if(count($_POST)>0){
-
-			//require("entities/users_entity.php");
-			//require("models/user_manager.php");
 			$objUserManager 	= new UserManager();
 			$objUser 			= new User; //
 						
-		
-
-			var_dump($_POST);
-
-			//$objUser = new User();
-			//$objUser->hydrate($_POST);
-			//$strQuery= $objUserManager->addUsers($objUser);
 		
 			$strConfirmPassword		= $_POST['confirmpassword']??'';
 
@@ -136,6 +115,22 @@
 				if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
 				}
+
+				if ($objUser->getPhone() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un numéro de téléphone";
+				}
+
+				if ($objUser->getBirthday() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une date";
+				}
+
+				if ($objUser->getAddress() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une adresse";
+				}
+
+				if ($objUser->getCityId() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une ville";
+				}
 				// Si aucune erreur, on créer l'objet User et on l'insert en BDD
 				if (count($arrError) == 0){ 
 											
@@ -150,7 +145,7 @@
 			}
 
 			$this->_arrData['arrSelected']			= $arrSelected;
-			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
+			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
 			
 		
 			/*$this->_arrData['strName']			= $strName; // On passe la variable strName dans le template
@@ -159,7 +154,7 @@
 			$this->_arrData['objUser']			= $objUser;
 			$this->_arrData['arrError']			= $arrError;
 			$this->_arrData['strTitle']			= "PetSitter - Inscription";
-			$this->_arrData['strPage']	= "inscription";
+			$this->_arrData['strPage']			= "inscription";
 
 			$this->display("inscription");
 		}	
@@ -183,7 +178,7 @@
 			header("Location:index.php");
 		}
 
-			/**
+		/**
 		* Page modifier le compte
 		*/
 		public function edit_account(){
@@ -194,11 +189,11 @@
 			// Création de l'objet User
 			$intCityId				= $_POST['cityid']??'';	
 			$objUserManager = new UserManager;
-			$objUser = new User;
+			$objUser 		= new User;
 			
 			
 			$objCityManager  = new CityManager(); 
-			$arrCity 	    = $objCityManager->findCity(); 
+			$arrCity 	     = $objCityManager->findCity(); 
 			
 		
 					
@@ -257,11 +252,11 @@
 			var_dump($objUser);
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
 			$this->_arrData['arrSelected']			= $arrSelected;
-			$this->_arrData['arrCityToDisplay']	= $arrCityToDisplay;
-			$this->_arrData['objUser']		= $objUser;
-			$this->_arrData['arrError']		= $arrError;
-			$this->_arrData['strTitle']		= "Créer un compte";
-			$this->_arrData['strPage']		= "edit_account";
+			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
+			$this->_arrData['objUser']				= $objUser;
+			$this->_arrData['arrError']				= $arrError;
+			$this->_arrData['strTitle']				= "Créer un compte";
+			$this->_arrData['strPage']				= "edit_account";
 			$this->display("inscription");
 
 		}
