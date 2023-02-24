@@ -205,7 +205,7 @@
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
 				if ($objPet->getTypeid() == $objPetType->getId()) {
-					$arrSexSelected[] = $objPetType->getId();
+					$arrPetTypeSelected[] = $objPetType->getId();
 				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
@@ -221,7 +221,7 @@
 				$objSex = new Sex;
 				$objSex->hydrate($arrDetSex);
 				if ($objPet->getSexid() == $objSex->getId()) {
-					$arrPetTypeSelected[] = $objSex->getId();
+					$arrSexSelected[] = $objSex->getId();
 				}
 				$arrSexToDisplay[] = $objSex;
 			}
