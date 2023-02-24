@@ -1,3 +1,5 @@
+{extends file="views/structure.tpl"}
+
 {block name="content"}
 
 

@@ -84,6 +84,9 @@
                         <input id="bouttonForm" type="submit" value="{if $strPage == 'inscription'}M'inscrire{else}Modifier{/if}"></input>
                     </div>
                 </form>
+
+
+                <p>Pour ajouter une image, <a href="index.php?ctrl=form&action=ajoutImg">Clique ici</a> </p>
             </div>
         </div>
     </div>
