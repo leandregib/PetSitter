@@ -185,6 +185,17 @@
 			header("Location:index.php?ctrl=error&action=error_403");
 			}
 
+			// Pour récupérer les informations dans le formulaire
+			$boolPersonalData 	=  $_POST['personal_data']??'';
+			$intId 				= $_SESSION['user']['id'];
+			$arrSexSelected		= array();
+			$arrPetTypeSelected	= array();
+
+			// Création de l'objet Pet
+			$objPet = new Pet;
+			// Création de l'objet PetManager
+			$objPetManager = new PetManager;
+
 		 	// Liste des types d'animaux
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
@@ -193,8 +204,12 @@
 	 		foreach($arrPetType as $arrDetPetType){
 		 		$objPetType = new Pet_type;
 		 		$objPetType->hydrate($arrDetPetType);
+				if ($objPet->getTypeid() == $objPetType->getId()) {
+					$arrSexSelected[] = $objPetType->getId();
+				}
 		 		$arrPetTypeToDisplay[] = $objPetType;
 	 		}
+			$this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
 		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
 
 			// Liste des sexes
@@ -205,18 +220,13 @@
 			foreach($arrSex as $arrDetSex){
 				$objSex = new Sex;
 				$objSex->hydrate($arrDetSex);
+				if ($objPet->getSexid() == $objSex->getId()) {
+					$arrPetTypeSelected[] = $objSex->getId();
+				}
 				$arrSexToDisplay[] = $objSex;
 			}
-			$this->_arrData['arrSexToDisplay']	= $arrSexToDisplay;
-			
-			// Pour récupérer les informations dans le formulaire (case RGPD à cocher)
-			$boolPersonalData 	=  $_POST['personal_data']??'';
-			$intId 				= $_SESSION['user']['id'];
-
-			// Création de l'objet Pet
-			$objPet = new Pet;
-			// Création de l'objet PetManager
-			$objPetManager = new PetManager;
+			$this->_arrData['arrSexSelected']		= $arrSexSelected;
+			$this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
 					
 			$arrError = array(); // Tableau des erreurs initialisé
 			if (count($_POST) > 0) { // Si le formulaire est envoyé
