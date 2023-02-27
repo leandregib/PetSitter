@@ -64,10 +64,31 @@
 		/**
 		* Methode de suppression d'un petsitter
 		*/
-		public function deletePetSitter()
+		public function deletePetsitter()
 		{
 			$intId = $_GET['id']??$_SESSION['user']['id'];
 			$strDelPetSitter = "DELETE FROM propose WHERE prop_userid = $intId";
 			return $this->_db->exec($strDelPetSitter);
+		}
+
+		/**
+		* Methode de validation d'une proposition de garde
+		* @param $objPetsitter objet du Petsitter dans la BDD
+		* @param $intId int Id de l'utilisateur connecté
+		* @return bool proposition validée ou non (passe de 0 à 1 en BDD)
+		*/		
+		public function updatePetsitter(object $objPetsitter):bool{
+
+           
+			// Insertion en BDD, si pas d'erreurs
+			$strRqUpdate 	= "UPDATE propose 
+								SET prop_valid = 1
+								WHERE prop_id = ".$objPetsitter->getId();
+							
+			// Requête préparée	
+			$prep		= $this->_db->prepare($strRqUpdate);
+		
+			return $prep->execute();				
+		
 		}
 	}

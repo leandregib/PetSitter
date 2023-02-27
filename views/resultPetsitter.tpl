@@ -1,6 +1,6 @@
     <div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
         <div class="text-center">
-            <a href="index.php?ctrl=&action=&id={$arrDetResultPetsitter['user_id']}" ><img src="assets/img/icon/iconPS.png" alt=""></a>
+            <a href="index.php?ctrl=user&action=vueProfil&id={$arrDetResultPetsitter['user_id']}" ><img src="assets/img/icon/iconPS.png" alt=""></a>
         </div>
         <div>
             <ul class="list-group list-group-flush">

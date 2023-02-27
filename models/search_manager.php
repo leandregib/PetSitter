@@ -59,6 +59,7 @@
 			elseif ($intCP == ''){
 				$strRq 		.= ")";
 			}
+			$strRq 		.= " AND user_id IN (SELECT prop_userid FROM propose WHERE prop_valid =1)"; //Uniquement les résultats validés par un modérateur au préalable
 			$strRq 		.= " ORDER BY city_cp";
 			
 			

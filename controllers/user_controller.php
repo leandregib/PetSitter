@@ -10,12 +10,30 @@
 		* Constructeur de la classe
 		*/ 
 		public function __construct(){
+			//user
 			require("models/user_manager.php"); 
 			require("entities/users_entity.php"); 
+			//city
 			require("models/city_manager.php");
 			require("entities/city_entity.php");
+			//home
+			require("models/home_manager.php"); 
+			require("entities/home_entity.php"); 
+			//role
 			require("entities/role_entity.php"); 
 			require("models/role_manager.php"); 
+			//pet
+			require("models/pet_manager.php"); 
+			require("entities/pet_entity.php"); 
+			//sitter
+			require("models/sitter_manager.php"); 
+			require("entities/sitter_entity.php"); 
+			//pet_type
+			require("models/pet_type_manager.php"); 
+			require("entities/pet_type_entity.php");
+			//sex
+			require("models/sex_manager.php"); 
+			require("entities/sex_entity.php");
 		}
 
 		/**
@@ -298,5 +316,132 @@
 			}
 			// Affichage
 			header("Location:index.php?ctrl=user&action=list_user");
+		}
+
+		/**
+		* Page profil
+		*/
+		public function vueProfil(){
+
+		// Création de l'objet User et UserManager
+		$objUser 			= new User;
+		$objUserManager 	= new UserManager;
+
+			// Récupérer les informations de l'utilisateur 				
+			$arrUser 		= $objUserManager->getUser();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objUser->hydrate($arrUser);
+			$intId 			= $objUser->getId();
+
+		// Création de l'objet User et UserManager
+		$objRole			= new Role;
+		$objRoleManager 	= new RoleManager;
+
+			// Récupérer les informations de l'utilisateur 				
+			$arrRole 		= $objRoleManager->getRole();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objRole->hydrate($arrRole);
+
+		// Création de l'objet City et CityManager
+		$objCity			= new City;
+		$objCityManager 	= new CityManager;
+
+			// Récupérer les informations de la ville de l'utilisateur	
+			$arrCity 		= $objCityManager->getCity();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objCity->hydrate($arrCity);
+
+		
+		// Création de l'objet Home et HomeManager
+		$objHome 		= new Home;
+		$objHomeManager = new HomeManager;
+
+			// Récupérer les informations du type d'habitation de l'utilisateur	
+			$arrHome		= $objHomeManager->getHome();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objHome->hydrate($arrHome);
+
+		// Création de l'objet Sitter et SitterManager
+		$objSitter 			= new Sitter;
+		$objSitterManager 	= new SitterManager;
+
+			// Récupérer les informations des types de garde proposées par l'utilisateur	
+			$arrSitter		= $objSitterManager->getSitter();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			if ($arrSitter) {
+				$objSitter->hydrate($arrSitter);
+			}
+			
+
+		// Création de l'objet PetTypeSitter et PetTypeManager (pour la section Petsitter)
+		$objPetTypeSitter 		= new Pet_type;
+		$objPetTypeManager 	= new PetTypeManager;
+
+			// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
+			$arrPetTypeSitter		= $objPetTypeManager->getPetType();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			if ($arrPetTypeSitter) {
+				$objPetTypeSitter->hydrate($arrPetTypeSitter);
+			}	
+			
+		// Création de l'objet PetType et PetTypeManager (pour la section Animaux)
+		$objPetType				= new Pet_type;
+
+			// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
+			$arrPetType		= $objPetTypeManager->getPetType();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			if ($arrPetType) {
+				$objPetType->hydrate($arrPetType);
+			}		
+
+
+		// Création de l'objet Pet et PetManager
+		$objPet 		= new Pet;
+		$objPetManager 	= new PetManager;
+
+			// Récupérer les informations des animaux de l'utilisateur	
+			$arrPet		= $objPetManager->getPet();
+			
+						
+			// Hydrater l'objet avec la méthode de l'entité
+			if ($arrPet) {
+				$objPet->hydrate($arrPet);
+			}
+			
+
+		// Création de l'objet Sex et SexManager
+		$objSex			= new Sex;
+		$objSexManager 	= new SexManager;
+
+			// Récupérer les informations des animaux de l'utilisateur	
+			$arrSex		= $objSexManager->getSex();
+						
+			// Hydrater l'objet avec la méthode de l'entité
+			if ($arrSex) {
+				$objSex->hydrate($arrSex);
+			}
+			
+
+		//Affichage 
+		$this->_arrData['objUser']				= $objUser;
+		$this->_arrData['objRole']				= $objRole;	
+		$this->_arrData['objCity']				= $objCity;	
+		$this->_arrData['objHome']				= $objHome;	
+		$this->_arrData['objSitter']			= $objSitter;	
+		$this->_arrData['objPetType']			= $objPetType;
+		$this->_arrData['objPetTypeSitter']		= $objPetTypeSitter;	
+		$this->_arrData['objPet']				= $objPet;
+		$this->_arrData['objSex']				= $objSex;
+
+		$this->_arrData['strTitle']	= "PetSitter - Vue Profil ".$objUser->getName()." ".$objUser->getFirstname();
+		$this->_arrData['strPage']	= "vueProfil";
+		$this->display("vueProfil");
 		}
 	}

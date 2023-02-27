@@ -131,6 +131,7 @@
 								  user_mail AS 'mail',
 								  user_address AS 'address',
 								  user_phone AS 'phone',
+								  user_homeid AS 'homeid',
 								  user_description AS 'description',
 								  user_cityid AS 'cityid',
 								  user_birthday AS 'birthday'
@@ -214,7 +215,6 @@
 							INNER JOIN role ON user_roleid = role_id
 							 WHERE user_id = $intId";
 			return $this->_db->query($strRqRole)->fetchAll();
-		}
-		
+		}		
 		
 	}

@@ -525,12 +525,15 @@
 		public function ajoutImg(){	
 			if (!isset($_SESSION['user'])) { // utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");
-			}	
+			}
+			
+			// Pour récupérer les informations dans le formulaire
+			$boolPersonalData 	=  $_POST['personal_data']??'';
 			
 			//Création de l'objet
 			$objPicture = new Picture;
 			
-			$arrErrors 	= array(); // Initialisation du tableau des erreurs
+			$arrError 	= array(); // Initialisation du tableau des erreurs
 			if (count($_POST) > 0){ // si formulaire envoyé
 
 				//Hydrate l'objet en fonction des données entrées dans le formulaire
@@ -538,27 +541,20 @@
 				//Récupère l'image mise dans le formulaire
 				$arrImageInfos		= $_FILES['image']??array();
 
-				// // Tests erreurs
-				// if ($_POST['csrf'] != $_SESSION['token_csrf']){
-				// 	$arrErrors['csrf'] = "Erreur sur le formulaire";
-				// }
-				// if ($objArticle->getTitle() == ''){
-				// 	$arrErrors['title'] = "Merci de renseigner un titre";
-				// }
-				// if ($objArticle->getContent() == ''){
-				// 	$arrErrors['content'] = "Merci de renseigner un contenu";
-				// }
-				// if ($arrImageInfos['size'] == 0){
-				// 	$arrErrors['image'] = "Merci de renseigner une image";
-				// }
-				
-				if (count($arrErrors)==0){ 
+				// Tests erreurs
+				if ($boolPersonalData == ''){ // Case d'autorisation de traitement des données personnelles
+					$arrError[]	= "Merci d'accepter le traitement des données transmises";
+				}
+				if ($arrImageInfos['name'] != '' || $arrImageInfos['size'] == 0){ // Test sur fichier d'image donné
+					$arrError[]	= "Merci de renseigner une image";
+				}
+				if (count($arrError)==0){ 
 					// Sauvegarde de l'image sur le serveur
 					$strNewName = $this->_photoName($arrImageInfos['name']);
 					$boolOk 	= $this->_photoTraitement($arrImageInfos, $strNewName);
 					
 					if($boolOk){
-					//if (move_uploaded_file($strFileName, $strFileDest)){
+						if (move_uploaded_file($strFileName, $strFileDest)){
 						// Insertion en BDD, si pas d'erreurs
 						$objManager 	= new PictureManager(); // instancier la classe
 						$objPicture->setName($strNewName);
@@ -566,6 +562,7 @@
 						$objManager->addPicture($objPicture); 
 						
 						header("Location:index.php"); // Redirection page d'accueil
+						}
 					}
 				}
 			}
@@ -576,7 +573,7 @@
 			
 		 	//Affichage
 			$this->_arrData['objPicture']	= $objPicture;
-			$this->_arrData['arrError']		= $arrErrors;
+			$this->_arrData['arrError']		= $arrError;
 			$this->_arrData['strTitle']	= "Ajoutez votre image";
 			$this->_arrData['strPage']	= "ajoutImg";
 			$this->display("ajoutImg");
