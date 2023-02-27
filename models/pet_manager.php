@@ -96,4 +96,22 @@
 			$strDelPet = "DELETE FROM pet WHERE pet_id = $intPetId";
 			return $this->_db->exec($strDelPet);
 		}
+
+		/**
+		* Methode de récupération des animaux de l'utilisateur
+		* @return array récupère les animaux de l'utilisateur
+		*/
+		public function getPet(){
+			$intId 		= $_GET['id']??$_SESSION['user']['id'];
+			$strRqUser 	= "SELECT pet_id,
+								  pet_name, 
+								  pet_birthday
+							FROM pet
+								INNER JOIN users ON pet_userid = user_id
+							WHERE user_id = '".$intId."'";
+							
+			$arrUser 	= $this->_db->query($strRqUser)->fetch();
+			
+			return $arrUser;
+		}
 	}

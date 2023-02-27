@@ -21,5 +21,21 @@
 							
 			return $this->_db->query($strRqHome)->fetchAll();
 		}
+
+		/**
+		* Methode de récupération du type d'habitation de l'utilisateur 
+		* @return array récupère le type d'habitation de l'utilisateur 
+		*/
+		public function getHome(){
+			$intId 		= $_GET['id']??$_SESSION['user']['id'];
+			$strRqHome	= "SELECT home_type  								  
+							FROM home
+								INNER JOIN users ON user_homeid = home_id
+							WHERE user_id = '".$intId."'";
+							
+			$arrHome 	= $this->_db->query($strRqHome)->fetch();
+			
+			return $arrHome;
+		}
 		
 	}

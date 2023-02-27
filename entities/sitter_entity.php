@@ -47,7 +47,7 @@
 		* Getter du type
 		* @return string Type
 		*/
-		public function getType():string{
+		public function getType():string|null{
 			return $this->_type;
 		}
 		/**
