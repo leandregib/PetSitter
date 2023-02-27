@@ -337,6 +337,16 @@
 			$objUser->hydrate($arrUser);
 			$intId 			= $objUser->getId();
 
+		// Création de l'objet User et UserManager
+		$objRole			= new Role;
+		$objRoleManager 	= new RoleManager;
+
+			// Récupérer les informations de l'utilisateur 				
+			$arrRole 		= $objRoleManager->getRole();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objRole->hydrate($arrRole);
+
 		// Création de l'objet City et CityManager
 		$objCity			= new City;
 		$objCityManager 	= new CityManager;
@@ -401,11 +411,13 @@
 
 			// Récupérer les informations des animaux de l'utilisateur	
 			$arrPet		= $objPetManager->getPet();
+			
 						
 			// Hydrater l'objet avec la méthode de l'entité
 			if ($arrPet) {
 				$objPet->hydrate($arrPet);
 			}
+			
 
 		// Création de l'objet Sex et SexManager
 		$objSex			= new Sex;
@@ -421,7 +433,8 @@
 			
 
 		//Affichage 
-		$this->_arrData['objUser']				= $objUser;	
+		$this->_arrData['objUser']				= $objUser;
+		$this->_arrData['objRole']				= $objRole;	
 		$this->_arrData['objCity']				= $objCity;	
 		$this->_arrData['objHome']				= $objHome;	
 		$this->_arrData['objSitter']			= $objSitter;	

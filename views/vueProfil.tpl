@@ -11,31 +11,33 @@
     <ul class="list-group list-group-flush">
         {* User *}
         <h5>Informations sur l'utilisateur :</h5>
-        <li class="list-group-item">Nom : <span>{$objUser->getName()|unescape}</span></li>
-        <li class="list-group-item">Prénom : <span>{$objUser->getFirstName()|unescape}</span></li>
-        <li class="list-group-item">Ville : <span>{$objCity->getName()|unescape}</span></li>
-        <li class="list-group-item">Date de naissance : <span>{$objUser->getBirthday()|date_format:"d/m/Y"}</span></li>
-        <li class="list-group-item">Email : <span>{$objUser->getMail()|unescape}</span></li>
-        <li class="list-group-item">Numéro de téléphone : <span>{$objUser->getPhone()|unescape}</span></li>
-        <li class="list-group-item">Description : <span>{$objUser->getDescription()|unescape}</span></li>
+        <li class="list-group-item">Nom : {$objUser->getName()|unescape}</li>
+        <li class="list-group-item">Prénom : {$objUser->getFirstName()|unescape}</li>
+        <li class="list-group-item">Ville : {$objCity->getName()|unescape}</li>
+        <li class="list-group-item">Date de naissance : {$objUser->getBirthday()|date_format:"d/m/Y"}</li>
+        <li class="list-group-item">Email : {$objUser->getMail()|unescape}</li>
+        <li class="list-group-item">Numéro de téléphone : {$objUser->getPhone()|unescape}</li>
+        <li class="list-group-item">Description : {$objUser->getDescription()|unescape}</li>
+        {* Role *}
+        <li class="list-group-item">Rôle : {$objRole->getName()|unescape}</li>
         
         {* Petsitter *}
-        {if $objSitter->getType() && $objPetTypeSitter->getKind()}
+        {if isset($objSitter->getType()) && isset($objPetTypeSitter->getKind())}
             <h5>Services Petsitter:</h5>
-            <li class="list-group-item">Type de logement :<span>{$objHome->getType()}</span></li>
-            <li class="list-group-item">Type de garde :<span>{$objSitter->getType()}</span></li>
-            <li class="list-group-item">Type d'animal :<span> {$objPetTypeSitter->getKind()}  </span></li>
+            <li class="list-group-item">Type de logement : {$objHome->getType()}</li>
+            <li class="list-group-item">Type de garde : {$objSitter->getType()}</li>
+            <li class="list-group-item">Type d'animal : {$objPetTypeSitter->getKind()}  </li>
         {/if} 
 
         {* Pet(s) *}
-        {if $objPet->getName()}
+        {if isset($objPet->getName())}
             <h5>Animaux :</h5>
-            <li class="list-group-item">Nom :<span>{$objPet->getName()|unescape}</span></li>
+            <li class="list-group-item">Nom : {$objPet->getName()|unescape}</li>
             {if $objPet->getBirthday() != null}
-                <li class="list-group-item">Date de naissance :<span>{$objPet->getBirthday()|date_format:"d/m/Y"}</span></li>
+                <li class="list-group-item">Date de naissance : {$objPet->getBirthday()|date_format:"d/m/Y"}</li>
             {/if}        
-            <li class="list-group-item">Type d'animal :<span>{$objPetType->getKind()}</span></li>
-            <li class="list-group-item">Sexe :<span>{$objSex->getType()}</span></li>
+            <li class="list-group-item">Type d'animal : {$objPetType->getKind()}</li>
+            <li class="list-group-item">Sexe : {$objSex->getType()}</li>
         {/if} 
         
         {* Note *}

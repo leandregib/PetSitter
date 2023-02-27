@@ -73,8 +73,8 @@
 		* Setter de l'anniversaire
 		* @param $strBirthday Birthday
 		*/
-		public function setBirthday(string $strBirthday){
-			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
+		public function setBirthday(string|null $strBirthday){
+			$this->_birthday = filter_var($strBirthday,FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 
 		//___________________________________________________________________________
