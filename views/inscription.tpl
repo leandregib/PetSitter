@@ -90,13 +90,13 @@
                                 mes données transmises via ce formulaire</label>
                         </div>
                     </div>
-                    <div class="mb-5 mt-2 pb-2 text-center">
+                    <div class="mb-3 mt-2 pb-2 text-center">
                         <input id="bouttonForm" type="submit" value="{if $strPage == 'inscription'}M'inscrire{else}Modifier{/if}"></input>
                     </div>
                 </form>
-
-
+                <div class="mb-5 text-center">
                 <p>Pour ajouter une image, <a href="index.php?ctrl=form&action=ajoutImg">Clique ici</a> </p>
+                </div>
             </div>
         </div>
     </div>
