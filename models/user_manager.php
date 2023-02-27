@@ -33,7 +33,7 @@
 			$strRqUsers = "SELECT user_id AS 'id', 
 								  user_mail AS 'mail', 
 								  user_firstname AS 'firstname',
-								  user_roleid,
+								  user_roleid AS 'role',
 								  user_password 
 							FROM users
 							WHERE user_mail = '".$strMail."'";
@@ -90,7 +90,6 @@
 									user_firstname = :firstname, 
 									user_mail = :mail,
 									user_birthday = :birthday,
-									
 									user_address  = :address,
 									user_cityid   = :cityid,
 									user_phone    = :phone,
@@ -194,7 +193,11 @@
 			
 			return ($arrUser !== false);
 		}
-		
+
+		/**
+		* Méthode permettant de supprimer un utilisateur
+		* @param object $objUser Objet de l'utilisateur
+		*/
 		public function deleteUser()
 		{
 			$intId = $_GET['id']??$_SESSION['user']['id'];
@@ -202,7 +205,10 @@
 			return $this->_db->exec($strDelUserQuery);
 		}
 
-
+		/**
+		* Méthode permettant de récupérer le role d' un utilisateur
+		* @param object $intId Objet de l'utilisateur
+		*/
 		public function findRole($intId){
 			$strRqRole ="SELECT user_roleid AS role_id, role_name FROM users 
 							INNER JOIN role ON user_roleid = role_id

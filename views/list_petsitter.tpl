@@ -9,28 +9,28 @@
 {/block}
 
 {block name="content"}
-	<h2 class="text-center mb-5 mt-5">Liste des utilisateurs</h2>
+	<h2 class="text-center mb-5 mt-5">Liste des Animaux</h2>
 	<table id="list" class="table table-striped" style="width:100%">
 		<thead>
 			<tr>
 				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Actions</th>
+				<th>Id</th>
+				
+				<th>Id du propriétaire</th>
 				
 			</tr>
 		</thead>
 		
 		<tbody>
-			{foreach from=$arrUsersToDisplay item=objUser} 
+			{foreach from=$arrSitterToDisplay item=objSitter} 
 			<tr>
-				<td>{$objUser->getName()|unescape}</td>
-				<td>{$objUser->getFirstName()|unescape}</td>
+				
+				<td>{$objSitter->getId()|unescape}</td>
+                <td>{$objSitter->getType()|unescape}</td>
 				
 				<td>
-					<a href="index.php?ctrl=user&action=edit_account&id={$objUser->getId()}" >Modifier</a>
-					/
 					
-					<a href="index.php?ctrl=user&action=deleteUser&id={$objUser->getId()}" >Supprimer</a>
+					
 				</td>
 				
 			</tr>
@@ -39,8 +39,7 @@
 		<tfoot>
 		</tfoot>
 	</table>
-	<a href="index.php?ctrl=form&action=list_pet" title="Modifier son profil">Animaux</a>
-	<a href="index.php?ctrl=form&action=list_petsitter" title="Modifier son profil">PetSitter</a>
+
 
 {/block}
 

@@ -63,18 +63,18 @@
                             {/foreach}
 						</select>
                     </div>
-                    {if isset($smarty.session.user.id) && $smarty.session.user.user_roleid == 1}
+                    {if isset($smarty.session.user.id) && $smarty.session.user.role == 1}
                     <div>
                     <label for="roleid" class="form-label" >Rôle</label>
                     <select id="roleid" name="roleid">
                         <option value=''>--</option>
                         {foreach from=$arrRoleToDisplay item = objRole}
-                            <option {if (in_array($objUser->getId(), $arrSelected))} selected {/if}  value='{$objRole->getId()}'>{$objRole->getId()} {$objRole->getName()}</option>
+                            <option {if (in_array($objRole->getId(), $arrSelectedRole))} selected {/if}  value='{$objRole->getId()}'>{$objRole->getId()} {$objRole->getName()}</option>
                         {/foreach}
                     </select>
                     </div>
                     {/if}   
-                    
+          
                     <div>
                         <div class="mt-3">
                             <label for="forpFile" class="form-label" name="description">Description:</label>

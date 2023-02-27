@@ -44,7 +44,7 @@
 		* @param $intId Identifiant
 		*/
 		public function setId(int $intId){
-			$this->_id = $intId;
+			$this->_id = intval($intId);
 		}
 		//___________________________________________________________________________
 		/**
@@ -73,8 +73,11 @@
 		* Setter de l'anniversaire
 		* @param $strBirthday Birthday
 		*/
-		public function setBirthday(string $strBirthday){
-			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
+		public function setBirthday(string|null $strBirthday){
+			if (!is_null($strBirthday)) {
+				$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
+			}
+			
 		}
 
 		//___________________________________________________________________________

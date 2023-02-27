@@ -13,6 +13,7 @@
 		}
 		
 		/**
+		*Creator Jérémy Gallippi 
 		* Methode de récupération des pets
 		* @return array Liste des pets
 		*/
@@ -45,22 +46,29 @@
 		return $prep->execute();
 		}
 
-		public function updatePet($objPet,$intId){
+		/**
+		* Creator Jérémy Gallippi
+		* Methode de modification d'un pet
+		* @param $objPet objet de l'animal à ajouter dans la BDD
+		*/
+		public function updatePet($objPet){
 
 			// Insertion en BDD, si pas d'erreurs
-			$strRqAdd 	= "	UPDATE pet
-							(pet_id, pet_name, pet_birthday, pet_userid, pet_typeid, pet_sexid)
-							VALUES (:id, :name, :birthday, $intId, :typeid, :sexid)";
-	
+			$strRqUpPet 	= "	UPDATE pet
+								SET pet_name 	 = :name,
+								 	pet_birthday = :birthday,
+								  	pet_typeid 	 = :typeid,
+								   	pet_sexid	 = :sexid
+								WHERE pet_id = ".$objPet->getId();				
 			// Requête préparée	
-			$prep		= $this->_db->prepare($strRqAdd);
+			$prep		= $this->_db->prepare($strRqUpPet);
 	
-			$prep->bindValue(':id', $objPet->getId(), PDO::PARAM_INT);
 			$prep->bindValue(':name', $objPet->getName(), PDO::PARAM_STR);
 			$prep->bindValue(':birthday', $objPet->getBirthday(), PDO::PARAM_STR);
 			$prep->bindValue(':typeid', $objPet->getTypeid(), PDO::PARAM_INT);
 			$prep->bindValue(':sexid', $objPet->getSexid(), PDO::PARAM_INT);
-		
+			
+			
 			return $prep->execute();
 			}
 
@@ -88,12 +96,36 @@
 		}
 
 		/**
+		* Creator Jérémy Gallippi
 		* Methode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
-		public function deletePet($intPetId)
+		public function deletePet($intId)
 		{
-			$strDelPet = "DELETE FROM pet WHERE pet_id = $intPetId";
+			$strDelPet = "DELETE FROM pet WHERE pet_id = ".$intId;	
 			return $this->_db->exec($strDelPet);
 		}
+
+		/**
+		* Creator Jérémy Gallippi
+		* Methode de récupération d'un animal
+		* @param int $intPetId Id de l'animal 
+		*/
+		public function getPet($intId){
+			
+			$strRqPet 	= "SELECT pet_id,
+								  pet_name, 
+								  pet_birthday , 
+								  pet_userid ,
+								  pet_typeid ,
+								  pet_sexid 
+							FROM pet
+							WHERE pet_id = '".$intId."'";
+							
+							
+			$arrPet 	= $this->_db->query($strRqPet)->fetch();
+			
+			return $arrPet;
+		}
+
 	}

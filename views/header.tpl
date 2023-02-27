@@ -50,7 +50,7 @@
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
                                     Bonjour <a href="index.php?ctrl=user&action=edit_account" title="Modifier son profil">{$smarty.session.user.firstname}<a class="nav-link" href="index.php?ctrl=user&action=logout">Se déconnecter</a>  
                                 </li>
-                            {if isset($smarty.session.user.id) && $smarty.session.user.user_roleid == 1}
+                            {if isset($smarty.session.user.id) && $smarty.session.user.role == 1}
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
                                      <a href="index.php?ctrl=user&action=list_user" title="Modifier son profil">Utilisateurs</a>  
                                 </li>

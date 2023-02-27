@@ -175,6 +175,7 @@
 		//_________________________________________________________________________________________________________
 
 		/**
+		* Creator Jérémy Gallippi
 		* Page Formulaire Nouvel Animal
 		*/
 		public function formNouvAnimal (){
@@ -265,22 +266,26 @@
 
 
 		/**
+		* Creator Jérémy Gallippi
 		* Page de modif d'un Animal
 		*/
 		public function modifNouvAnimal (){
+			
+			
 			if (	
 				// utilisateur non connecté
 				(!isset($_SESSION['user'])) 
 			||  
 				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id']) && $_SESSION['user']['role'] != 1) 
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
 		   ){
 			header("Location:index.php?ctrl=error&action=error_403");
 			}
+			
 
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';
-			$intId 				= $_SESSION['user']['id'];
+			
 			$arrSexSelected		= array();
 			$arrPetTypeSelected	= array();
 
@@ -288,38 +293,18 @@
 			$objPet = new Pet;
 			// Création de l'objet PetManager
 			$objPetManager = new PetManager;
-
+			
 		 	// Liste des types d'animaux
 			$objPetTypeManager  = new PetTypeManager(); 
 			$arrPetType 	    = $objPetTypeManager->findPetType(); 
 
 	 		$arrPetTypeToDisplay = array();
-	 		foreach($arrPetType as $arrDetPetType){
-		 		$objPetType = new Pet_type;
-		 		$objPetType->hydrate($arrDetPetType);
-				if ($objPet->getTypeid() == $objPetType->getId()) {
-					$arrPetTypeSelected[] = $objPetType->getId();
-				}
-		 		$arrPetTypeToDisplay[] = $objPetType;
-	 		}
-			$this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
-		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+	 	
 			
 			// Liste des sexes
 			$objSexManager  	= new SexManager(); 
 			$arrSex	    	= $objSexManager->findSex();
 			
-			$arrSexToDisplay = array();
-			foreach($arrSex as $arrDetSex){
-				$objSex = new Sex;
-				$objSex->hydrate($arrDetSex);
-				if ($objPet->getSexid() == $objSex->getId()) {
-					$arrSexSelected[] = $objSex->getId();
-				}
-				$arrSexToDisplay[] = $objSex;
-			}
-			$this->_arrData['arrSexSelected']		= $arrSexSelected;
-			$this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
 					
 			$arrError = array(); // Tableau des erreurs initialisé
 			if (count($_POST) > 0) { // Si le formulaire est envoyé
@@ -343,16 +328,105 @@
 						$arrError[]	= "Erreur lors de l'ajout";
 					}
 				}
-			}
+			
 
+
+			}else {
+				
+				$intId 	= $_GET['id'];				
+				$arrPet			= $objPetManager->getPet($intId);
+				// Hydrater l'objet avec la méthode de l'entité
+				
+				$objPet->hydrate($arrPet);
+					
+			}
+			
+			foreach($arrPetType as $arrDetPetType){
+				$objPetType = new Pet_type;
+				$objPetType->hydrate($arrDetPetType);
+			   if ($objPet->getTypeid() == $objPetType->getId()) {
+				   $arrPetTypeSelected[] = $objPetType->getId();
+			   }
+				$arrPetTypeToDisplay[] = $objPetType;
+			}
+			foreach($arrSex as $arrDetSex){
+				$objSex = new Sex;
+				$objSex->hydrate($arrDetSex);
+				if ($objPet->getSexid() == $objSex->getId()) {
+					$arrSexSelected[] = $objSex->getId();
+				}
+				$arrSexToDisplay[] = $objSex;
+			}
+			
 			//Affichage
-			$this->_arrData['objPet']		= $objPet;
-			$this->_arrData['arrError']		= $arrError;
-			$this->_arrData['strTitle']		= "Ajoute ton animal";
-			$this->_arrData['strPage']		= "formNouvAnimal";
+			$this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
+		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+			$this->_arrData['arrSexSelected']		= $arrSexSelected;
+			$this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
+			$this->_arrData['objPet']				= $objPet;
+			$this->_arrData['arrError']				= $arrError;
+			$this->_arrData['strTitle']				= "Modifier un animal";
+			$this->_arrData['strPage']				= "modifNouvAnimal";
 			$this->display("formNouvAnimal");
 		}
 
+		/**
+		* Creator Jérémy Gallippi
+		* fonction qui affiche la liste des animaux
+		*/
+		public function list_pet(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objPetManager = new PetManager;
+			$arrPet = $objPetManager->findPet();
+			
+			// Liste des utilisateurs en mode objet
+			$arrPetToDisplay = array();
+			foreach($arrPet as $arrDetPet){
+				$objPet = new Pet;
+				$objPet->hydrate($arrDetPet);
+				$arrPetToDisplay[] = $objPet;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']					= "Liste des animaux";
+			$this->_arrData['strPage']					= "list_pet";
+			$this->_arrData['arrPetToDisplay']			= $arrPetToDisplay;
+			$this->display("list_pet");
+		}
+
+
+		/**
+		* Creator Jérémy Gallippi
+		* Methode de suppression d'un animal
+		* @param int $intPetId Id de l'animal à supprimer
+		*/
+		public function DeletePet(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			$intId 		= $_GET['id'];
+			$objPet = new Pet;
+			// Récupération des utilisateurs
+			$objPetManager = new PetManager;
+			$objPetManager->deletePet($intId);
+			$arrPet = $objPetManager->findPet();
+			
+			// Liste des utilisateurs en mode objet
+			$arrPetToDisplay = array();
+			foreach($arrPet as $arrDetPet){
+				
+				$objPet->hydrate($arrDetPet);
+				$arrPetToDisplay[] = $objPet;
+				
+			}
+			// Affichage
+			header("index.php?ctrl=form&action=list_pet");
+		}
+		
 		//_________________________________________________________________________________________________________
 
 		
@@ -415,6 +489,30 @@
 			$this->_arrData['strTitle']	= "PetSitter - Choisis ton PetSitter";
 			$this->_arrData['strPage']	= "faisGarderTonAnimal";
 			$this->display("faisGarderTonAnimal");
+		}
+
+		public function list_petsitter(){
+			if (!isset($_SESSION['user'])) {// utilisateur non connecté
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objSitterManager = new SitterManager;
+			$arrSitter = $objSitterManager->findSitter();
+			
+			// Liste des utilisateurs en mode objet
+			$arrSitterToDisplay = array();
+			foreach($arrSitter as $arrDetSitter){
+				$objSitter = new Sitter;
+				$objSitter->hydrate($arrDetSitter);
+				$arrSitterToDisplay[] = $objSitter;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']					= "Liste des Sitter";
+			$this->_arrData['strPage']					= "list_petsitter";
+			$this->_arrData['arrSitterToDisplay']		= $arrSitterToDisplay;
+			$this->display("list_petsitter");
 		}
 
 

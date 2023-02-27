@@ -7,8 +7,13 @@
             <div class="row">
                 <div class="offset-md-4 col-md-4">
                 {include file="views/error_display.tpl"}
-                    <form name="formPet" action="index.php?ctrl=form&action=formNouvAnimal" method="post">
-                        <div>
+                    <form name="formPet" action="index.php?ctrl=form&action={$strPage}" method="post">
+                        
+                        <div> 
+                        {if $strPage != "formNouvAnimal"}
+                            <input type="hidden" name="id" value="{$objPet->getId()}" />
+                        {/if}
+                            
                             <label for="name" class="form-label">Nom</label>
                             <input type="text" class="form-control mx-auto" placeholder="Net" name="name" value="{if $objPet->getName() != ''}{$objPet->getName()|unescape}{/if}">
                         </div>
@@ -20,7 +25,7 @@
                             <label for="typeid">Choisissez un type d'animal</label>
                             <select name="typeid" class="form-select my-2" aria-label="Default select example" >                            
                                 {foreach from=$arrPetTypeToDisplay item=objPetType} 
-                                    <option value='{$objPetType->getId()}' {if (in_array($objPet->getTypeid(), $arrPetTypeSelected))} selected {/if}>{$objPetType->getKind()}</option>
+                                    <option {if (in_array($objPet->getTypeid(), $arrPetTypeSelected))} selected {/if} value='{$objPetType->getId()}' {if (in_array($objPet->getTypeid(), $arrPetTypeSelected))}  selected {/if}>{$objPetType->getKind()}</option>
                                 {/foreach}
                             
                             </select>
@@ -30,7 +35,7 @@
                             <label for="sexid">Sélectionné le sexe de l'animal</label>
                             <select name="sexid" class="form-select my-2" aria-label="Default select example">
                                 {foreach from=$arrSexToDisplay item=objSex} 
-                                    <option value='{$objSex->getId()}' {if (in_array($objPet->getSexid(), $arrSexSelected))} selected {/if}>{$objSex->getType()}</option>
+                                    <option {if (in_array($objPet->getSexid(), $arrPetTypeSelected))} selected {/if} value='{$objSex->getId()}' {if (in_array($objPet->getSexid(), $arrSexSelected))} selected {/if}>{$objSex->getType()}</option>
                                 {/foreach}
                             </select>
                         </div>
