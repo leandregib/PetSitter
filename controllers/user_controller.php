@@ -10,12 +10,24 @@
 		* Constructeur de la classe
 		*/ 
 		public function __construct(){
+			//user
 			require("models/user_manager.php"); 
 			require("entities/users_entity.php"); 
+			//city
 			require("models/city_manager.php");
 			require("entities/city_entity.php");
+			//home
+			require("models/home_manager.php"); 
+			require("entities/home_entity.php"); 
+			//role
 			require("entities/role_entity.php"); 
 			require("models/role_manager.php"); 
+			//pet
+			require("models/pet_manager.php"); 
+			require("entities/pet_entity.php"); 
+			//sitter
+			require("models/sitter_manager.php"); 
+			require("entities/sitter_entity.php"); 
 		}
 
 		/**
@@ -301,5 +313,69 @@
 			$this->_arrData['strPage']					= "list_user";
 			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
 			$this->display("list_user");
+		}
+
+		/**
+		* Page profil
+		*/
+		public function vueProfil(){
+
+		// Création de l'objet User et UserManager
+		$objUser 			= new User;
+		$objUserManager 	= new UserManager;
+
+			// Récupérer les informations de l'utilisateur 				
+			$arrUser 		= $objUserManager->getUser();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objUser->hydrate($arrUser);
+			$intId 			= $objUser->getId();
+
+		// Création de l'objet City et CityManager
+		$objCity			= new City;
+		$objCityManager 	= new CityManager;
+
+			// Récupérer les informations de la ville de l'utilisateur	
+			$arrCity 		= $objCityManager->getCity();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objCity->hydrate($arrCity);
+
+		// Création de l'objet Sitter et SitterManager
+		$objSitter 			= new Sitter;
+		$objSitterManager 	= new SitterManager;
+
+			// Récupérer les informations des types de garde proposées par l'utilisateur	
+			$arrSitter		= $objSitterManager->getSitter();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objSitter->hydrate($arrSitter);
+
+		// Création de l'objet Home et HomeManager
+		$objHome 		= new Home;
+		$objHomeManager = new HomeManager;
+
+			// Récupérer les informations du type d'habitation de l'utilisateur	
+			$arrHome		= $objHomeManager->getHome();
+					
+			// Hydrater l'objet avec la méthode de l'entité
+			$objHome->hydrate($arrHome);
+
+		// Création de l'objet Pet et PetManager
+		$objPet 		= new Pet;
+		$objPetManager 	= new PetManager;
+
+			// Récupérer les informations des animaux de l'utilisateur	
+			$arrPet		= $objPetManager->getPet();
+						
+			// Hydrater l'objet avec la méthode de l'entité
+			$objPet->hydrate($arrPet);
+
+		//Affichage 
+		$this->_arrData['objUser']	= $objUser;	
+		$this->_arrData['objCity']	= $objCity;		
+		$this->_arrData['strTitle']	= "PetSitter - Plan de site";
+		$this->_arrData['strPage']	= "planDuSite";
+		$this->display("vueProfil");
 		}
 	}
