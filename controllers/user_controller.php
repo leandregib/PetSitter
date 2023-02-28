@@ -300,7 +300,7 @@
 			if (!isset($_SESSION['user'])) {// utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");
 			}
-			
+			$objUser = new User;
 			// Récupération des utilisateurs
 			$objUserManager = new UserManager;
 			$objUserManager->deleteUser($objUser);
@@ -309,16 +309,13 @@
 			// Liste des utilisateurs en mode objet
 			$arrUsersToDisplay = array();
 			foreach($arrUsers as $arrDetUser){
-				$objUser = new User;
+				
 				$objUser->hydrate($arrDetUser);
 				$arrUsersToDisplay[] = $objUser;
 				
 			}
 			// Affichage
-			$this->_arrData['strTitle']					= "Liste des utilisateurs";
-			$this->_arrData['strPage']					= "list_user";
-			$this->_arrData['arrUsersToDisplay']		= $arrUsersToDisplay;
-			$this->display("list_user");
+			header("Location:index.php?ctrl=user&action=list_user");
 		}
 
 		/**

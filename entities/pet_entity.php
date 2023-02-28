@@ -44,7 +44,7 @@
 		* @param $intId Identifiant
 		*/
 		public function setId(int $intId){
-			$this->_id = $intId;
+			$this->_id = intval($intId);
 		}
 		//___________________________________________________________________________
 		/**
@@ -74,7 +74,10 @@
 		* @param $strBirthday Birthday
 		*/
 		public function setBirthday(string|null $strBirthday){
-			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
+			if (!is_null($strBirthday)) {
+				$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
+			}
+			
 		}
 
 		//___________________________________________________________________________
