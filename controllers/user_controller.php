@@ -281,8 +281,14 @@
 
 		//liste des utilisateurs à consulter pour l'admin
 		public function list_user(){
-			if (!isset($_SESSION['user'])) {// utilisateur non connecté
-				header("Location:index.php?ctrl=error&action=error_403");
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+		   		){
+					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			
 			// Récupération des utilisateurs
@@ -307,8 +313,14 @@
 
 
 		public function DeleteUser(){
-			if (!isset($_SESSION['user'])) {// utilisateur non connecté
-				header("Location:index.php?ctrl=error&action=error_403");
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+		   		){
+					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			$objUser = new User;
 			// Récupération des utilisateurs

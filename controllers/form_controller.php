@@ -271,14 +271,14 @@
 		*/
 		public function modifNouvAnimal (){
 			
-			
+
 			if (	
 				// utilisateur non connecté
 				(!isset($_SESSION['user'])) 
 			||  
 				// utilisateur non admin qui veut changer un autre compte
 				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
-		   ){
+		  	 ){
 			header("Location:index.php?ctrl=error&action=error_403");
 			}
 			
@@ -375,8 +375,14 @@
 		* fonction qui affiche la liste des animaux
 		*/
 		public function list_pet(){
-			if (!isset($_SESSION['user'])) {// utilisateur non connecté
-				header("Location:index.php?ctrl=error&action=error_403");
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+		   		){
+					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			
 			// Récupération des utilisateurs
@@ -405,8 +411,14 @@
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
 		public function DeletePet(){
-			if (!isset($_SESSION['user'])) {// utilisateur non connecté
-				header("Location:index.php?ctrl=error&action=error_403");
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+		   		){
+					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			$intId 		= $_GET['id'];
 			$objPet = new Pet;
@@ -491,29 +503,6 @@
 			$this->display("faisGarderTonAnimal");
 		}
 
-		public function list_petsitter(){
-			if (!isset($_SESSION['user'])) {// utilisateur non connecté
-				header("Location:index.php?ctrl=error&action=error_403");
-			}
-			
-			// Récupération des utilisateurs
-			$objSitterManager = new SitterManager;
-			$arrSitter = $objSitterManager->findSitter();
-			
-			// Liste des utilisateurs en mode objet
-			$arrSitterToDisplay = array();
-			foreach($arrSitter as $arrDetSitter){
-				$objSitter = new Sitter;
-				$objSitter->hydrate($arrDetSitter);
-				$arrSitterToDisplay[] = $objSitter;
-				
-			}
-			// Affichage
-			$this->_arrData['strTitle']					= "Liste des Sitter";
-			$this->_arrData['strPage']					= "list_petsitter";
-			$this->_arrData['arrSitterToDisplay']		= $arrSitterToDisplay;
-			$this->display("list_petsitter");
-		}
 
 
 		//_________________________________________________________________________________________________________
