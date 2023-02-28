@@ -39,9 +39,9 @@
 		<tfoot>
 		</tfoot>
 	</table>
-	<a href="index.php?ctrl=form&action=list_pet" title="Modifier son profil">Animaux</a>
-	<a href="index.php?ctrl=form&action=list_petsitter" title="Modifier son profil">PetSitter</a>
-
+	{if isset($smarty.session.user.id) && $smarty.session.user.role == 1}
+		<a href="index.php?ctrl=form&action=list_pet" title="Modifier son profil">Animaux</a>
+	{/if}
 {/block}
 
 {block name='js_foot' append}
