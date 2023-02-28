@@ -38,5 +38,20 @@
 			
 			return $arrPetType;
 		}
+
+		/**
+		* Methode de récupération des types d'animaux que l'utilisateur souhaite garder
+		* @return array récupère les types d'animaux que l'utilisateur souhaite garder
+		*/
+		public function getPetTypeSitter($intId){
+			$strRqPetType	= "SELECT pet_type_kind 								  
+							FROM pet_type
+								INNER JOIN propose ON prop_pet_typeid = pet_type_id
+							WHERE prop_id = '".$intId."'";
+							
+			$arrPetType 	= $this->_db->query($strRqPetType)->fetch();
+			
+			return $arrPetType;
+		}
 		
 	}

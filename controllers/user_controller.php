@@ -37,6 +37,9 @@
 			//picture
 			require("models/picture_manager.php"); 
 			require("entities/picture_entity.php");
+			//propose
+			require("models/propose_manager.php"); 
+			require("entities/propose_entity.php");
 		}
 
 		/**
@@ -177,7 +180,11 @@
 		* Page modifier le compte
 		*/
 		public function edit_account(){
-			if (!isset($_SESSION['user'])){
+			if (// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
 				header("Location:index.php?ctrl=error&action=error_403");
 			}
 			// Créer un objet vide avec l'entité 
@@ -393,20 +400,19 @@
 				$objPetTypeSitter->hydrate($arrPetTypeSitter);
 			}	
 			
-		// Création de l'objet PetType et PetTypeManager (pour la section Animaux)
-		$objPetType				= new Pet_type;
+		// // Création de l'objet PetType et PetTypeManager (pour la section Animaux)
+		// $objPetType				= new Pet_type;
 
-			// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
-			$arrPetType		= $objPetTypeManager->getPetType();
+		// 	// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
+		// 	$arrPetType		= $objPetTypeManager->getPetType();
 					
-			// Hydrater l'objet avec la méthode de l'entité
-			if ($arrPetType) {
-				$objPetType->hydrate($arrPetType);
-			}		
+		// 	// Hydrater l'objet avec la méthode de l'entité
+		// 	if ($arrPetType) {
+		// 		$objPetType->hydrate($arrPetType);
+		// 	}		
 
 
-		// Création de l'objet Pet et PetManager
-		$objPet 		= new Pet;
+		// Création de l'objet PetManager
 		$objPetManager 	= new PetManager;
 
 			// Récupérer les informations des animaux de l'utilisateur	
@@ -414,22 +420,25 @@
 			
 						
 			// Hydrater l'objet avec la méthode de l'entité
-			if ($arrPet) {
-				$objPet->hydrate($arrPet);
+			$arrPetToDisplay = array();
+			foreach ($arrPet as $arrDetPet) {
+				$objPet = new Pet;
+				$objPet->hydrate($arrDetPet);
+				$arrPetToDisplay[] = $objPet;
 			}
 			
 
-		// Création de l'objet Sex et SexManager
-		$objSex			= new Sex;
-		$objSexManager 	= new SexManager;
+		// // Création de l'objet Sex et SexManager
+		// $objSex			= new Sex;
+		// $objSexManager 	= new SexManager;
 
-			// Récupérer les informations des animaux de l'utilisateur	
-			$arrSex		= $objSexManager->getSex();
+		// 	// Récupérer les informations des animaux de l'utilisateur	
+		// 	$arrSex		= $objSexManager->getSex();
 						
-			// Hydrater l'objet avec la méthode de l'entité
-			if ($arrSex) {
-				$objSex->hydrate($arrSex);
-			}
+		// 	// Hydrater l'objet avec la méthode de l'entité
+		// 	if ($arrSex) {
+		// 		$objSex->hydrate($arrSex);
+		// 	}
 
 		// Création de l'objet PictureManager
 		$objPictureManager 	= new PictureManager;
@@ -452,11 +461,11 @@
 		$this->_arrData['objCity']				= $objCity;	
 		$this->_arrData['objHome']				= $objHome;	
 		$this->_arrData['objSitter']			= $objSitter;	
-		$this->_arrData['objPetType']			= $objPetType;
+		// $this->_arrData['objPetType']			= $objPetType;
 		$this->_arrData['objPetTypeSitter']		= $objPetTypeSitter;	
-		$this->_arrData['objPet']				= $objPet;
-		$this->_arrData['objSex']				= $objSex;
+		// $this->_arrData['objSex']				= $objSex;
 
+		$this->_arrData['arrPetToDisplay']		= $arrPetToDisplay;
 		$this->_arrData['arrPictureToDisplay']	= $arrPictureToDisplay;
 
 		$this->_arrData['strTitle']	= "PetSitter - Vue Profil ".$objUser->getName()." ".$objUser->getFirstname();

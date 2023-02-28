@@ -108,8 +108,8 @@
 
 		/**
 		* Creator Timothée KERN
-		* Méthode de récupération de l'nimal de l'utilisateur 
-		* @return array récupère l'id, le nom et la date d'anniversaire de l'animal de l'utilisateur
+		* Méthode de récupération des animaux de l'utilisateur 
+		* @return array récupère l'id, le nom et la date d'anniversaire des animaux de l'utilisateur
 		*/
 		public function getPetDisplay(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -120,7 +120,7 @@
 								INNER JOIN users ON pet_userid = user_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrPet	= $this->_db->query($strRqPet)->fetch();
+			$arrPet	= $this->_db->query($strRqPet)->fetchAll();
 
 			return $arrPet;
 		}
