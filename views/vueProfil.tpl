@@ -20,6 +20,7 @@
         <li class="list-group-item">Description : {$objUser->getDescription()|unescape}</li>
         {* Role *}
         <li class="list-group-item">Rôle : {$objRole->getName()|unescape}</li>
+        <br/>
         
         {* Petsitter *}
         {if isset($objSitter->getType()) && isset($objPetTypeSitter->getKind())}
@@ -27,17 +28,21 @@
             <li class="list-group-item">Type de logement : {$objHome->getType()}</li>
             <li class="list-group-item">Type de garde : {$objSitter->getType()}</li>
             <li class="list-group-item">Type d'animal : {$objPetTypeSitter->getKind()}  </li>
+            <br/>
         {/if} 
 
         {* Pet(s) *}
-        {if isset($objPet->getName())}
+        {if $arrPetToDisplay != array()}
             <h5>Animaux :</h5>
-            <li class="list-group-item">Nom : {$objPet->getName()|unescape}</li>
-            {if $objPet->getBirthday() != null}
-                <li class="list-group-item">Date de naissance : {$objPet->getBirthday()|date_format:"d/m/Y"}</li>
-            {/if}        
-            <li class="list-group-item">Type d'animal : {$objPetType->getKind()}</li>
-            <li class="list-group-item">Sexe : {$objSex->getType()}</li>
+            {foreach from=$arrPetToDisplay item=objPet}
+                <li class="list-group-item">Nom : {$objPet->getName()|unescape}</li>
+                {if $objPet->getBirthday() != null}
+                    <li class="list-group-item">Date de naissance : {$objPet->getBirthday()|date_format:"d/m/Y"}</li>
+                {/if}
+                <br/>
+            {/foreach}        
+            {* <li class="list-group-item">Type d'animal : {$objPetType->getKind()}</li>
+            <li class="list-group-item">Sexe : {$objSex->getType()}</li> *}
         {/if} 
 
         {* Image(s) *}
