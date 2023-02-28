@@ -268,7 +268,7 @@
 		* Page de modif d'un Animal
 		*/
 		public function modifNouvAnimal (){
-			var_dump($_GET);die;
+			
 			// utilisateur non connecté
 			if ((!isset($_SESSION['user'])) )// utilisateur non admin qui veut changer un autre compte 
 											

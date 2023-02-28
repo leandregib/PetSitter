@@ -55,6 +55,11 @@
                                      <a href="index.php?ctrl=user&action=list_user" title="Modifier son profil">Utilisateurs</a>  
                                 </li>
                             {/if}
+                            {if isset($smarty.session.user.id) && $smarty.session.user.role == 3}
+                                <li class="nav-link mx-sm-5 text-center py-4 my-1">
+                                     <a href="index.php?ctrl=user&action=list_sitter" title="Modifier son profil">Proposition</a>  
+                                </li>
+                            {/if}
                             {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
                                 <li class="nav-link mx-sm-5 text-center py-4 my-1">
                                      <a href="index.php?ctrl=form&action=list_petuser" title="Modifier son profil">Mes animaux</a>  
