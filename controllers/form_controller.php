@@ -182,11 +182,11 @@
 			if (	
 				// utilisateur non connecté
 				(!isset($_SESSION['user'])) 
-			||  
+				||  
 				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id']) && $_SESSION['user']['role'] != 1) 
-		   ){
-			header("Location:index.php?ctrl=error&action=error_403");
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+		   		){
+					header("Location:index.php?ctrl=error&action=error_403");
 			}
 
 			// Pour récupérer les informations dans le formulaire
@@ -266,21 +266,19 @@
 
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* Page de modif d'un Animal
 		*/
 		public function modifNouvAnimal (){
 			
 
-			if (	
-				// utilisateur non connecté
-				(!isset($_SESSION['user'])) 
-			||  
-				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
-		  	 ){
-			header("Location:index.php?ctrl=error&action=error_403");
-			}
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
 			
 
 			// Pour récupérer les informations dans le formulaire
@@ -371,7 +369,7 @@
 		}
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* fonction qui affiche la liste des animaux
 		*/
 		public function list_pet(){
@@ -404,22 +402,52 @@
 			$this->display("list_pet");
 		}
 
+			/**
+		* @author Jérémy Gallippi
+		* fonction qui affiche la liste des animaux de l'utilisateur
+		*/
+		public function list_petuser(){
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
+			// Récupération des utilisateurs
+			$objPetManager = new PetManager;
+			$arrPet = $objPetManager->getPetDisplay();
+			var_dump($arrPet);
+			
+			// Liste des utilisateurs en mode objet
+			$arrPetToDisplay = array();
+			foreach($arrPet as $arrDetPet){
+				$objPet = new Pet;
+				$objPet->hydrate($arrDetPet);
+				$arrPetToDisplay[] = $objPet;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']					= "Liste des animaux";
+			$this->_arrData['strPage']					= "list_pet";
+			$this->_arrData['arrPetToDisplay']			= $arrPetToDisplay;
+			$this->display("list_petuser");
+		}
+
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* Methode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
 		public function DeletePet(){
-			if (	
-				// utilisateur non connecté
-				(!isset($_SESSION['user'])) 
-			||  
-				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
-		   		){
-					header("Location:index.php?ctrl=error&action=error_403");
-			}
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
 			$intId 		= $_GET['id'];
 			$objPet = new Pet;
 			// Récupération des utilisateurs

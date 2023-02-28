@@ -16,21 +16,23 @@
 				<th>Nom</th>
 				<th>Id</th>
 				
-				<th>Id du propriétaire</th>
+				
 				
 			</tr>
 		</thead>
 		
 		<tbody>
-			{foreach from=$arrSitterToDisplay item=objSitter} 
+			{foreach from=$arrPetToDisplay item=objPet} 
 			<tr>
-				
-				<td>{$objSitter->getId()|unescape}</td>
-                <td>{$objSitter->getType()|unescape}</td>
+				<td>{$objPet->getName()|unescape}</td>
+				<td>{$objPet->getId()|unescape}</td>
+                
 				
 				<td>
 					
-					
+					<a href="index.php?ctrl=form&action=modifNouvAnimal&id={$objPet->getId()}" >Modifier un animal</a>
+					/
+					<a href="index.php?ctrl=form&action=deletePet&id={$objPet->getId()}" >Supprimer</a>
 				</td>
 				
 			</tr>

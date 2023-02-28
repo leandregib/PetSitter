@@ -120,7 +120,7 @@
 								INNER JOIN users ON pet_userid = user_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrPet	= $this->_db->query($strRqPet)->fetch();
+			$arrPet	= $this->_db->query($strRqPet)->fetchAll();
 
 			return $arrPet;
 		}

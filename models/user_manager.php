@@ -58,7 +58,7 @@
 			// Insertion en BDD, si pas d'erreurs
 			$strRqAdd 	= "	INSERT INTO users
 								(user_name, user_firstname, user_birthday, user_mail, user_password, user_address, user_phone, user_description, user_cityid, user_roleid, user_homeid)
-							VALUES (:name, :firstname, :birthday, :mail, :password, :address, :phone, :description, :cityid, :roleid, :homeid   )";
+							VALUES (:name, :firstname, :birthday, :mail, :password, :address, :phone, :description, :cityid, :2, :homeid   )";
 							
 							
 			/*('".$objUser->getName()."','".$objUser->getFirstName()."','".$objUser->getBirthday()."','".$objUser->getMail()."','".$objUser->getPassword()."','".$objUser->getAddress()."','".$objUser->getPhone()."', '".$objUser->getDescription()."', '".$objUser->getCityId()."', '2', '5' )*/	

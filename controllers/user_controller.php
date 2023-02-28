@@ -58,7 +58,7 @@
 					$this->_arrData['strError'] = "Erreur de connexion";
 				}else{
 					// Stocker les informations utiles de l'utilisateur en session
-					$_SESSION['user']	= $arrUser;var_dump($arrUser);
+					$_SESSION['user']	= $arrUser;
 				}
 			}
 			header("Location:index.php");			
@@ -177,15 +177,14 @@
 		* Page modifier le compte
 		*/
 		public function edit_account(){
-			if (	
-				// utilisateur non connecté
-				(!isset($_SESSION['user'])) 
-				||  
-				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
-		   		){
-					header("Location:index.php?ctrl=error&action=error_403");
-			}
+			
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
 			// Créer un objet vide avec l'entité 
 			// Création de l'objet User
 			$intCityId		= $_POST['cityid']??'';	
@@ -267,7 +266,7 @@
 			
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
 			$this->_arrData['arrSelected']			= $arrSelected;
-			$this->_arrData['arrSelectedRole']		= $arrSelected;
+			$this->_arrData['arrSelectedRole']		= $arrSelectedRole;
 			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;
 			$this->_arrData['arrRoleToDisplay']		= $arrRoleToDisplay;
 			$this->_arrData['objUser']				= $objUser;
@@ -312,15 +311,13 @@
 
 
 		public function DeleteUser(){
-			if (	
-				// utilisateur non connecté
-				(!isset($_SESSION['user'])) 
-			||  
-				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
-		   		){
-					header("Location:index.php?ctrl=error&action=error_403");
-			}
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
 			$objUser = new User;
 			// Récupération des utilisateurs
 			$objUserManager = new UserManager;
