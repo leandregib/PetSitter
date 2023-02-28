@@ -182,9 +182,7 @@
 			if (	
 				// utilisateur non connecté
 				(!isset($_SESSION['user'])) 
-				||  
-				// utilisateur non admin qui veut changer un autre compte
-				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 1) 
+			
 		   		){
 					header("Location:index.php?ctrl=error&action=error_403");
 			}
@@ -417,7 +415,7 @@
 			// Récupération des utilisateurs
 			$objPetManager = new PetManager;
 			$arrPet = $objPetManager->getPetDisplay();
-			var_dump($arrPet);
+			
 			
 			// Liste des utilisateurs en mode objet
 			$arrPetToDisplay = array();
