@@ -545,7 +545,7 @@
 				if ($boolPersonalData == ''){ // Case d'autorisation de traitement des données personnelles
 					$arrError[]	= "Merci d'accepter le traitement des données transmises";
 				}
-				if ($arrImageInfos['name'] != '' || $arrImageInfos['size'] == 0){ // Test sur fichier d'image donné
+				if ($arrImageInfos['size'] == 0){ // Test sur fichier d'image donné
 					$arrError[]	= "Merci de renseigner une image";
 				}
 				if (count($arrError)==0){ 
@@ -554,7 +554,7 @@
 					$boolOk 	= $this->_photoTraitement($arrImageInfos, $strNewName);
 					
 					if($boolOk){
-						if (move_uploaded_file($strFileName, $strFileDest)){
+						
 						// Insertion en BDD, si pas d'erreurs
 						$objManager 	= new PictureManager(); // instancier la classe
 						$objPicture->setName($strNewName);
@@ -562,7 +562,7 @@
 						$objManager->addPicture($objPicture); 
 						
 						header("Location:index.php"); // Redirection page d'accueil
-						}
+						
 					}
 				}
 			}

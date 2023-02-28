@@ -34,6 +34,9 @@
 			//sex
 			require("models/sex_manager.php"); 
 			require("entities/sex_entity.php");
+			//picture
+			require("models/picture_manager.php"); 
+			require("entities/picture_entity.php");
 		}
 
 		/**
@@ -427,6 +430,20 @@
 			if ($arrSex) {
 				$objSex->hydrate($arrSex);
 			}
+
+		// Création de l'objet PictureManager
+		$objPictureManager 	= new PictureManager;
+
+			// Récupérer les informations des animaux de l'utilisateur	
+			$arrPicture	= $objPictureManager->getPicture();
+						
+			// Hydrater l'objet avec la méthode de l'entité
+			$arrPictureToDisplay = array();
+			foreach ($arrPicture as $arrDetPicture) {
+				$objPicture	= new Picture;
+				$objPicture->hydrate($arrDetPicture);
+				$arrPictureToDisplay[] = $objPicture;
+			}
 			
 
 		//Affichage 
@@ -439,6 +456,8 @@
 		$this->_arrData['objPetTypeSitter']		= $objPetTypeSitter;	
 		$this->_arrData['objPet']				= $objPet;
 		$this->_arrData['objSex']				= $objSex;
+
+		$this->_arrData['arrPictureToDisplay']	= $arrPictureToDisplay;
 
 		$this->_arrData['strTitle']	= "PetSitter - Vue Profil ".$objUser->getName()." ".$objUser->getFirstname();
 		$this->_arrData['strPage']	= "vueProfil";

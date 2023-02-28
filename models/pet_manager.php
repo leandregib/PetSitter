@@ -107,9 +107,9 @@
 		}
 
 		/**
-		* Creator Jérémy Gallippi
-		* Methode de récupération d'un animal
-		* @param int $intPetId Id de l'animal 
+		* Creator Timothée KERN
+		* Méthode de récupération de l'nimal de l'utilisateur 
+		* @return array récupère l'id, le nom et la date d'anniversaire de l'animal de l'utilisateur
 		*/
 		public function getPetDisplay(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -125,6 +125,11 @@
 			return $arrPet;
 		}
 
+		/**
+		* Creator Jérémy Gallippi
+		* Methode de récupération d'un animal
+		* @param int $intPetId Id de l'animal 
+		*/
 		public function getPet($intId){
 			
 			$strRqPet 	= "SELECT pet_id,

@@ -41,9 +41,13 @@
         {/if} 
 
         {* Image(s) *}
-        {* {if isset($objPet->getName())} *}
+        {if $arrPictureToDisplay != array()}
             <h5>Images :</h5>
-        {* {/if}  *}
+        
+            {foreach from=$arrPictureToDisplay item=objPicture}
+                <img src="assets/imgUsers/{$objPicture->getName()}" class="img-thumbnail" alt="{$objPicture->getDescription()}"/></a>
+            {/foreach}
+        {/if} 
         
         {* Note *}
         <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;

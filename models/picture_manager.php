@@ -42,5 +42,21 @@
 			return $prep->execute();				
 		
 		}
+
+		/**
+		* Methode de récupération des image de l'utilisateur
+		* @return array récupère les images de l'utilisateur
+		*/
+		public function getPicture(){
+			$intId 		= $_GET['id']??$_SESSION['user']['id'];
+			$strRqPicture	= "SELECT pic_name, pic_date, pic_description 								  
+							FROM picture
+								INNER JOIN users ON pic_userid = user_id
+							WHERE user_id = '".$intId."'";
+							
+			$arrPicture	= $this->_db->query($strRqPicture)->fetchAll();
+			
+			return $arrPicture;
+		}
 		
 	}
