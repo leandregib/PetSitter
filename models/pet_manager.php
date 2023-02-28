@@ -113,14 +113,18 @@
 		*/
 		public function getPetDisplay(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
-			$strRqUser 	= "SELECT pet_id,
+			$strRqPet	= "SELECT pet_id,
 								  pet_name, 
 								  pet_birthday
 							FROM pet
 								INNER JOIN users ON pet_userid = user_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrUser 	= $this->_db->query($strRqUser)->fetch();
+			$arrPet	= $this->_db->query($strRqPet)->fetch();
+
+			return $arrPet;
+		}
+
 		public function getPet($intId){
 			
 			$strRqPet 	= "SELECT pet_id,
