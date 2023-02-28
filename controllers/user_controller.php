@@ -410,7 +410,7 @@
 		$objPetManager 	= new PetManager;
 
 			// Récupérer les informations des animaux de l'utilisateur	
-			$arrPet		= $objPetManager->getPet();
+			$arrPet		= $objPetManager->getPetDisplay();
 			
 						
 			// Hydrater l'objet avec la méthode de l'entité

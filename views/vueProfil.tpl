@@ -3,7 +3,7 @@
 {block name="content"}
 
 
-<div id="blocFA" class="col-md-2 mx-5 my-3 py-3 mx-3">
+<div id="blocFA" class="col-md-10 mx-5 my-3 py-3 mx-3">
 <div class="text-center">
     <img src="assets/img/icon/iconPS.png" alt="">
 </div>
@@ -14,7 +14,7 @@
         <li class="list-group-item">Nom : {$objUser->getName()|unescape}</li>
         <li class="list-group-item">Prénom : {$objUser->getFirstName()|unescape}</li>
         <li class="list-group-item">Ville : {$objCity->getName()|unescape}</li>
-        <li class="list-group-item">Date de naissance : {$objUser->getBirthday()|date_format:"d/m/Y"}</li>
+        <li class="list-group-item">Date de naissance : {$objUser->getBirthday()|date_format:"d/m/Y"|unescape}</li>
         <li class="list-group-item">Email : {$objUser->getMail()|unescape}</li>
         <li class="list-group-item">Numéro de téléphone : {$objUser->getPhone()|unescape}</li>
         <li class="list-group-item">Description : {$objUser->getDescription()|unescape}</li>
@@ -39,6 +39,11 @@
             <li class="list-group-item">Type d'animal : {$objPetType->getKind()}</li>
             <li class="list-group-item">Sexe : {$objSex->getType()}</li>
         {/if} 
+
+        {* Image(s) *}
+        {* {if isset($objPet->getName())} *}
+            <h5>Images :</h5>
+        {* {/if}  *}
         
         {* Note *}
         <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;

@@ -101,7 +101,7 @@
 		* Methode de récupération des animaux de l'utilisateur
 		* @return array récupère les animaux de l'utilisateur
 		*/
-		public function getPet(){
+		public function getPetDisplay(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
 			$strRqUser 	= "SELECT pet_id,
 								  pet_name, 

@@ -74,7 +74,7 @@
 		* @param $strBirthday Birthday
 		*/
 		public function setBirthday(string|null $strBirthday){
-			$this->_birthday = filter_var($strBirthday,FILTER_SANITIZE_SPECIAL_CHARS);
+			$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 
 		//___________________________________________________________________________
