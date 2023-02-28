@@ -268,17 +268,20 @@
 		* Page de modif d'un Animal
 		*/
 		public function modifNouvAnimal (){
+			var_dump($_GET);die;
+			// utilisateur non connecté
+			if ((!isset($_SESSION['user'])) )// utilisateur non admin qui veut changer un autre compte 
+											
+				{
+					header("Location:index.php?ctrl=error&action=error_403");
+			}
 			
+			if ($_GET['id']!= $_SESSION['user']['id']
 
-			if (// utilisateur non connecté
-                (!isset($_SESSION['user'])) 
-            ||
-                // utilisateur non admin qui veut changer un autre compte
-                (isset($_GET['id']) && $_SESSION['user']['role'] != 1) ){
-                header("Location:index.php?ctrl=error&action=error_403");
-            }
+				&& 	$_SESSION['user']['role'] != 1) {
+				header("Location:index.php?ctrl=error&action=error_403");
+			}
 			
-
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';
 			
@@ -299,7 +302,7 @@
 			
 			// Liste des sexes
 			$objSexManager  	= new SexManager(); 
-			$arrSex	    	= $objSexManager->findSex();
+			$arrSex	    		= $objSexManager->findSex();
 			
 					
 			$arrError = array(); // Tableau des erreurs initialisé
@@ -400,11 +403,12 @@
 			$this->display("list_pet");
 		}
 
-			/**
+		/**
 		* @author Jérémy Gallippi
 		* fonction qui affiche la liste des animaux de l'utilisateur
 		*/
 		public function list_petuser(){
+			
 			if (// utilisateur non connecté
                 (!isset($_SESSION['user'])) 
             ||
@@ -415,8 +419,7 @@
 			// Récupération des utilisateurs
 			$objPetManager = new PetManager;
 			$arrPet = $objPetManager->getPetDisplay();
-			
-			
+	
 			// Liste des utilisateurs en mode objet
 			$arrPetToDisplay = array();
 			foreach($arrPet as $arrDetPet){
@@ -439,6 +442,7 @@
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
 		public function DeletePet(){
+			
 			if (// utilisateur non connecté
                 (!isset($_SESSION['user'])) 
             ||
@@ -451,18 +455,15 @@
 			// Récupération des utilisateurs
 			$objPetManager = new PetManager;
 			$objPetManager->deletePet($intId);
-			$arrPet = $objPetManager->findPet();
 			
-			// Liste des utilisateurs en mode objet
-			$arrPetToDisplay = array();
-			foreach($arrPet as $arrDetPet){
-				
-				$objPet->hydrate($arrDetPet);
-				$arrPetToDisplay[] = $objPet;
-				
+			
+			if ($_SESSION['user']['role'] == 1) {
+				header("index.php?ctrl=form&action=list_pet");
 			}
-			// Affichage
-			header("index.php?ctrl=form&action=list_pet");
+			else {
+				header("index.php?ctrl=form&action=list_petuser");
+			}
+			
 		}
 		
 		//_________________________________________________________________________________________________________

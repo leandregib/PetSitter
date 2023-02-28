@@ -29,8 +29,7 @@
                 
 				
 				<td>
-					
-					<a href="index.php?ctrl=form&action=modifNouvAnimal&id={$objPet->getId()}" >Modifier un animal</a>
+					<a href="index.php?ctrl=form&action=modifNouvAnimal&id={$objPet->getUserid()}" >Modifier un animal</a>
 					/
 					<a href="index.php?ctrl=form&action=deletePet&id={$objPet->getId()}" >Supprimer</a>
 				</td>

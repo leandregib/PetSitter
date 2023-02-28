@@ -116,6 +116,7 @@
 			$strRqPet	= "SELECT pet_id,
 								  pet_name, 
 								  pet_birthday
+								  pet_userid
 							FROM pet
 								INNER JOIN users ON pet_userid = user_id
 							WHERE user_id = '".$intId."'";
@@ -139,7 +140,7 @@
 								  pet_typeid ,
 								  pet_sexid 
 							FROM pet
-							WHERE pet_id = '".$intId."'";
+							WHERE pet_id = ".$intId;
 							
 							
 			$arrPet 	= $this->_db->query($strRqPet)->fetch();
