@@ -26,13 +26,11 @@
 		* Methode de récupération des types de garde avec l'id de l'utilisateur
 		* @return array récupère les types de gardes proposés par l'utilisateur 
 		*/
-		public function getSitter(){
-			$intId 			= $_GET['id']??$_SESSION['user']['id'];
-			$strRqSitter 	= "SELECT sitter_type								  
+		public function getSitter($intProposeId){
+			$strRqSitter	= "SELECT sitter_type 								  
 							FROM sitter
 								INNER JOIN propose ON prop_sitterid = sitter_id
-								INNER JOIN users ON prop_userid = user_id
-							WHERE user_id = '".$intId."'";
+							WHERE prop_id = '".$intProposeId."'";
 							
 			$arrSitter 	= $this->_db->query($strRqSitter)->fetch();
 			

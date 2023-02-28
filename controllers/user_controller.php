@@ -391,41 +391,51 @@
 			// Hydrater l'objet avec la méthode de l'entité
 			$objHome->hydrate($arrHome);
 
-		// Création de l'objet Sitter et SitterManager
-		$objSitter 			= new Sitter;
+		// Création de l'objet ProposeManager, SitterManager, PetTypeManager
+		$objProposeManager 	= new ProposeManager;
 		$objSitterManager 	= new SitterManager;
-
-			// Récupérer les informations des types de garde proposées par l'utilisateur	
-			$arrSitter		= $objSitterManager->getSitter();
-					
-			// Hydrater l'objet avec la méthode de l'entité
-			if ($arrSitter) {
-				$objSitter->hydrate($arrSitter);
-			}
-			
-
-		// Création de l'objet PetTypeSitter et PetTypeManager (pour la section Petsitter)
-		$objPetTypeSitter 		= new Pet_type;
 		$objPetTypeManager 	= new PetTypeManager;
 
+			// Récupérer les informations de la garde proposée par l'utilisateur	
+			$arrPropose		= $objProposeManager->getPetsitterDisplay();
+					
+			// Déclaration des tableaux pour la vue 
+			$arrPetTypeSitterToDisplay 	= array();
+			$arrSitterToDisplay 		= array();
+			$arrProposeToDisplay		= array();
+
+			foreach ($arrPropose as $arrDetPropose) {
+				$objPropose = new Propose;
+				$objPropose->hydrate($arrDetPropose);
+
+				$intProposeId = $objPropose->getId();
+
+			//______ Création de l'objet PetTypeSitter et PetTypeManager (pour la section Petsitter)
+			$objPetTypeSitter 		= new Pet_type;
+
 			// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
-			$arrPetTypeSitter		= $objPetTypeManager->getPetType();
+			$arrPetTypeSitter		= $objPetTypeManager->getPetTypeSitter($intProposeId);
 					
 			// Hydrater l'objet avec la méthode de l'entité
-			if ($arrPetTypeSitter) {
-				$objPetTypeSitter->hydrate($arrPetTypeSitter);
-			}	
-			
-		// // Création de l'objet PetType et PetTypeManager (pour la section Animaux)
-		// $objPetType				= new Pet_type;
+			$objPetTypeSitter->hydrate($arrPetTypeSitter);
 
-		// 	// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
-		// 	$arrPetType		= $objPetTypeManager->getPetType();
+			
+
+			//______ Création de l'objet Sitter 
+			$objSitter 			= new Sitter;
+			
+			// Récupérer les informations des types de garde proposées par l'utilisateur	
+			$arrSitter		= $objSitterManager->getSitter($intProposeId);
 					
-		// 	// Hydrater l'objet avec la méthode de l'entité
-		// 	if ($arrPetType) {
-		// 		$objPetType->hydrate($arrPetType);
-		// 	}		
+			// Hydrater l'objet avec la méthode de l'entité
+			$objSitter->hydrate($arrSitter);
+
+			//Tableaux d'affichage
+			$arrSitterToDisplay[] 			= $objSitter;
+			$arrPetTypeSitterToDisplay[] 	= $objPetTypeSitter;
+			$arrProposeToDisplay[] 			= $objPropose;
+			}
+				
 
 
 		// Création de l'objet PetManager
@@ -442,19 +452,51 @@
 				$objPet->hydrate($arrDetPet);
 				$arrPetToDisplay[] = $objPet;
 			}
+
+		// Création de l'objet ProposeManager, SitterManager, PetTypeManager
+		$objPetManager 		= new PetManager;
+		$objSexManager 		= new SexManager;
+
+			// Récupérer les informations de la garde proposée par l'utilisateur	
+			$arrPet		= $objPetManager->getPetDisplay();
+					
+			// Déclaration des tableaux pour la vue 
+			$arrPetToDisplay 		= array();
+			$arrPetTypeToDisplay 	= array();
+			$arrSexToDisplay 		= array();
+
+			foreach ($arrPet as $arrDetPet) {
+				$objPet = new Pet;
+				$objPet->hydrate($arrDetPet);
+
+				$intPetId = $objPet->getId();
+
+				//______Création de l'objet Sex et SexManager
+				$objSex			= new Sex;
+		
+				// Récupérer les informations des animaux de l'utilisateur	
+				$arrSex		= $objSexManager->getSex($intPetId);
+							
+				// Hydrater l'objet avec la méthode de l'entité
+				$objSex->hydrate($arrSex);
+
+				//_____Création de l'objet PetType et PetTypeManager (pour la section Animaux)
+				$objPetType				= new Pet_type;
+
+				// Récupérer les informations des types d'animaux que l'utilisateur	souhaite garder
+				$arrPetType		= $objPetTypeManager->getPetType($intPetId);
+						
+				// Hydrater l'objet avec la méthode de l'entité
+				$objPetType->hydrate($arrPetType);	
+
+				//Tableaux d'affichage
+				$arrPetToDisplay[] 			= $objPet;
+				$arrPetTypeToDisplay[] 		= $objPetType;
+				$arrSexToDisplay[] 			= $objSex;			
+
+			}
 			
 
-		// // Création de l'objet Sex et SexManager
-		// $objSex			= new Sex;
-		// $objSexManager 	= new SexManager;
-
-		// 	// Récupérer les informations des animaux de l'utilisateur	
-		// 	$arrSex		= $objSexManager->getSex();
-						
-		// 	// Hydrater l'objet avec la méthode de l'entité
-		// 	if ($arrSex) {
-		// 		$objSex->hydrate($arrSex);
-		// 	}
 
 		// Création de l'objet PictureManager
 		$objPictureManager 	= new PictureManager;
@@ -469,20 +511,28 @@
 				$objPicture->hydrate($arrDetPicture);
 				$arrPictureToDisplay[] = $objPicture;
 			}
-			
+
 
 		//Affichage 
 		$this->_arrData['objUser']				= $objUser;
 		$this->_arrData['objRole']				= $objRole;	
 		$this->_arrData['objCity']				= $objCity;	
 		$this->_arrData['objHome']				= $objHome;	
-		$this->_arrData['objSitter']			= $objSitter;	
-		// $this->_arrData['objPetType']			= $objPetType;
-		$this->_arrData['objPetTypeSitter']		= $objPetTypeSitter;	
-		// $this->_arrData['objSex']				= $objSex;
 
-		$this->_arrData['arrPetToDisplay']		= $arrPetToDisplay;
-		$this->_arrData['arrPictureToDisplay']	= $arrPictureToDisplay;
+		if ( $arrProposeToDisplay != array()) {			
+			$this->_arrData['objSitter']			= $objSitter;	
+			$this->_arrData['objPetTypeSitter']		= $objPetTypeSitter;	
+		}
+
+		$this->_arrData['arrPetToDisplay']					= $arrPetToDisplay;
+		$this->_arrData['arrPictureToDisplay']				= $arrPictureToDisplay;
+		$this->_arrData['arrSitterToDisplay']				= $arrSitterToDisplay;
+		$this->_arrData['arrPetTypeSitterToDisplay']		= $arrPetTypeSitterToDisplay;
+		
+		$this->_arrData['arrProposeToDisplay']				= $arrProposeToDisplay;
+		$this->_arrData['arrSexToDisplay']					= $arrSexToDisplay;
+		$this->_arrData['arrPetTypeToDisplay']				= $arrPetTypeToDisplay;
+
 
 		$this->_arrData['strTitle']	= "PetSitter - Vue Profil ".$objUser->getName()." ".$objUser->getFirstname();
 		$this->_arrData['strPage']	= "vueProfil";
