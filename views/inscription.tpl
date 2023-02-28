@@ -83,10 +83,9 @@
 
 
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="inlineCheckbox1">J' autorise ce site à conserver
+                        <div class="form-check form-check-inline my-2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="personal_data" >
+                            <label class="form-check-label" for="inlineCheckbox1" name="personal_data">J’autorise ce site à conserver
                                 mes données transmises via ce formulaire</label>
                         </div>
                     </div>

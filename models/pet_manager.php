@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		*Creator Jérémy Gallippi 
+		*@author Jérémy Gallippi 
 		* Methode de récupération des pets
 		* @return array Liste des pets
 		*/
@@ -47,7 +47,7 @@
 		}
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* Methode de modification d'un pet
 		* @param $objPet objet de l'animal à ajouter dans la BDD
 		*/
@@ -96,7 +96,7 @@
 		}
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* Methode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
@@ -107,7 +107,7 @@
 		}
 
 		/**
-		* Creator Timothée KERN
+		* @author Timothée KERN
 		* Méthode de récupération des animaux de l'utilisateur 
 		* @return array récupère l'id, le nom et la date d'anniversaire des animaux de l'utilisateur
 		*/
@@ -116,6 +116,7 @@
 			$strRqPet	= "SELECT pet_id,
 								  pet_name, 
 								  pet_birthday
+								  pet_userid
 							FROM pet
 								INNER JOIN users ON pet_userid = user_id
 							WHERE user_id = '".$intId."'";
@@ -126,7 +127,7 @@
 		}
 
 		/**
-		* Creator Jérémy Gallippi
+		* @author Jérémy Gallippi
 		* Methode de récupération d'un animal
 		* @param int $intPetId Id de l'animal 
 		*/
@@ -134,12 +135,12 @@
 			
 			$strRqPet 	= "SELECT pet_id,
 								  pet_name, 
-								  pet_birthday , 
+								  pet_birthday, 
 								  pet_userid ,
 								  pet_typeid ,
 								  pet_sexid 
 							FROM pet
-							WHERE pet_id = '".$intId."'";
+							WHERE pet_id = ".$intId;
 							
 							
 			$arrPet 	= $this->_db->query($strRqPet)->fetch();

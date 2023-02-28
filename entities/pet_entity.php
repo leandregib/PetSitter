@@ -74,7 +74,7 @@
 		* @param $strBirthday Birthday
 		*/
 		public function setBirthday(string|null $strBirthday){
-			if (!is_null($strBirthday)) {
+			if (($strBirthday)) {
 				$this->_birthday = filter_var(trim($strBirthday),FILTER_SANITIZE_SPECIAL_CHARS);
 			}
 			
@@ -92,8 +92,8 @@
 		* Setter du userid
 		* @param $intUserid Id Userid
 		*/
-		public function setUserid(int $intUserid){
-			$this->_userid = $intUserid;
+		public function setUserid(int|string|null $intUserid){
+			$this->_userid = intval($intUserid);
 		}
 		//___________________________________________________________________________
 		/**

@@ -2,6 +2,31 @@
 
 {block name="content"}
 
+    <div class="container">
+        <div class="row text-center my-3 py-3">
+            <div id="blocFA" class="offset-3 col-5">
+                <div class="text-center">
+                    <img src="assets/img/icon/iconPS.png" alt="">
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush">
+                    {* Note *}
+                    <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
+                    </li>
+                        {* User *}
+                        <h5>Informations sur l'utilisateur :</h5>
+                    <li class="list-group-item">Nom : {$objUser->getName()|unescape}</li>
+                    <li class="list-group-item">Prénom : {$objUser->getFirstName()|unescape}</li>
+                    <li class="list-group-item">Ville : {$objCity->getName()|unescape}</li>
+                    <li class="list-group-item">Date de naissance :
+                        {$objUser->getBirthday()|date_format:"d/m/Y"|unescape}
+                    </li>
+                    <li class="list-group-item">Email : {$objUser->getMail()|unescape}</li>
+                    <li class="list-group-item">Numéro de téléphone : {$objUser->getPhone()|unescape}</li>
+                    <li class="list-group-item">Description : {$objUser->getDescription()|unescape}</li>
+                    {* Role *}
+                    <li class="list-group-item">Rôle : {$objRole->getName()|unescape}</li>
+                    <br />
 
 <div id="blocFA" class="col-md-10 mx-5 my-3 py-3 mx-3">
 <div class="text-center">
@@ -49,21 +74,22 @@
             {/for}        
         {/if} 
 
-        {* Image(s) *}
-        {if $arrPictureToDisplay != array()}
-            <h5>Images :</h5>
-        
-            {foreach from=$arrPictureToDisplay item=objPicture}
-                <img src="assets/imgUsers/{$objPicture->getName()}" class="img-thumbnail" alt="{$objPicture->getDescription()}"/></a>
-            {/foreach}
-        {/if} 
-        
-        {* Note *}
-        <li class="list-group-item text-center">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
-        </li>
-    </ul>
-</div>
-</div>
+                        {* Image(s) *}
+                        {if $arrPictureToDisplay != array()}
+                            <h5 class="py-2">Images :</h5>
 
-    
+                            {foreach from=$arrPictureToDisplay item=objPicture}
+                                <img src="assets/imgUsers/{$objPicture->getName()}" class="img-thumbnail"
+                                    alt="{$objPicture->getDescription()}" /></a>
+                            {/foreach}
+                        {/if}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 {/block}
