@@ -137,7 +137,7 @@
 				}
 
 				if ($objUser->getBirthday() == ''){ // Tests sur le nom
-					$arrError[]	= "Merci de renseigner une date";
+					$arrError[]	= "Merci de renseigner une date de naissance";
 				}
 
 				if ($objUser->getAddress() == ''){ // Tests sur le nom
