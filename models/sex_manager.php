@@ -24,19 +24,18 @@
 
 		/**
 		* Methode de récupération du sexe de l'animal de l'utilisateur
-		* @return array récupère le sexe de l'animal de l'utilisateur
+		* @param int $intPetId Id de l'animal 
+		* @return string $strSex le sexe de l'animal de l'utilisateur
 		*/
-		public function getSex(){
-			$intId 			= $_GET['id']??$_SESSION['user']['id'];
+		public function getSex($intPetId){
 			$strRqSex	= "SELECT sex_type								  
 							FROM sex
 								INNER JOIN pet ON pet_sexid = sex_id
-								INNER JOIN users ON pet_userid = user_id
-							WHERE user_id = '".$intId."'";
+							WHERE pet_id = '".$intPetId."'";
 							
-			$arrSex 	= $this->_db->query($strRqSex)->fetch();
+			$strSex 	= $this->_db->query($strRqSex)->fetch();
 			
-			return $arrSex;
+			return $strSex;
 		}
 		
 	}

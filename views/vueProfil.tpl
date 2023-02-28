@@ -23,26 +23,30 @@
         <br/>
         
         {* Petsitter *}
-        {if isset($objSitter->getType()) && isset($objPetTypeSitter->getKind())}
+        {if $arrProposeToDisplay != array()}
             <h5>Services Petsitter:</h5>
             <li class="list-group-item">Type de logement : {$objHome->getType()}</li>
-            <li class="list-group-item">Type de garde : {$objSitter->getType()}</li>
-            <li class="list-group-item">Type d'animal : {$objPetTypeSitter->getKind()}  </li>
+            <br/>
+            {for $i=0 to count($arrSitterToDisplay)-1}
+                <li class="list-group-item">Type de garde : {$arrSitterToDisplay[$i]->getType()}</li>
+                <li class="list-group-item">Type d'animal : {$arrPetTypeSitterToDisplay[$i]->getKind()}</li>
+                <br/>
+            {/for} 
             <br/>
         {/if} 
 
         {* Pet(s) *}
         {if $arrPetToDisplay != array()}
             <h5>Animaux :</h5>
-            {foreach from=$arrPetToDisplay item=objPet}
-                <li class="list-group-item">Nom : {$objPet->getName()|unescape}</li>
-                {if $objPet->getBirthday() != null}
-                    <li class="list-group-item">Date de naissance : {$objPet->getBirthday()|date_format:"d/m/Y"}</li>
+            {for $i=0 to count($arrPetToDisplay)-1}
+                <li class="list-group-item">Nom : {$arrPetToDisplay[$i]->getName()|unescape}</li>
+                {if $arrPetToDisplay[$i]->getBirthday() != null}
+                    <li class="list-group-item">Date de naissance : {$arrPetToDisplay[$i]->getBirthday()|date_format:"d/m/Y"}</li>
                 {/if}
+                <li class="list-group-item">Type d'animal : {$arrPetTypeToDisplay[$i]->getKind()}</li>
+                <li class="list-group-item">Sexe : {$arrSexToDisplay[$i]->getType()}</li>
                 <br/>
-            {/foreach}        
-            {* <li class="list-group-item">Type d'animal : {$objPetType->getKind()}</li>
-            <li class="list-group-item">Sexe : {$objSex->getType()}</li> *}
+            {/for}        
         {/if} 
 
         {* Image(s) *}
