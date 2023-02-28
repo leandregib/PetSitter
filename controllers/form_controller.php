@@ -542,6 +542,12 @@
 			if (!isset($_SESSION['user'])) { // utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");
 			}
+
+			// //Vérifie que le petsitter n'existe pas déjà
+			// $boolOK = $objPetsitterManager->getPetsitter($intId);
+			// if ($boolOK==true) {
+			// 	header("Location:index.php?ctrl=error&action=error_error_form_already_completed");
+			// }
 			
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';

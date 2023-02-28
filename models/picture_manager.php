@@ -44,7 +44,7 @@
 		}
 
 		/**
-		* Methode de récupération des image de l'utilisateur
+		* Methode de récupération des images de l'utilisateur
 		* @return array récupère les images de l'utilisateur
 		*/
 		public function getPicture(){
@@ -57,6 +57,21 @@
 			$arrPicture	= $this->_db->query($strRqPicture)->fetchAll();
 			
 			return $arrPicture;
+		}
+
+		/**
+		* Methode retournant le nombre d'images de l'utilisateur
+		* @param $intId int id de l'utilisateur 
+		* @return int $intCountImg le nombre d'images de l'utilisateur
+		*/
+		public function getImgUser(int $intId){
+			$strRq		 	= "SELECT count(*) 								  
+							FROM picture
+							WHERE pic_userid = ".$intId;
+							
+			$intCountImg = $this->_db->query($strRq)->fetch();
+			
+			return $intCountImg;
 		}
 		
 	}
