@@ -582,22 +582,25 @@
 					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			
+			
 			// Récupération des utilisateurs
 			$objProposeManager = new ProposeManager;
-			$arrPropose = $objProposeManager->findPetsitter();
+			$objUserManager = new UserManager;
+			$arrUsers = $objProposeManager->findPetsitter();
 			
 			// Liste des utilisateurs en mode objet
-			$arrProposeToDisplay = array();
-			foreach($arrPropose as $arrDetPropose){
-				$objPropose = new Propose;
-				$objPropose->hydrate($arrDetPropose);
-				$arrProposeToDisplay[] = $objPropose;
+			$arrUsersToDisplay = array();
+			foreach($arrUsers as $arrDetUser){
+				$objUser = new User;
+				$objUser->hydrate($arrDetUser);
+				$arrUsersToDisplay[] = $objUser;
 				
 			}
+			
 			// Affichage
 			$this->_arrData['strTitle']					    = "Liste des Sitter";
 			$this->_arrData['strPage']					    = "list_sitter";
-			$this->_arrData['arrProposeToDisplay']			= $arrProposeToDisplay;
+			$this->_arrData['arrUsersToDisplay']			= $arrUsersToDisplay;
 			$this->display("list_sitter");
 		}
 	}

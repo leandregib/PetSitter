@@ -22,16 +22,15 @@
 		</thead>
 		
 		<tbody>
-			{foreach from=$arrProposeToDisplay item=objPropose} 
+			{foreach from=$arrUsersToDisplay item=objPropose} 
 			<tr>
 				<td>{$objPropose->getName()|unescape}</td>
 				<td>{$objPropose->getId()|unescape}</td>
-                <td>{$objPropose->getUserId()|unescape}</td>
 				
 				<td>
 					
-					<a href="index.php?ctrl=propose&action=updatePetsitter&id={$objPet->getId()}" >Valider</a>
-					/
+					{* <a href="index.php?ctrl=propose&action=updatePetsitter&id={$objPet->getId()}" >Valider</a> *}
+					
 					
 				</td>
 				
