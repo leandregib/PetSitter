@@ -25,11 +25,11 @@
 			{foreach from=$arrUsersToDisplay item=objPropose} 
 			<tr>
 				<td>{$objPropose->getName()|unescape}</td>
-				<td>{$objPropose->getId()|unescape}</td>
+				
 				
 				<td>
 					
-					{* <a href="index.php?ctrl=propose&action=updatePetsitter&id={$objPet->getId()}" >Valider</a> *}
+					 <a href="index.php?ctrl=user&action=vueProfil&id={$objPropose->getId()}" >Vue Profil</a> 
 					
 					
 				</td>
