@@ -92,7 +92,7 @@
 
 			// Pour récupérer les informations dans le formulaire
 			
-			$intCityId			= $_POST['cityid']??'';	
+			$intCityId			=  $_POST['cityid']??'';	
 			$boolPersonalData 	=  $_POST['personal_data']??'';
 
 			$arrError 			= array(); // Tableau des erreurs initialisé
@@ -143,6 +143,7 @@
 				if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
 					$arrError[]	= "Merci de renseigner un mot de passe";
 				}
+	
 				if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
 				}
@@ -234,15 +235,39 @@
 				}
 				if ($objUser->getFirstName() == ''){ // Tests sur le prénom
 					$arrError[]	= "Merci de renseigner un prénom";
+				}else if($objUserManager->mail_exist($objUser)){ // test si déjà existant
+					$arrError[]	= "Mail déjà utilisé, merci d'en renseigner une autre ou de vous connecter";
 				}
-				if ($objUser->getMail() == ''){ // Tests sur le mail
+				 if($objUser->getMail()== ''){ // test si déjà existant
+					$arrError[]	= "Merci de renseigner Mail";
+				}
+				/*if ($objUser->getMail() == ''){ // Tests sur le mail
 					$arrError[]	= "Merci de renseigner une adresse mail";
-				}
-				/*if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
-					$arrError[]	= "Merci de renseigner un mot de passe";
 				}*/
-				if ($objUser->getPassword() != '' && !password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
+				if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
+					$arrError[]	= "Merci de renseigner un mot de passe";
+				}
+				if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
+				}
+
+				if ($objUser->getPhone() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner un numéro de téléphone";
+				}
+
+				if ($objUser->getBirthday() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une date de naissance";
+				}
+
+				if ($objUser->getAddress() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une adresse";
+				}
+
+				if ($objUser->getCityId() == ''){ // Tests sur le nom
+					$arrError[]	= "Merci de renseigner une ville";
+				}
+				if ($boolPersonalData == ''){ // Case d'autorisation de traitement des données personnelles
+					$arrError[]	= "Merci d'accepter le traitement des données transmises";
 				}
 				
 				// Si aucune erreur on l'insert en BDD
