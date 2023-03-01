@@ -17,7 +17,7 @@
 		* @return array Liste des petsitters pour la vue modérateur
 		*/
 		public function findPetsitter(){
-			$strRqSitter = "SELECT DISTINCT user_name, user_firstname FROM users
+			$strRqSitter = "SELECT DISTINCT user_id, user_name, user_firstname FROM users
 								INNER JOIN propose ON prop_userid = user_id
 							WHERE prop_valid = 0";
 							

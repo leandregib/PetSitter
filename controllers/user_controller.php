@@ -8,6 +8,7 @@
 	*	<li>Page Se déconnecter</li>
 	*	<li>Page modifier le compte</li>
 	*	<li>Méthode de suppression d'un utilisateur</li>
+	*	<li>Page liste des petsitters soumis à validation pour les modérateurs</li>
 	* </ul>
 	* @author Timothée KERN
 	* <ul>
@@ -432,7 +433,7 @@
 
 			foreach ($arrPropose as $arrDetPropose) {
 				$objPropose = new Propose;
-				$objPropose->hydrate($arrDetPropose);
+				$objPropose->hydrate($arrDetPropose);				
 
 				$intProposeId = $objPropose->getId();
 
@@ -460,6 +461,7 @@
 			$arrSitterToDisplay[] 			= $objSitter;
 			$arrPetTypeSitterToDisplay[] 	= $objPetTypeSitter;
 			$arrProposeToDisplay[] 			= $objPropose;
+			
 			}
 				
 
@@ -540,6 +542,7 @@
 
 
 		//Affichage 
+
 		$this->_arrData['objUser']				= $objUser;
 		$this->_arrData['objRole']				= $objRole;	
 		$this->_arrData['objCity']				= $objCity;	
@@ -593,8 +596,7 @@
 			foreach($arrUsers as $arrDetUser){
 				$objUser = new User;
 				$objUser->hydrate($arrDetUser);
-				$arrUsersToDisplay[] = $objUser;
-				
+				$arrUsersToDisplay[] = $objUser;				
 			}
 			
 			// Affichage

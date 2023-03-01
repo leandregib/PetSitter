@@ -6,6 +6,7 @@
 	class Propose {
 		/* Attributs */
 		private $_id;
+        private $_valid;
         private $_userid;
         private $_sitterid;
         private $_pet_typeid;
@@ -46,14 +47,30 @@
 			$this->_id = $intId;
 		}
 
-        /*Clé ETRANGERE!
+        /**
+		* Getter de valid
+		* @return int Valid
+		*/
+		public function getValid():int{
+			return $this->_valid;
+		}
+		/**
+		* Setter de valid
+		* @param $intValid Valid
+		*/
+		public function setValid(int $intValid){
+			$this->_valid = $intValid;
+		}
+
+        /**
+        * Clé ETRANGERE!
         * Getter du userid
         * @return int Id Userid
         */
         public function getUserId():int{
             return $this->_userid;
         }
-        /*
+        /**
         * Setter du userid
         * @param $intUserid Id Userid
         */
@@ -61,13 +78,14 @@
             $this->_userid = $intUserid;
         }
 
-        /* Getter du petsitterid
+        /**
+        *  Getter du petsitterid
         * @return int Id Petsitter
         */
         public function getSitterId():int{
             return $this->_sitterid;
         }
-        /*
+        /**
         * Setter du petsitterid
         * @param $intPetsitterid Id Petsitter
         */
@@ -75,13 +93,14 @@
             $this->_sitterid = $intSitterId;
         }
 
-                /* Getter du petTypeID
+        /**
+        * Getter du petTypeID
         * @return int Id PetType
         */
         public function getPetTypeId():int{
             return $this->_pet_typeid;
         }
-        /*
+        /**
         * Setter du petTypeID
         * @param $intPetsitteridint Id PetType
         */

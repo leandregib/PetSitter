@@ -22,14 +22,14 @@
 		</thead>
 		
 		<tbody>
-			{foreach from=$arrUsersToDisplay item=objPropose} 
+			{foreach from=$arrUsersToDisplay item=objUser} 
 			<tr>
-				<td>{$objPropose->getName()|unescape}</td>
+				<td>{$objUser->getName()|unescape}</td>
 				
 				
 				<td>
 					
-					 <a href="index.php?ctrl=user&action=vueProfil&id={$objPropose->getId()}" >Vue Profil</a> 
+					 <a href="index.php?ctrl=user&action=vueProfil&id={$objUser->getId()}" >Vue Profil</a> 
 					
 					
 				</td>
