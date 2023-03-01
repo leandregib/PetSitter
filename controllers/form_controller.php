@@ -288,11 +288,11 @@
 					header("Location:index.php?ctrl=error&action=error_403");
 			}
 			
-			if ($_GET['id']!= $_SESSION['user']['id']
+			/*if ($_GET['id']!= $_SESSION['user']['id']
 
 				&& 	$_SESSION['user']['role'] != 1) {
 				header("Location:index.php?ctrl=error&action=error_403");
-			}
+			}*/
 			
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';
