@@ -13,6 +13,7 @@
 	* @author Timothée KERN
 	* <ul>
 	*	<li>Page profil</li>
+	* 	<li>Méthode de validation d'un sitter</li>
 	* </ul>
 	*/
 	class User_controller extends Base_controller{
@@ -600,7 +601,8 @@
 			$this->display("list_sitter");
 		}
 
-		
+		//_________________________________________________________________________________________________________
+
 		/**
 		* Méthode de validation d'un sitter
 		*/
@@ -612,15 +614,22 @@
                 (isset($_GET['id']) && $_SESSION['user']['role'] != 3) ){
                 header("Location:index.php?ctrl=error&action=error_403");
             }
-			$objPropose = new Propose;
-			// Récupération des utilisateurs
-			$objProposeManager = new ProposeManager;
-			$objProposeManager->updatePetsitter($objPropose);
 			
-			// Liste des utilisateurs en mode objet
+
+			// Création des objets Propose et ProposeManager
+			$objPropose = new Propose;
+			$objProposeManager = new ProposeManager;
+			
+			//Hydratation de l'objet propose
+			$intPropId = $_GET['id'];
+			$arrPetsitter = $objProposeManager->getPetsitterForValid($intPropId);
+			$objPropose->hydrate($arrPetsitter);
+
+			//Mise à jour de prop_valid de 0 à 1
+			$objProposeManager->updatePetsitter($objPropose);
 		
-			// Affichage
-			header("Location:index.php?ctrl=user&action=list_user");
+			//Redirection vers l'accueil
+			header("Location:index.php?ctrl=user&action=list_sitter");
 		}
 
 	}

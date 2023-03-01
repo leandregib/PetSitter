@@ -99,4 +99,19 @@
 
 			return $arrPetsitter;
 		}
+
+		/**
+		* Méthode de récupération des infos de la proposition de garde
+		* @param $intPropId int ID de la proposition de garde 
+		* @return array $arrPetsitter infos de la proposition de garde 
+		*/
+		public function getPetsitterForValid($intPropId){
+			$strRqPetsitter 	= "SELECT *							  
+							FROM propose
+							WHERE prop_id = ".$intPropId;
+							
+			$arrPetsitter 	= $this->_db->query($strRqPetsitter)->fetch();
+
+			return $arrPetsitter;
+		}
 	}
