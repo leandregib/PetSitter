@@ -222,7 +222,7 @@
 			$boolPersonalData 	=  $_POST['personal_data']??'';
 			$objUserManager = new UserManager;
 			$objUser 		= new User;
-			
+			$boolPersonalData 	=  $_POST['personal_data']??'';
 			$objRoleManager  = new RoleManager();
 			$objCityManager  = new CityManager(); 
 			$arrCity 	     = $objCityManager->findCity(); 
