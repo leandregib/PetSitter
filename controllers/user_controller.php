@@ -564,4 +564,40 @@
 		$this->_arrData['strPage']	= "vueProfil";
 		$this->display("vueProfil");
 		}
+
+		//_________________________________________________________________________________________________________
+
+		/**
+		* Page liste des petsitters soumis à validation pour les modérateurs
+		*/
+		public function list_sitter(){
+            
+			if (	
+				// utilisateur non connecté
+				(!isset($_SESSION['user'])) 
+			||  
+				// utilisateur non admin qui veut changer un autre compte
+				(isset($_GET['id'])!= $_SESSION['user']['id'] && $_SESSION['user']['role'] != 3) 
+				   ){
+					header("Location:index.php?ctrl=error&action=error_403");
+			}
+			
+			// Récupération des utilisateurs
+			$objProposeManager = new ProposeManager;
+			$arrPropose = $objProposeManager->findPetsitter();
+			
+			// Liste des utilisateurs en mode objet
+			$arrProposeToDisplay = array();
+			foreach($arrPropose as $arrDetPropose){
+				$objPropose = new Propose;
+				$objPropose->hydrate($arrDetPropose);
+				$arrProposeToDisplay[] = $objPropose;
+				
+			}
+			// Affichage
+			$this->_arrData['strTitle']					    = "Liste des Sitter";
+			$this->_arrData['strPage']					    = "list_sitter";
+			$this->_arrData['arrProposeToDisplay']			= $arrProposeToDisplay;
+			$this->display("list_sitter");
+		}
 	}

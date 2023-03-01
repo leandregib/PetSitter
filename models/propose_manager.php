@@ -13,11 +13,13 @@
 		}
 		
 		/**
-		* Méthode de récupération des petsitters
-		* @return array Liste des petsitters
+		* Méthode de récupération des petsitters à valider
+		* @return array Liste des petsitters pour la vue modérateur
 		*/
 		public function findPetsitter(){
-			$strRqSitter = "SELECT prop_id, prop_userid, prop_sitterid, prop_pet_typeid FROM propose";
+			$strRqSitter = "SELECT DISTINCT user_name, user_firstname FROM users
+								INNER JOIN propose ON prop_userid = user_id
+							WHERE prop_valid = 0";
 							
 			return $this->_db->query($strRqSitter)->fetchAll();
 		}
