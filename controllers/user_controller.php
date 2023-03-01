@@ -358,13 +358,7 @@
 			$arrUsers = $objUserManager->findUser();
 			
 			// Liste des utilisateurs en mode objet
-			$arrUsersToDisplay = array();
-			foreach($arrUsers as $arrDetUser){
-				
-				$objUser->hydrate($arrDetUser);
-				$arrUsersToDisplay[] = $objUser;
-				
-			}
+		
 			// Affichage
 			header("Location:index.php?ctrl=user&action=list_user");
 		}
@@ -605,4 +599,28 @@
 			$this->_arrData['arrUsersToDisplay']			= $arrUsersToDisplay;
 			$this->display("list_sitter");
 		}
+
+		
+		/**
+		* Méthode de validation d'un sitter
+		*/
+		public function ValidSitter(){
+			if (// utilisateur non connecté
+                (!isset($_SESSION['user'])) 
+            ||
+                // utilisateur non admin qui veut changer un autre compte
+                (isset($_GET['id']) && $_SESSION['user']['role'] != 3) ){
+                header("Location:index.php?ctrl=error&action=error_403");
+            }
+			$objPropose = new Propose;
+			// Récupération des utilisateurs
+			$objProposeManager = new ProposeManager;
+			$objProposeManager->updatePetsitter($objPropose);
+			
+			// Liste des utilisateurs en mode objet
+		
+			// Affichage
+			header("Location:index.php?ctrl=user&action=list_user");
+		}
+
 	}

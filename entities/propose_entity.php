@@ -36,7 +36,7 @@
 		* Getter de l'id
 		* @return int Identifiant
 		*/
-		public function getId():int{
+		public function getId():int|null{
 			return $this->_id;
 		}
 		/**
