@@ -117,7 +117,7 @@
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
 			$strRqPet	= "SELECT pet_id,
 								  pet_name, 
-								  pet_birthday
+								  pet_birthday,
 								  pet_userid
 							FROM pet
 								INNER JOIN users ON pet_userid = user_id

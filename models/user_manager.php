@@ -148,6 +148,7 @@
 								  user_homeid AS 'homeid',
 								  user_description AS 'description',
 								  user_cityid AS 'cityid',
+								  user_roleid,
 								  user_birthday AS 'birthday'
 								  
 							FROM users

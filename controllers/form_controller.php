@@ -210,37 +210,6 @@
 			// Création de l'objet PetManager
 			$objPetManager = new PetManager;
 
-		 	// Liste des types d'animaux
-			$objPetTypeManager  = new PetTypeManager(); 
-			$arrPetType 	    = $objPetTypeManager->findPetType(); 
-
-	 		$arrPetTypeToDisplay = array();
-	 		foreach($arrPetType as $arrDetPetType){
-		 		$objPetType = new Pet_type;
-		 		$objPetType->hydrate($arrDetPetType);
-				if ($objPet->getTypeid() == $objPetType->getId()) {
-					$arrPetTypeSelected[] = $objPetType->getId();
-				}
-		 		$arrPetTypeToDisplay[] = $objPetType;
-	 		}
-			$this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
-		 	$this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
-
-			// Liste des sexes
-			$objSexManager  	= new SexManager(); 
-			$arrSex	    	= $objSexManager->findSex();
-			
-			$arrSexToDisplay = array();
-			foreach($arrSex as $arrDetSex){
-				$objSex = new Sex;
-				$objSex->hydrate($arrDetSex);
-				if ($objPet->getSexid() == $objSex->getId()) {
-					$arrSexSelected[] = $objSex->getId();
-				}
-				$arrSexToDisplay[] = $objSex;
-			}
-			$this->_arrData['arrSexSelected']		= $arrSexSelected;
-			$this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
 					
 			$arrError = array(); // Tableau des erreurs initialisé
 			if (count($_POST) > 0) { // Si le formulaire est envoyé
@@ -265,6 +234,38 @@
 					}
 				}
 			}
+			
+		 	// Liste des types d'animaux
+			 $objPetTypeManager  = new PetTypeManager(); 
+			 $arrPetType 	    = $objPetTypeManager->findPetType(); 
+ 
+			  $arrPetTypeToDisplay = array();
+			  foreach($arrPetType as $arrDetPetType){
+				  $objPetType = new Pet_type;
+				  $objPetType->hydrate($arrDetPetType);
+				 if ($objPet->getTypeid() == $objPetType->getId()) {
+					 $arrPetTypeSelected[] = $objPetType->getId();
+				 }
+				  $arrPetTypeToDisplay[] = $objPetType;
+			  }
+			 $this->_arrData['arrPetTypeSelected']	= $arrPetTypeSelected;
+			  $this->_arrData['arrPetTypeToDisplay']	= $arrPetTypeToDisplay;
+ 
+			 // Liste des sexes
+			 $objSexManager  	= new SexManager(); 
+			 $arrSex	    	= $objSexManager->findSex();
+			 
+			 $arrSexToDisplay = array();
+			 foreach($arrSex as $arrDetSex){
+				 $objSex = new Sex;
+				 $objSex->hydrate($arrDetSex);
+				 if ($objPet->getSexid() == $objSex->getId()) {
+					 $arrSexSelected[] = $objSex->getId();
+				 }
+				 $arrSexToDisplay[] = $objSex;
+			 }
+			 $this->_arrData['arrSexSelected']		= $arrSexSelected;
+			 $this->_arrData['arrSexToDisplay']		= $arrSexToDisplay;
 
 			//Affichage
 			$this->_arrData['objPet']		= $objPet;
@@ -287,12 +288,11 @@
 				{
 					header("Location:index.php?ctrl=error&action=error_403");
 			}
-			
-			/*if ($_GET['id']!= $_SESSION['user']['id']
+			if ($_GET['petuser']!= $_SESSION['user']['id']
 
 				&& 	$_SESSION['user']['role'] != 1) {
 				header("Location:index.php?ctrl=error&action=error_403");
-			}*/
+			}
 			
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';
@@ -435,11 +435,11 @@
 	
 			// Liste des utilisateurs en mode objet
 			$arrPetToDisplay = array();
+
 			foreach($arrPet as $arrDetPet){
 				$objPet = new Pet;
 				$objPet->hydrate($arrDetPet);
-				$arrPetToDisplay[] = $objPet;
-				
+				$arrPetToDisplay[] = $objPet;	
 			}
 			// Affichage
 			$this->_arrData['strTitle']					= "Liste des animaux";

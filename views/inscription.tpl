@@ -69,7 +69,7 @@
                     <select id="roleid" name="roleid">
                         <option value=''>--</option>
                         {foreach from=$arrRoleToDisplay item = objRole}
-                            <option {if (in_array($objUser->getRoleId(), $arrSelectedRole))} selected {/if}  value='{$objRole->getId()}'>{$objRole->getId()} {$objRole->getName()}</option>
+                            <option {if (in_array($objRole->getId(), $arrSelectedRole))} selected {/if}  value='{$objRole->getId()}'>{$objRole->getId()} {$objRole->getName()}</option>
                         {/foreach}
                     </select>
                     </div>
