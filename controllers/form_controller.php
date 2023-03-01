@@ -2,6 +2,19 @@
 	/**
 	* Controller des pages des formulaires
 	* @author Timothée KERN
+	* <ul>
+	*	<li>Page Formulaire Nouveau PetSitter</li>
+	*	<li>Page Formulaire Nouvel Animal</li>
+	*	<li>Page Fais Garder Ton Animal</li>
+	*	<li>Page Ajouter une Image</li>
+	* </ul>
+	* @author Jérémy GALLIPPI
+	* <ul>
+	*	<li>Page de modif d'un Animal</li>
+	*	<li>Page d'affichage de la liste des animaux (vue Admin)</li>
+	*	<li>Page d'affichage la liste des animaux de l'utilisateur</li>
+	*	<li>Methode de suppression d'un animal</li>
+	* </ul>
 	*/
 	class Form_controller extends Base_controller{
 		/**
@@ -175,7 +188,6 @@
 		//_________________________________________________________________________________________________________
 
 		/**
-		* Creator Jérémy Gallippi
 		* Page Formulaire Nouvel Animal
 		*/
 		public function formNouvAnimal (){
@@ -262,9 +274,9 @@
 			$this->display("formNouvAnimal");
 		}
 
+		//_________________________________________________________________________________________________________
 
 		/**
-		* @author Jérémy Gallippi
 		* Page de modif d'un Animal
 		*/
 		public function modifNouvAnimal (){
@@ -369,9 +381,10 @@
 			$this->display("formNouvAnimal");
 		}
 
+		//_________________________________________________________________________________________________________
+
 		/**
-		* @author Jérémy Gallippi
-		* fonction qui affiche la liste des animaux
+		* Page d'affichage de la liste des animaux
 		*/
 		public function list_pet(){
 			if (	
@@ -403,9 +416,10 @@
 			$this->display("list_pet");
 		}
 
+		//_________________________________________________________________________________________________________
+
 		/**
-		* @author Jérémy Gallippi
-		* fonction qui affiche la liste des animaux de l'utilisateur
+		* Page d'affichage la liste des animaux de l'utilisateur
 		*/
 		public function list_petuser(){
 			
@@ -435,9 +449,9 @@
 			$this->display("list_petuser");
 		}
 
+		//_________________________________________________________________________________________________________
 
 		/**
-		* @author Jérémy Gallippi
 		* Methode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
