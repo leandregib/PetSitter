@@ -13,11 +13,8 @@
 	<table id="list" class="table table-striped" style="width:100%">
 		<thead>
 			<tr>
-				<th>Nom</th>
-				<th>Id</th>
-				
-				<th>Id du propriétaire</th>
-				
+				<th>Nom Du Sitter</th>
+				<th>Profil</th>
 			</tr>
 		</thead>
 		

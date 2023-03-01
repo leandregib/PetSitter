@@ -38,7 +38,7 @@
                                     <li class="list-group-item">Type de garde : {$arrSitterToDisplay[$i]->getType()}</li>
                                     <li class="list-group-item">Type d'animal : {$arrPetTypeSitterToDisplay[$i]->getKind()}</li>
                                     {if $arrProposeToDisplay[$i]->getValid() == 0 && isset($smarty.session.user.id) && $smarty.session.user.role == 3}
-                                        <li><a href="index.php?ctrl=user&action=ValidSitter&id={$arrProposeToDisplay[$i]->getId()}" title="Validation proposition">Valider</a></li>
+                                        <li><a href="index.php?ctrl=user&action=ValidSitter&id={$arrProposeToDisplay[$i]->getId()}" title="Validation proposition">VALIDER LA PROPOSITION DE GARDE</a></li>
                                     {/if}
                                     <br />
                                 {/for}
