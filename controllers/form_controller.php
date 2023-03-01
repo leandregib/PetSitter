@@ -542,12 +542,18 @@
 			if (!isset($_SESSION['user'])) { // utilisateur non connecté
 				header("Location:index.php?ctrl=error&action=error_403");
 			}
+			
+			//Récupère l'id de l'utilisteur pour être utilisé en paramètre
+			$intId = $_GET['id']??$_SESSION['user']['id'];
 
-			// //Vérifie que le petsitter n'existe pas déjà
-			// $boolOK = $objPetsitterManager->getPetsitter($intId);
-			// if ($boolOK==true) {
-			// 	header("Location:index.php?ctrl=error&action=error_error_form_already_completed");
-			// }
+			//Création de l'objet PictureManager
+			$objPictureManager = New PictureManager;
+
+			//Vérifie que l'utilisateur n'a pas déjà plus de 20 images d'enregistrés
+			$boolOK = $objPictureManager->verifLimitImg($intId);
+			if ($boolOK==true) {
+				header("Location:index.php?ctrl=error&action=error_form_limit_img");
+			}
 			
 			// Pour récupérer les informations dans le formulaire
 			$boolPersonalData 	=  $_POST['personal_data']??'';

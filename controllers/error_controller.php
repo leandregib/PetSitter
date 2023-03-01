@@ -21,8 +21,15 @@
 		
 		public function error_error_form_already_completed(){
 			//Affichage
-			$this->_arrData['strTitle']	= "Accès interdit";
+			$this->_arrData['strTitle']	= "Formulaire déjà complété";
 			$this->_arrData['strPage']	= "error_form_already_completed";
 			$this->display("error_form_already_completed");
+		}
+
+		public function error_form_limit_img(){
+			//Affichage
+			$this->_arrData['strTitle']	= "Limite d'images atteinte";
+			$this->_arrData['strPage']	= "error_form_limit_img";
+			$this->display("error_form_limit_img");
 		}
 	}

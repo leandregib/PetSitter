@@ -17,8 +17,7 @@
 		* @return array Liste des petsitters
 		*/
 		public function findPetsitter(){
-			$strRqSitter = "SELECT prop_id, prop_userid, prop_sitterid, prop_pet_typeid FROM propose
-				INNER JOIN propose ON user_userid = user_id ;";
+			$strRqSitter = "SELECT prop_id, prop_userid, prop_sitterid, prop_pet_typeid FROM propose";
 							
 			return $this->_db->query($strRqSitter)->fetchAll();
 		}
@@ -74,21 +73,14 @@
 		/**
 		* Methode de validation d'une proposition de garde
 		* @param $objPetsitter objet du Petsitter dans la BDD
-		* @param $intId int Id de l'utilisateur connecté
 		* @return bool proposition validée ou non (passe de 0 à 1 en BDD)
 		*/		
-		public function updatePetsitter(object $objPetsitter):bool{
+		public function updatePetsitter(object $objPetsitter){
 
-           
-			// Insertion en BDD, si pas d'erreurs
 			$strRqUpdate 	= "UPDATE propose 
 								SET prop_valid = 1
-								WHERE prop_id = ".$objPetsitter->getId();
-							
-			// Requête préparée	
-			$prep		= $this->_db->prepare($strRqUpdate);
-		
-			return $prep->execute();				
+								WHERE prop_id = ".$objPetsitter->getId();		
+			return $this->_db->exec($strRqUpdate);				
 		
 		}
 

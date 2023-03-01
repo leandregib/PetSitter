@@ -60,18 +60,22 @@
 		}
 
 		/**
-		* Methode retournant le nombre d'images de l'utilisateur
+		* Methode de récupération du nombre d'images de l'utilisateur
 		* @param $intId int id de l'utilisateur 
-		* @return int $intCountImg le nombre d'images de l'utilisateur
+		* @return bool retourne vrai si trouve au moins 20 images pour l'utilisateur
 		*/
-		public function getImgUser(int $intId){
-			$strRq		 	= "SELECT count(*) 								  
+		public function verifLimitImg(int $intId):bool{
+			$strRq		 	= "SELECT count(pic_id) AS nb								  
 							FROM picture
 							WHERE pic_userid = ".$intId;
 							
 			$intCountImg = $this->_db->query($strRq)->fetch();
-			
-			return $intCountImg;
+
+			if ($intCountImg['nb'] < 20) {
+				return false;
+			}else {
+				return true;
+			}
 		}
 		
 	}
