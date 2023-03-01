@@ -25,7 +25,7 @@
                             <label for="typeid">Choisissez un type d'animal</label>
                             <select name="typeid" class="form-select my-2" aria-label="Default select example" >                            
                                 {foreach from=$arrPetTypeToDisplay item=objPetType} 
-                                    <option {if (in_array($objPet->getTypeid(), $arrPetTypeSelected))} selected {/if} value='{$objPetType->getId()}' {if (in_array($objPet->getTypeid(), $arrPetTypeSelected))}  selected {/if}>{$objPetType->getKind()}</option>
+                                    <option {if (in_array($objPetType->getId(), $arrPetTypeSelected))} selected {/if} value='{$objPetType->getId()}'>{$objPetType->getKind()}</option>
                                 {/foreach}
                             
                             </select>
@@ -35,7 +35,7 @@
                             <label for="sexid">Sélectionné le sexe de l'animal</label>
                             <select name="sexid" class="form-select my-2" aria-label="Default select example">
                                 {foreach from=$arrSexToDisplay item=objSex} 
-                                    <option {if (in_array($objPet->getSexid(), $arrPetTypeSelected))} selected {/if} value='{$objSex->getId()}' {if (in_array($objPet->getSexid(), $arrSexSelected))} selected {/if}>{$objSex->getType()}</option>
+                                    <option {if (in_array($objSex->getId(), $arrSexSelected))} selected {/if} value='{$objSex->getId()}'>{$objSex->getType()}</option>
                                 {/foreach}
                             </select>
                         </div>

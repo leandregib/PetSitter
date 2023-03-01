@@ -304,17 +304,9 @@
 			$objPet = new Pet;
 			// Création de l'objet PetManager
 			$objPetManager = new PetManager;
-			
-		 	// Liste des types d'animaux
-			$objPetTypeManager  = new PetTypeManager(); 
-			$arrPetType 	    = $objPetTypeManager->findPetType(); 
 
-	 		$arrPetTypeToDisplay = array();
-	 	
-			
-			// Liste des sexes
-			$objSexManager  	= new SexManager(); 
-			$arrSex	    		= $objSexManager->findSex();
+			//Initialisation du tableau d'erreurs			
+		 	$arrPetTypeToDisplay = array();		
 			
 					
 			$arrError = array(); // Tableau des erreurs initialisé
@@ -333,7 +325,7 @@
 				
 				// Si aucune erreur on l'insert en BDD
 				if (count($arrError) == 0){ 
-					if($objPetManager->updatePet($objPet, $intId)){
+					if($objPetManager->updatePet($objPet)){
 						header("Location:index.php"); // Redirection page d'accueil;
 					}else{
 						$arrError[]	= "Erreur lors de l'ajout";
@@ -351,7 +343,10 @@
 				$objPet->hydrate($arrPet);
 					
 			}
-			
+
+			// Liste des types d'animaux
+			$objPetTypeManager  = new PetTypeManager(); 
+			$arrPetType 	    = $objPetTypeManager->findPetType(); 
 			foreach($arrPetType as $arrDetPetType){
 				$objPetType = new Pet_type;
 				$objPetType->hydrate($arrDetPetType);
@@ -360,6 +355,10 @@
 			   }
 				$arrPetTypeToDisplay[] = $objPetType;
 			}
+
+			// Liste des sexes
+			$objSexManager  	= new SexManager(); 
+			$arrSex	    		= $objSexManager->findSex();
 			foreach($arrSex as $arrDetSex){
 				$objSex = new Sex;
 				$objSex->hydrate($arrDetSex);
