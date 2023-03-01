@@ -143,6 +143,9 @@
 				if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
 					$arrError[]	= "Merci de renseigner un mot de passe";
 				}
+				if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ", $_POST["password"])){ 
+					$arrError[] = "Le mot n'est pas assez sécurisé";
+				}
 	
 				if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";

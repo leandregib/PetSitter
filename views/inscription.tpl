@@ -94,7 +94,9 @@
                     </div>
                 </form>
                 <div class="mb-5 text-center">
-                <p>Pour ajouter une image, <a href="index.php?ctrl=form&action=ajoutImg">Clique ici</a> </p>
+                {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
+                    <p>Pour ajouter une image, <a href="index.php?ctrl=form&action=ajoutImg">Clique ici</a> </p>
+                {/if}
                 </div>
             </div>
         </div>
