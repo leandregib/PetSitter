@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité picture
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Picture {
 		/* Attributs */

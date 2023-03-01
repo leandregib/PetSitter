@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de propose
-	* @creator Timothée KERN
+	* @author Timothée KERN
 	*/
 	class ProposeManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des petsitters
+		* Méthode de récupération des petsitters
 		* @return array Liste des petsitters
 		*/
 		public function findPetsitter(){
@@ -23,7 +23,7 @@
 		}
 		
 		/**
-		* Methode de récupération des infos du Petsitter connecté
+		* Méthode de récupération des infos du Petsitter connecté
 		* @param $intId int id de l'utilisateur 
 		* @return bool retourne vrai si trouve un petsitter avec l'id renseigné dans la BDD
 		*/
@@ -38,7 +38,7 @@
 		}
 		
 		/**
-		* Methode de création d'un petsitter
+		* Méthode de création d'un petsitter
 		* @param $objPetsitter objet du Petsitter à ajouter dans la base de données
 		* @param $intId int Id de l'utilisateur connecté
 		*/		
@@ -61,7 +61,7 @@
 		}
 
 		/**
-		* Methode de suppression d'un petsitter
+		* Méthode de suppression d'un petsitter
 		*/
 		public function deletePetsitter()
 		{
@@ -71,9 +71,9 @@
 		}
 
 		/**
-		* Methode de validation d'une proposition de garde
+		* Méthode de validation d'une proposition de garde
 		* @param $objPetsitter objet du Petsitter dans la BDD
-		* @return bool proposition validée ou non (passe de 0 à 1 en BDD)
+		* proposition validée ou non (passe de 0 à 1 en BDD)
 		*/		
 		public function updatePetsitter(object $objPetsitter){
 
@@ -85,9 +85,7 @@
 		}
 
 		/**
-		* Methode de récupération des infos du Petsitter connecté
-		* @param $intId int id de l'utilisateur 
-		* @return bool retourne vrai si trouve un petsitter avec l'id renseigné dans la BDD
+		* Méthode de récupération des infos du Petsitter
 		*/
 		public function getPetsitterDisplay(){
 			$intId 				= $_GET['id']??$_SESSION['user']['id'];

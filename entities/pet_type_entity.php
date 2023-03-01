@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité pet_type
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Pet_type {
 		/* Attributs */

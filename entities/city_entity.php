@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité city
-	* @creator Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class City {
 		/* Attributs */

@@ -13,7 +13,7 @@
 	*	<li>Page de modif d'un Animal</li>
 	*	<li>Page d'affichage de la liste des animaux (vue Admin)</li>
 	*	<li>Page d'affichage la liste des animaux de l'utilisateur</li>
-	*	<li>Methode de suppression d'un animal</li>
+	*	<li>Méthode de suppression d'un animal</li>
 	* </ul>
 	*/
 	class Form_controller extends Base_controller{
@@ -452,7 +452,7 @@
 		//_________________________________________________________________________________________________________
 
 		/**
-		* Methode de suppression d'un animal
+		* Méthode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
 		public function DeletePet(){

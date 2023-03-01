@@ -1,5 +1,9 @@
 <?php
-	
+
+	/**
+	* Class Manager (classe mère des managers)
+	* @author Timothée KERN
+	*/	
 	class Manager{
 		
 		protected $_db;

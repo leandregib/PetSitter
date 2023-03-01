@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité home
-	* @creator Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class Home {
 		/* Attributs */

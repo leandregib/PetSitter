@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de city
-	* @creator Timothée KERN
+	* @author Timothée KERN
 	*/
 	class CityManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des villes
+		* Méthode de récupération des villes
 		* @return array Liste des villes
 		*/
 		public function findCity(){
@@ -23,8 +23,8 @@
 		}
 
 		/**
-		* Methode de récupération des villes avec l'id de l'utilisateur 
-		* @return array récupère le nom de la ville de l'utilisateur 
+		* Méthode de récupération de la ville avec l'id de l'utilisateur 
+		* @return string récupère le nom de la ville de l'utilisateur 
 		*/
 		public function getCity(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -33,9 +33,9 @@
 								INNER JOIN users ON user_cityid = city_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrCity 	= $this->_db->query($strRqCity)->fetch();
+			$strCity 	= $this->_db->query($strRqCity)->fetch();
 			
-			return $arrCity;
+			return $strCity;
 		}
 		
 	}

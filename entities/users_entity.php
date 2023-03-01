@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité user
-	* @creator Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class User {
 		/* Attributs */
@@ -123,7 +123,7 @@
 			$this->_mail = filter_var(trim(strtolower($strMail)),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 
-        	/**
+        /**
 		* Getter du mot de passe
 		* @return string Password
 		*/
@@ -143,7 +143,7 @@
 			}
 		}
 		
-        	/**
+        /**
 		* Getter de l'adresse
 		* @return string adress
 		*/
@@ -158,7 +158,7 @@
 			$this->_address = filter_var(trim($strAddress),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
-        	/**
+        /**
 		* Getter du numéro de téléphone
 		* @return string Phone
 		*/
@@ -173,7 +173,7 @@
 			$this->_phone = filter_var(trim($strPhone),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
-        	/**
+        /**
 		* Getter de la description
 		* @return string Drescription
 		*/
@@ -188,7 +188,7 @@
 			$this->_description = filter_var(trim($strDescription),FILTER_SANITIZE_SPECIAL_CHARS);
 		}
 		
-        	/**
+        /**
 		* Getter de l'Iban
 		* @return string Iban
 		*/
@@ -205,13 +205,14 @@
 		
 		/*Clé ETRANGERE!*/
 
-        /* Getter du homeid
+        /**
+		* Getter du homeid
         * @return int Id Homeid
         */
         public function getHomeId():int{
             return $this->_homeid;
         }
-        /*
+        /**
         * Setter du homeid
         * @param $intHomeId
         */
@@ -219,13 +220,14 @@
             $this->_homeid = $intHomeId;
         }
 
-        /* Getter du cityid
+        /**
+		*  Getter du cityid
         * @return int CityId
         */
         public function getCityId():int{
             return $this->_cityid;
         }
-        /*
+        /**
         * Setter du cityid
         * @param $intCityId
         */
@@ -233,13 +235,14 @@
             $this->_cityid = intval($intCityId);
         }
 
-        /* Getter du roleid
+        /**
+		*  Getter du roleid
         * @return int RoleId
         */
         public function getRoleId():int{
             return $this->_roleid;
         }
-        /*
+        /**
         * Setter du roleid
         * @param $intRoleId
         */

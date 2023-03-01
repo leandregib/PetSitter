@@ -1,8 +1,8 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-	* Class manager de pet_type
-	* @creator Timothée KERN
+	* Class manager de home
+	* @author Timothée KERN
 	*/
 	class HomeManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des types de logement
+		* Méthode de récupération des types de logement
 		* @return array Liste des types de logement
 		*/
 		public function findHome(){
@@ -23,8 +23,8 @@
 		}
 
 		/**
-		* Methode de récupération du type d'habitation de l'utilisateur 
-		* @return array récupère le type d'habitation de l'utilisateur 
+		* Méthode de récupération du type d'habitation de l'utilisateur 
+		* @return string récupère le type d'habitation de l'utilisateur 
 		*/
 		public function getHome(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -33,9 +33,9 @@
 								INNER JOIN users ON user_homeid = home_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrHome 	= $this->_db->query($strRqHome)->fetch();
+			$strHome 	= $this->_db->query($strRqHome)->fetch();
 			
-			return $arrHome;
+			return $strHome;
 		}
 		
 	}

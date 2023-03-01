@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de role
-	* @creator Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class RoleManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des roles
+		* Méthode de récupération des roles
 		* @return array Liste des roles
 		*/
 		public function getRoleId(){
@@ -23,8 +23,8 @@
 		}
 
 		/**
-		* Methode de récupération du rôle de l'utilisateur
-		* @return array récupère le rôle de l'utilisateur
+		* Méthode de récupération du rôle de l'utilisateur
+		* @return string récupère le rôle de l'utilisateur
 		*/
 		public function getRole(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -33,9 +33,9 @@
 								INNER JOIN users ON user_roleid = role_id
 							WHERE user_id = '".$intId."'";
 							
-			$arrRole 	= $this->_db->query($strRqRole)->fetch();
+			$strRole 	= $this->_db->query($strRqRole)->fetch();
 			
-			return $arrRole;
+			return $strRole;
 		}
 		
 	}

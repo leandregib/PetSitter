@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de pet_type
-	* @creator Timothée KERN
+	* @author Timothée KERN
 	*/
 	class PetTypeManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des types d'animaux
+		* Méthode de récupération des types d'animaux
 		* @return array Liste des types d'animaux
 		*/
 		public function findPetType(){
@@ -23,11 +23,11 @@
 		}
 		
 		/**
-		* Methode de récupération des types d'animaux de l'utilisateur
+		* Méthode de récupération du type de l'animal de l'utilisateur
 		* @param int $intPetId Id de l'animal 
-		* @return string $strPetType récupère les types d'animaux de l'utilisateur 
+		* @return string $strPetType récupère le type de l'animal de l'utilisateur 
 		*/
-		public function getPetType($intPetId){
+		public function getPetType(int $intPetId){
 			$strRqPetType	= "SELECT pet_type_kind 								  
 							FROM pet_type
 								INNER JOIN pet ON pet_typeid = pet_type_id
@@ -39,19 +39,19 @@
 		}
 
 		/**
-		* Methode de récupération des types d'animaux que l'utilisateur souhaite garder
+		* Méthode de récupération du type de l'animal que l'utilisateur souhaite garder
 		* @param int $intProposeId Id de la garde proposée 
-		* @return array récupère les types d'animaux que l'utilisateur souhaite garder
+		* @return string $strPropPetType récupère le type de l'animal que l'utilisateur souhaite garder
 		*/
-		public function getPetTypeSitter($intProposeId){
+		public function getPetTypeSitter(int $intProposeId){
 			$strRqPetType	= "SELECT pet_type_kind 								  
 							FROM pet_type
 								INNER JOIN propose ON prop_pet_typeid = pet_type_id
 							WHERE prop_id = '".$intProposeId."'";
 							
-			$arrPetType 	= $this->_db->query($strRqPetType)->fetch();
+			$strPropPetType 	= $this->_db->query($strRqPetType)->fetch();
 			
-			return $arrPetType;
+			return $strPropPetType;
 		}
 		
 	}

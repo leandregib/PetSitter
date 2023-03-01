@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de la recherche
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class SearchManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des petsitters
+		* Méthode de récupération des petsitters
 		* @return array Liste des résultats en fonction des filtres (type d'animal, type de garde et code postal) appliqués
 		*/
 		public function findPetSitter(){

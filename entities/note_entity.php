@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité note
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Note {
 		/* Attributs */

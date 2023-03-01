@@ -1,8 +1,8 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-	* Class manager de pet_type
-	* @creator Timothée KERN
+	* Class manager de picture
+	* @author Timothée KERN
 	*/
 	class PictureManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des images
+		* Méthode de récupération des images
 		* @return array Liste des images
 		*/
 		public function findPicture(){
@@ -23,7 +23,7 @@
 		}
 
 		/**
-		* Methode d'ajout d'image dans la BDD
+		* Méthode d'ajout d'image dans la BDD
 		* @param $objPicture objet de l'image à ajouter dans la BDD
 		*/
 		public function addPicture($objPicture){
@@ -44,7 +44,7 @@
 		}
 
 		/**
-		* Methode de récupération des images de l'utilisateur
+		* Méthode de récupération des images de l'utilisateur
 		* @return array récupère les images de l'utilisateur
 		*/
 		public function getPicture(){
@@ -60,7 +60,7 @@
 		}
 
 		/**
-		* Methode de récupération du nombre d'images de l'utilisateur
+		* Méthode de récupération du nombre d'images de l'utilisateur
 		* @param $intId int id de l'utilisateur 
 		* @return bool retourne vrai si trouve au moins 20 images pour l'utilisateur
 		*/

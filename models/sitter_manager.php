@@ -1,8 +1,8 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-	* Class manager de pet_type
-	* @creator Timothée KERN
+	* Class manager de sitter
+	* @author Timothée KERN
 	*/
 	class SitterManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des types d'animaux
+		* Méthode de récupération des types d'animaux
 		* @return array Liste des types d'animaux
 		*/
 		public function findSitter(){
@@ -23,8 +23,9 @@
 		}
 
 		/**
-		* Methode de récupération des types de garde avec l'id de l'utilisateur
-		* @return array récupère les types de gardes proposés par l'utilisateur 
+		* Méthode de récupération du type de garde 
+		* @param $intProposeId int Id de la proposition de garde
+		* @return string récupère le type de garde proposé par l'utilisateur 
 		*/
 		public function getSitter($intProposeId){
 			$strRqSitter	= "SELECT sitter_type 								  
@@ -32,9 +33,9 @@
 								INNER JOIN propose ON prop_sitterid = sitter_id
 							WHERE prop_id = '".$intProposeId."'";
 							
-			$arrSitter 	= $this->_db->query($strRqSitter)->fetch();
+			$strSitter 	= $this->_db->query($strRqSitter)->fetch();
 			
-			return $arrSitter;
+			return $strSitter;
 		}
 		
 	}

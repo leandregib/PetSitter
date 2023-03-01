@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité sitter
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Sitter {
 		/* Attributs */

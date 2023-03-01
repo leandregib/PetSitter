@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité sex
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Sex {
 		/* Attributs */

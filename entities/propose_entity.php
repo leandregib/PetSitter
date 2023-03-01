@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité propose
-	* @creator Jérémy Gallippi
+	* @author Jérémy Gallippi
 	*/
 	class Propose {
 		/* Attributs */

@@ -1,7 +1,18 @@
 <?php
 	/**
 	* Controller des utilisateurs
-	* @author Jérémy Gallippi
+	* @author Jérémy GALLIPPI
+	* <ul>
+	*	<li>Page Se connecter</li>
+	*	<li>Page Inscription</li>
+	*	<li>Page Se déconnecter</li>
+	*	<li>Page modifier le compte</li>
+	*	<li>Méthode de suppression d'un utilisateur</li>
+	* </ul>
+	* @author Timothée KERN
+	* <ul>
+	*	<li>Page profil</li>
+	* </ul>
 	*/
 	class User_controller extends Base_controller{
 		
@@ -68,6 +79,8 @@
 			
 
 		}
+
+		//_________________________________________________________________________________________________________
 
 		/**
 		* Page Inscription
@@ -172,6 +185,8 @@
 
 			$this->display("inscription");
 		}	
+
+		//_________________________________________________________________________________________________________
 		
 		/**
 		* Page Se déconnecter
@@ -181,6 +196,8 @@
 
 			header("Location:index.php");
 		}
+
+		//_________________________________________________________________________________________________________
 
 		/**
 		* Page modifier le compte
@@ -285,7 +302,11 @@
 
 		}
 
-		//liste des utilisateurs à consulter pour l'admin
+		//_________________________________________________________________________________________________________
+
+		/**
+		* Page liste des utilisateurs à consulter pour l'admin
+		*/
 		public function list_user(){
 			if (	
 				// utilisateur non connecté
@@ -316,8 +337,11 @@
 			$this->display("list_user");
 		}
 
+		//_________________________________________________________________________________________________________
 
-
+		/**
+		* Méthode de suppression d'un utilisateur
+		*/
 		public function DeleteUser(){
 			if (// utilisateur non connecté
                 (!isset($_SESSION['user'])) 
@@ -343,6 +367,8 @@
 			// Affichage
 			header("Location:index.php?ctrl=user&action=list_user");
 		}
+
+		//_________________________________________________________________________________________________________
 
 		/**
 		* Page profil

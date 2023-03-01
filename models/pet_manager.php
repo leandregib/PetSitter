@@ -2,7 +2,6 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de pet
-	* @creator Timothée KERN
 	*/
 	class PetManager extends Manager{
 		/**
@@ -13,8 +12,8 @@
 		}
 		
 		/**
-		*@author Jérémy Gallippi 
-		* Methode de récupération des pets
+		* @author Jérémy Gallippi 
+		* Méthode de récupération des pets
 		* @return array Liste des pets
 		*/
 		public function findPet(){
@@ -24,10 +23,12 @@
 		}
 
 		/**
-		* Methode de création d'un pet
+		* @author Timothée KERN
+		* Méthode de création d'un pet
 		* @param $objPet objet de l'animal à ajouter dans la BDD
+		* @param $intId ID de l'utilisateur propriétaire de l'animal
 		*/
-		public function addPet($objPet,$intId){
+		public function addPet(object $objPet, int $intId){
 
 		// Insertion en BDD, si pas d'erreurs
 		$strRqAdd 	= "	INSERT INTO pet
@@ -48,12 +49,12 @@
 
 		/**
 		* @author Jérémy Gallippi
-		* Methode de modification d'un pet
-		* @param $objPet objet de l'animal à ajouter dans la BDD
+		* Méthode de modification d'un pet
+		* @param $objPet objet de l'animal à modifier dans la BDD
 		*/
-		public function updatePet($objPet){
+		public function updatePet(object $objPet){
 
-			// Insertion en BDD, si pas d'erreurs
+			// Modification en BDD, si pas d'erreurs
 			$strRqUpPet 	= "	UPDATE pet
 								SET pet_name 	 = :name,
 								 	pet_birthday = :birthday,
@@ -73,7 +74,8 @@
 			}
 
 		/**
-		* Méthode permettant de vérifier que l'animal n'existe pas déjà en bdd
+		* @author Timothée KERN
+		* Méthode permettant de vérifier que l'animal n'existe pas déjà en BDD
 		* @param object $objPet Objet de l'animal
 		* @return bool l'animal existe ou non
 		*/
@@ -97,10 +99,10 @@
 
 		/**
 		* @author Jérémy Gallippi
-		* Methode de suppression d'un animal
+		* Méthode de suppression d'un animal
 		* @param int $intPetId Id de l'animal à supprimer
 		*/
-		public function deletePet($intId)
+		public function deletePet(int $intId)
 		{
 			$strDelPet = "DELETE FROM pet WHERE pet_id = ".$intId;	
 			return $this->_db->exec($strDelPet);
@@ -109,7 +111,7 @@
 		/**
 		* @author Timothée KERN
 		* Méthode de récupération des animaux de l'utilisateur 
-		* @return array récupère l'id, le nom et la date d'anniversaire des animaux de l'utilisateur
+		* @return array récupère les informations (id, name, birthday et userid) des animaux de l'utilisateur
 		*/
 		public function getPetDisplay(){
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
@@ -128,10 +130,11 @@
 
 		/**
 		* @author Jérémy Gallippi
-		* Methode de récupération d'un animal
+		* Méthode de récupération d'un animal
 		* @param int $intPetId Id de l'animal 
+		* @return array récupère les informations (id, name, birthday, userid, typeid, sexid) de l'animal
 		*/
-		public function getPet($intId){
+		public function getPet(int $intId){
 			
 			$strRqPet 	= "SELECT pet_id,
 								  pet_name, 

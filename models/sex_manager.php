@@ -2,7 +2,7 @@
 	require_once("connect.php");//Classe mère des managers
 	/**
 	* Class manager de sex
-	* @creator Timothée KERN
+	* @author Timothée KERN
 	*/
 	class SexManager extends Manager{
 		/**
@@ -13,7 +13,7 @@
 		}
 		
 		/**
-		* Methode de récupération des sexes
+		* Méthode de récupération de la liste des sexes
 		* @return array Liste des sexes
 		*/
 		public function findSex(){
@@ -23,7 +23,7 @@
 		}
 
 		/**
-		* Methode de récupération du sexe de l'animal de l'utilisateur
+		* Méthode de récupération du sexe de l'animal de l'utilisateur
 		* @param int $intPetId Id de l'animal 
 		* @return string $strSex le sexe de l'animal de l'utilisateur
 		*/

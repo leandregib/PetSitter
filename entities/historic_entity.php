@@ -1,7 +1,7 @@
 <?php
 	/**
 	* Class d'une entité historic
-	* @creator Timothée KERN 
+	* @author Timothée KERN 
 	*/
 	class Historic {
 		/* Attributs */

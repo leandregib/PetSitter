@@ -1,13 +1,7 @@
 <?php
 	require_once("connect.php");//Classe mère des managers
 	/**
-
-	* Class manager de pet_type
-	* @creator Timothée KERN
-
 	* Class manager des users
-	* @creator Jérémy Gallippi
-
 	*/
 	class UserManager extends Manager{
 		/**
@@ -18,7 +12,8 @@
 		}
 		
 		/**
-		* Methode de récupération des utilisateurs
+		* @author Jérémy Gallippi
+		* Méthode de récupération des utilisateurs
 		* @return array Liste des utilisateurs
 		*/
 
@@ -29,7 +24,14 @@
 			return $this->_db->query($strRqSitter)->fetchAll();
 		}
 
-		public function verifUser($strMail, $strPassword){
+		/**
+		* @author Jérémy Gallippi
+		* Méthode permettant de vérifier un utilisateur pour la connection 
+		* @param string $strMail Email de l'utilisateur
+		* @param string $strPwd Mot de passe de l'utilisateur
+		* @return array|bool Le tableau de l'utilisateur ou false si non trouvé
+		*/
+		public function verifUser(string $strMail, string $strPassword):array|bool{
 			$strRqUsers = "SELECT user_id AS 'id', 
 								  user_mail AS 'mail', 
 								  user_firstname AS 'firstname',
@@ -51,10 +53,12 @@
         }
      
 		
-		
-		public function addUsers($objUser){
-
-           
+		/**
+		* @author Jérémy Gallippi
+		* Méthode permettant d'ajouter un utilisateur dans la BDD
+		* @param object $objUser Utilisateur à ajouter
+		*/
+		public function addUsers(object $objUser){           
 			// Insertion en BDD, si pas d'erreurs
 			$strRqAdd 	= "	INSERT INTO users
 								(user_name, user_firstname, user_birthday, user_mail, user_password, user_address, user_phone, user_description, user_cityid, user_roleid, user_homeid)
@@ -83,8 +87,13 @@
 		
 		}
 
-		//fonction de modif de compte utilisateur
-		public function updateUser($objUser){
+		/**
+		* @author Jérémy Gallippi
+		* Méthode permettant de mettre à jour un utilisateur dans la BDD
+		* @param object $objUser Utilisateur à modifier
+		* @return bool utilisateur modifié ou non
+		*/
+		public function updateUser($objUser):bool{
 			$strRqUpdate	= "UPDATE users 
 								SET user_name = :name, 
 									user_firstname = :firstname, 
@@ -123,7 +132,12 @@
 			return $prep->execute();
 		}
 		
-		public function getUser(){
+		/**
+		* @author Jérémy Gallippi
+		* Méthode permettant de récupérer un utilisateur
+		* @return array|bool L'utilisateur courant ou false si non trouvé
+		*/
+		public function getUser():array|bool{
 			$intId 		= $_GET['id']??$_SESSION['user']['id'];
 			$strRqUser 	= "SELECT user_id AS 'id', 
 								  user_firstname AS 'firstname', 
@@ -148,13 +162,12 @@
 		
 
 		/**
-        * Methode d'ajout d'un type d'habitation pour l'utilisateur
-        * @creator Timothée KERN
-        * @param $objUser objet de l'utilisateur à modifier dans la base de données
-		* @param $intId int Id de l'utilisateur connecté
+		* @author Timothée KERN
+        * Méthode de modifier le type d'habitation pour l'utilisateur        
+        * @param $objUser objet de l'utilisateur à modifier dans la BDD
+		* @param $intId int Id de l'utilisateur
         */
         public function editHome(object $objUser, int $intId){
-
 
             // Insertion en BDD, si pas d'erreurs
             $strRqAddPetsitter     = "UPDATE users
@@ -171,7 +184,8 @@
         }
 		
 		/**
-		* Méthode permettant de vérifier que le mail n'existe pas déjà en bdd
+		* @author Jérémy Gallippi
+		* Méthode permettant de vérifier que le mail n'existe pas déjà en BDD
 		* @param object $objUser Objet de l'utilisateur
 		* @return bool le mail existe ou non
 		*/
@@ -196,8 +210,8 @@
 		}
 
 		/**
+		* @author Jérémy Gallippi
 		* Méthode permettant de supprimer un utilisateur
-		* @param object $objUser Objet de l'utilisateur
 		*/
 		public function deleteUser()
 		{
@@ -207,10 +221,11 @@
 		}
 
 		/**
+		* @author Jérémy Gallippi
 		* Méthode permettant de récupérer le role d' un utilisateur
-		* @param object $intId Objet de l'utilisateur
+		* @param int $intId Id de l'utilisateur
 		*/
-		public function findRole($intId){
+		public function findRole(int $intId){
 			$strRqRole ="SELECT user_roleid AS role_id, role_name FROM users 
 							INNER JOIN role ON user_roleid = role_id
 							 WHERE user_id = $intId";
