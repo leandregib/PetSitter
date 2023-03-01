@@ -219,6 +219,7 @@
 			// Créer un objet vide avec l'entité 
 			// Création de l'objet User
 			$intCityId		= $_POST['cityid']??'';	
+			$boolPersonalData 	=  $_POST['personal_data']??'';
 			$objUserManager = new UserManager;
 			$objUser 		= new User;
 			
