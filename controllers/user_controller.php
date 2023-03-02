@@ -325,6 +325,7 @@
 			}
 			
 			// Si le formulaire est envoyé, traiter celui-ci pour pour modification en BDD
+			$this->_arrData['intId']				= $intId;
 			$this->_arrData['arrSelected']			= $arrSelected;
 			$this->_arrData['arrSelectedRole']		= $arrSelectedRole;
 			$this->_arrData['arrCityToDisplay']		= $arrCityToDisplay;

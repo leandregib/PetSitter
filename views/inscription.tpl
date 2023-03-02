@@ -96,6 +96,7 @@
                 <div class="mb-5 text-center">
                 {if isset($smarty.session.user.id) && $smarty.session.user.id != ''}
                     <p>Pour ajouter une image, <a href="index.php?ctrl=form&action=ajoutImg">Clique ici</a> </p>
+                    <p>Accède à ton profil,<a href="index.php?ctrl=user&action=vueProfil&id={$intId}" >Clique ici</a></p>
                 {/if}
                 </div>
             </div>
