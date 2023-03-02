@@ -245,15 +245,10 @@
 				 if($objUser->getMail()== ''){ // test si déjà existant
 					$arrError[]	= "Merci de renseigner Mail";
 				}
-
-
-				if ($objUser->getPassword() != '' && !password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
-                    $arrError[]    = "Le mot de passe et sa confirmation ne sont pas identiques";
-                }
 				/*if ($objUser->getMail() == ''){ // Tests sur le mail
 					$arrError[]	= "Merci de renseigner une adresse mail";
 				}*/
-				/*if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
+				if ($objUser->getPassword() == ''){ // Tests sur le mot de passe
 					$arrError[]	= "Merci de renseigner un mot de passe";
 				}
 				if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ", $_POST["password"])){ 
@@ -262,7 +257,7 @@
 	
 				if (!password_verify($_POST['confirmpassword'], $objUser->getPassword())){ // Tests sur la confirmation du mot de passe
 					$arrError[]	= "Le mot de passe et sa confirmation ne sont pas identiques";
-				}*/
+				}
 
 				if ($objUser->getPhone() == ''){ // Tests sur le nom
 					$arrError[]	= "Merci de renseigner un numéro de téléphone";
